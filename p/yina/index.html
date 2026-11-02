@@ -1,0 +1,1792 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Universo Reservado para Yina ✨</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --gold: #fcd34d;
+            --rose: #f472b6;
+            --violet: #a78bfa;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #04050f;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: #f8fafc;
+        }
+
+        .font-cinzel {
+            font-family: 'Cinzel', serif;
+        }
+
+        .font-playfair {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Nebulosas atmosféricas de fondo */
+        .nebula-bg {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+            background:
+                radial-gradient(circle at 18% 22%, rgba(91, 33, 182, 0.24) 0%, transparent 45%),
+                radial-gradient(circle at 82% 28%, rgba(219, 39, 119, 0.18) 0%, transparent 45%),
+                radial-gradient(circle at 50% 78%, rgba(30, 58, 138, 0.28) 0%, transparent 55%),
+                radial-gradient(circle at 50% 50%, rgba(251, 191, 36, 0.06) 0%, transparent 60%);
+            animation: nebulaPulse 14s ease-in-out infinite alternate;
+        }
+
+        @keyframes nebulaPulse {
+            0% { opacity: 0.75; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.06); }
+        }
+
+        /* Tarjetas Glassmorphism */
+        .glass-card {
+            background: rgba(13, 16, 38, 0.68);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            box-shadow:
+                0 25px 60px -15px rgba(0, 0, 0, 0.8),
+                0 0 35px rgba(244, 114, 182, 0.12),
+                inset 0 1px 1px rgba(255, 255, 255, 0.22);
+        }
+
+        .glass-pill {
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(252, 211, 77, 0.25);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45), 0 0 20px rgba(252, 211, 77, 0.1);
+        }
+
+        /* Botón principal brillante */
+        .btn-celestial {
+            background: linear-gradient(135deg, #f472b6 0%, #c084fc 50%, #fbbf24 100%);
+            background-size: 200% 200%;
+            animation: shimmerGradient 4s ease infinite, softPulse 2.5s ease-in-out infinite;
+            box-shadow: 0 0 25px rgba(244, 114, 182, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.6);
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .btn-celestial:hover {
+            transform: translateY(-2px) scale(1.03);
+            box-shadow: 0 0 35px rgba(251, 191, 36, 0.75), 0 0 15px rgba(244, 114, 182, 0.6);
+        }
+
+        .btn-celestial:active {
+            transform: scale(0.97);
+        }
+
+        @keyframes shimmerGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes softPulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(244, 114, 182, 0.45), 0 0 40px rgba(192, 132, 252, 0.2); }
+            50% { box-shadow: 0 0 32px rgba(251, 191, 36, 0.65), 0 0 55px rgba(244, 114, 182, 0.4); }
+        }
+
+        /* Marcadores DOM para las 4 Estrellas Principales */
+        .star-hotspot {
+            position: fixed;
+            transform: translate(-50%, -50%);
+            z-index: 25;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.6s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .star-hotspot:hover {
+            transform: translate(-50%, -50%) scale(1.16);
+        }
+
+        .star-ring {
+            width: 54px;
+            height: 54px;
+            border-radius: 9999px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .star-ring::before {
+            content: '';
+            position: absolute;
+            inset: 4px;
+            border-radius: 9999px;
+            border: 1px dashed rgba(252, 211, 77, 0.65);
+            animation: spinSlow 10s linear infinite;
+        }
+
+        .star-ring::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 9999px;
+            background: radial-gradient(circle, rgba(252, 211, 77, 0.32) 0%, rgba(244, 114, 182, 0.15) 50%, transparent 72%);
+            animation: haloPulse 2s ease-in-out infinite;
+        }
+
+        .star-hotspot.discovered .star-ring::before {
+            border-color: rgba(244, 114, 182, 0.9);
+            border-style: solid;
+        }
+
+        @keyframes spinSlow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes haloPulse {
+            0%, 100% { transform: scale(0.92); opacity: 0.7; }
+            50% { transform: scale(1.22); opacity: 1; }
+        }
+
+        /* Cursor de máquina de escribir */
+        .typewriter-cursor::after {
+            content: '▋';
+            display: inline-block;
+            margin-left: 3px;
+            color: #fcd34d;
+            animation: blinkCursor 0.8s infinite;
+        }
+
+        @keyframes blinkCursor {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Scrollbar sutil para modales en pantallas pequeñas */
+        .custom-scroll::-webkit-scrollbar {
+            width: 5px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.4);
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: rgba(244, 114, 182, 0.4);
+            border-radius: 9999px;
+        }
+
+        /* Tarjetas Astrales Interactivas (Oráculo y Señal en Vivo) */
+        .oracle-card {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.65) 0%, rgba(15, 23, 42, 0.85) 100%);
+            border: 1px solid rgba(252, 211, 77, 0.22);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.12);
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .oracle-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top right, rgba(252, 211, 77, 0.18), transparent 60%);
+            opacity: 0;
+            transition: opacity 0.35s ease;
+        }
+
+        .oracle-card:hover, .oracle-card:active {
+            transform: translateY(-3px) scale(1.015);
+            border-color: rgba(252, 211, 77, 0.65);
+            box-shadow: 0 14px 30px -5px rgba(244, 114, 182, 0.25), 0 0 20px rgba(252, 211, 77, 0.2);
+        }
+
+        .oracle-card:hover::before {
+            opacity: 1;
+        }
+
+        .oracle-card.selected-card {
+            border-color: #fcd34d;
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.18) 0%, rgba(244, 114, 182, 0.18) 100%);
+            box-shadow: 0 0 30px rgba(252, 211, 77, 0.4), inset 0 0 15px rgba(252, 211, 77, 0.2);
+        }
+
+        .chain-step-appear {
+            animation: stepSlideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes stepSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(16px) scale(0.97);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .floating-orb {
+            animation: floatSlow 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes floatSlow {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-5px); }
+        }
+
+        .ticket-border {
+            background: linear-gradient(135deg, rgba(252, 211, 77, 0.16) 0%, rgba(244, 114, 182, 0.16) 50%, rgba(167, 139, 250, 0.16) 100%);
+            border: 1px dashed rgba(252, 211, 77, 0.6);
+            box-shadow: 0 0 35px rgba(252, 211, 77, 0.15);
+        }
+    </style>
+</head>
+<body class="relative select-none">
+
+    <!-- Fondo de Nebulosa -->
+    <div class="nebula-bg"></div>
+
+    <!-- Canvas Interactivo a Pantalla Completa -->
+    <canvas id="cosmosCanvas" class="fixed inset-0 w-full h-full z-10 block"></canvas>
+
+    <!-- Reproductor de Audio Real preparado para GitHub Pages (soporta varios nombres en la misma carpeta) -->
+    <audio id="realMp3Audio" loop preload="auto" playsinline>
+        <source src="./yellow.mp3" type="audio/mpeg">
+        <source src="./Yellow.mp3" type="audio/mpeg">
+        <source src="./musica.mp3" type="audio/mpeg">
+        <source src="./Coldplay - Yellow.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Controles Superiores Flotantes -->
+    <header class="fixed top-0 left-0 right-0 z-30 p-3 sm:p-5 flex items-center justify-between gap-2 pointer-events-none">
+        <!-- Indicador de progreso (Fase 2) -->
+        <div id="hudProgress" class="glass-pill px-4 py-2.5 rounded-full flex items-center gap-3 opacity-0 -translate-y-4 transition-all duration-700 pointer-events-auto max-w-[68vw] sm:max-w-xl">
+            <div class="flex items-center gap-1.5 shrink-0" id="starDotsContainer">
+                <span class="w-2.5 h-2.5 rounded-full bg-slate-600 transition-all duration-500" data-dot="0"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-slate-600 transition-all duration-500" data-dot="1"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-slate-600 transition-all duration-500" data-dot="2"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-slate-600 transition-all duration-500" data-dot="3"></span>
+            </div>
+            <p id="hudText" class="text-xs sm:text-sm text-amber-100/90 font-medium truncate sm:whitespace-normal">
+                Toca las 4 estrellas brillantes de tu nombre para descubrir lo que preparé (<span id="discoveredCount" class="text-amber-300 font-semibold">0</span>/4)
+            </p>
+        </div>
+
+        <!-- Cápsula de Música (Coldplay - Yellow) -->
+        <div class="flex items-center gap-2 ml-auto pointer-events-auto">
+            <button id="quickLoadMp3Btn" title="Reproducir / Pausar Coldplay - Yellow" class="glass-pill px-3.5 py-2 rounded-full flex items-center gap-2 text-xs text-amber-200/95 hover:text-white hover:border-amber-300/60 transition-all shadow-lg cursor-pointer">
+                <i id="discIcon" class="fa-solid fa-compact-disc text-amber-300 animate-spin" style="animation-duration: 6s;"></i>
+                <span id="musicStatusLabel" class="font-medium">Coldplay - Yellow</span>
+            </button>
+
+            <button id="audioToggleBtn" aria-label="Activar o silenciar música" class="glass-pill w-11 h-11 rounded-full flex items-center justify-center text-amber-200 hover:text-white hover:scale-105 active:scale-95 transition-all shadow-lg cursor-pointer">
+                <i id="audioIcon" class="fa-solid fa-volume-xmark text-sm"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- FASE 1: EL ACCESO CÓMPLICE -->
+    <main id="phase1Screen" class="fixed inset-0 z-20 flex items-center justify-center p-4 transition-all duration-700">
+        <div id="lockCard" class="glass-card relative w-full max-w-md rounded-3xl p-6 sm:p-9 text-center overflow-visible">
+            <!-- Destello decorativo superior -->
+            <div class="mx-auto mb-5 w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-300/20 via-pink-500/20 to-violet-500/20 border border-amber-300/30 flex items-center justify-center shadow-inner">
+                <i class="fa-solid fa-wand-magic-sparkles text-2xl text-amber-300 animate-pulse"></i>
+            </div>
+
+            <!-- Subtítulo coordenadas -->
+            <span class="inline-block text-[11px] uppercase tracking-[0.28em] text-pink-300/80 mb-2 font-medium">
+                Universo Reservado para Ti • Yina
+            </span>
+
+            <!-- Título principal -->
+            <h1 class="font-cinzel text-2xl sm:text-3xl font-bold bg-gradient-to-r from-amber-200 via-pink-200 to-amber-100 bg-clip-text text-transparent mb-4 leading-snug">
+                Hola, Yina ✨
+            </h1>
+
+            <!-- Línea divisoria elegante -->
+            <div class="flex items-center justify-center gap-3 my-4 opacity-60">
+                <span class="h-px w-12 bg-gradient-to-r from-transparent to-amber-300"></span>
+                <i class="fa-regular fa-star text-xs text-amber-300"></i>
+                <span class="h-px w-12 bg-gradient-to-l from-transparent to-amber-300"></span>
+            </div>
+
+            <!-- Pregunta cómplice -->
+            <p id="securityQuestionText" class="font-playfair italic text-base sm:text-lg text-slate-200/95 leading-relaxed mb-8 px-1">
+                "Antes de abrir este cielo que armé especialmente para ti: ¿Confirmas que tienes la sonrisa más linda y que me debes un momento juntos?"
+            </p>
+
+            <!-- Contenedor de Botones -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-3.5 min-h-[60px] relative">
+                <!-- Botón Sí -->
+                <button id="yesBtn" class="btn-celestial w-full sm:w-auto px-7 py-3.5 rounded-2xl font-semibold text-slate-950 text-sm sm:text-base tracking-wide flex items-center justify-center gap-2 z-20 cursor-pointer">
+                    <span>Sí, lo confirmo ✨</span>
+                </button>
+
+                <!-- Botón Travieso No -->
+                <button id="noBtn" class="px-6 py-3 rounded-2xl font-medium text-xs sm:text-sm text-slate-300 bg-slate-800/75 hover:bg-slate-800 border border-white/15 backdrop-blur-md transition-all duration-200 cursor-pointer z-30">
+                    No creo 🙈
+                </button>
+            </div>
+
+            <p id="dodgeHint" class="text-[11px] text-amber-200/60 mt-5 min-h-[16px] transition-opacity duration-300 opacity-0">
+                El universo solo acepta respuestas sinceras de tu parte ✨
+            </p>
+        </div>
+    </main>
+
+    <!-- CONTENEDOR DE MARCADORES INTERACTIVOS DE LAS 4 ESTRELLAS (FASE 2) -->
+    <div id="starHotspotsContainer" class="fixed inset-0 pointer-events-none z-20 hidden"></div>
+
+    <!-- BOTÓN INFERIOR PARA LA SUPERNOVA FINAL -->
+    <div id="finalTriggerWrapper" class="fixed bottom-16 sm:bottom-10 left-1/2 -translate-x-1/2 z-30 pointer-events-none opacity-0 translate-y-6 transition-all duration-700 w-[90%] max-w-md flex flex-col items-center">
+        <button id="openFinalModalBtn" class="btn-celestial px-6 sm:px-8 py-4 rounded-full font-cinzel font-bold text-slate-950 text-sm sm:text-base tracking-wider shadow-2xl flex items-center gap-3 pointer-events-none">
+            <i class="fa-solid fa-Bahai animate-spin"></i>
+            <span>✨ Ver lo que preparé para ti ✨</span>
+        </button>
+    </div>
+
+    <!-- INSTRUCCIÓN SUTIL INFERIOR EN FASE 2 -->
+    <div id="stardustHint" class="fixed bottom-4 left-1/2 -translate-x-1/2 z-20 pointer-events-none opacity-0 transition-opacity duration-1000 text-center w-full px-4">
+        <p class="text-[11px] sm:text-xs text-slate-400/80 tracking-widest uppercase">
+            Desliza tu dedo o cursor para dibujar polvo estelar ✨
+        </p>
+    </div>
+
+    <!-- MODAL DE ESTRELLA INDIVIDUAL (FASE 3) -->
+    <div id="starModal" class="fixed inset-0 z-40 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300">
+        <div id="starModalCard" class="glass-card w-full max-w-md rounded-3xl p-6 sm:p-8 relative transform scale-95 transition-all duration-300 border border-amber-300/30">
+            <!-- Cerrar -->
+            <button id="closeStarModalBtn" aria-label="Cerrar mensaje" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/5 hover:bg-white/15 border border-white/10 flex items-center justify-center text-slate-300 hover:text-white transition-all">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <!-- Insignia de Letra -->
+            <div class="flex items-center gap-3 mb-5">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-300/25 to-pink-500/25 border border-amber-300/40 flex items-center justify-center shadow-lg">
+                    <span id="modalStarLetter" class="font-cinzel text-2xl font-bold text-amber-300">Y</span>
+                </div>
+                <div>
+                    <span id="modalStarRoman" class="text-[11px] uppercase tracking-[0.25em] text-pink-300 block">Estrella I</span>
+                    <h3 id="modalStarTitle" class="font-cinzel text-lg text-white font-semibold">Brillo especial</h3>
+                </div>
+            </div>
+
+            <!-- Texto con efecto máquina de escribir -->
+            <div class="min-h-[110px] flex items-center bg-slate-900/45 rounded-2xl p-4 sm:p-5 border border-white/10 mb-6">
+                <p id="modalStarMessage" class="font-playfair text-base sm:text-lg text-amber-50/95 leading-relaxed italic typewriter-cursor"></p>
+            </div>
+
+            <!-- Botón continuar -->
+            <div class="flex justify-end">
+                <button id="ackStarModalBtn" class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-amber-300/90 to-pink-400/90 hover:from-amber-300 hover:to-pink-400 text-slate-950 font-semibold text-sm transition-all shadow-md">
+                    Guardar en mi cielo ✨
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL FINAL: CARTA, ORÁCULO, RETO Y SEÑAL EN VIVO -->
+    <div id="finalModal" class="fixed inset-0 z-40 flex items-center justify-center p-4 bg-slate-950/75 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-500">
+        <div id="finalModalCard" class="glass-card w-full max-w-lg rounded-3xl p-5 sm:p-8 relative transform scale-95 transition-all duration-500 border border-pink-400/35 max-h-[92vh] overflow-y-auto custom-scroll text-center">
+            <button id="closeFinalModalBtn" aria-label="Cerrar carta final" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/5 hover:bg-white/15 border border-white/10 flex items-center justify-center text-slate-300 hover:text-white transition-all z-20">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <!-- VISTA 0: CARTA INICIAL -->
+            <div id="finalIntroView" class="chain-step-appear">
+                <div class="mx-auto mb-4 w-16 h-16 rounded-full bg-gradient-to-tr from-amber-300/30 via-pink-500/30 to-violet-500/30 border border-amber-200/50 flex items-center justify-center shadow-[0_0_30px_rgba(251,191,36,0.35)]">
+                    <i class="fa-solid fa-crown text-2xl text-amber-300"></i>
+                </div>
+
+                <span class="text-[11px] uppercase tracking-[0.3em] text-amber-300/90 block mb-1">Constelación para Yina • 4/4</span>
+                <h2 class="font-cinzel text-2xl sm:text-3xl font-bold bg-gradient-to-r from-amber-200 via-pink-200 to-amber-200 bg-clip-text text-transparent mb-5">
+                    Para ti, con todo mi cariño ✨
+                </h2>
+
+                <div class="bg-slate-900/50 border border-white/10 rounded-2xl p-5 sm:p-6 text-left space-y-4 mb-6 shadow-inner">
+                <p id="finalLetterParagraph1" class="font-playfair text-base sm:text-lg text-slate-100 leading-relaxed">
+                    Yina, quería hacerte algo único y especial. Dicen que las estrellas brillan muchísimo allá arriba, pero pocas cosas tienen una energía tan bonita como la que se siente al compartir momentos contigo.
+                </p>
+                <p id="finalLetterParagraph2" class="font-playfair text-base sm:text-lg text-slate-100 leading-relaxed">
+                    Me encanta cómo fluye el tiempo cuando conversamos, tus risas y lo bien que la pasamos. Preparé este pequeño universo sólo para robarte una sonrisa hoy mientras suena de fondo nuestra canción: <em>"Look at the stars, look how they shine for you..."</em> (Coldplay - Yellow).
+                </p>
+                <p id="finalLetterSignature" class="font-cinzel text-sm sm:text-base text-amber-300 text-right pt-2">
+                    — De mí para ti, con una sonrisa 💫
+                </p>
+            </div>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+                    <button id="shootStarWishBtn" class="btn-celestial w-full sm:w-auto px-6 py-3.5 rounded-2xl font-semibold text-slate-950 text-sm flex items-center justify-center gap-2 cursor-pointer">
+                        <i class="fa-solid fa-meteor"></i>
+                        <span>Pedir un deseo y lanzar estrellas 🌠</span>
+                    </button>
+                    <button id="admireSkyBtn" class="w-full sm:w-auto px-5 py-3.5 rounded-2xl bg-white/10 hover:bg-white/15 border border-white/15 text-xs sm:text-sm text-slate-200 font-medium transition-all cursor-pointer">
+                        Ver mi constelación
+                    </button>
+                </div>
+            </div>
+
+            <!-- PASO 1: ORÁCULO DE DESEOS -->
+            <div id="wishOracleStep1View" class="hidden text-left space-y-4 chain-step-appear">
+                <div class="text-center">
+                    <span class="inline-block px-3.5 py-1 rounded-full bg-amber-300/15 border border-amber-300/30 text-[10px] uppercase tracking-[0.25em] text-amber-200 mb-2">
+                        ✨ El Oráculo de las Estrellas ✨
+                    </span>
+                    <h3 class="font-cinzel text-xl sm:text-2xl font-bold bg-gradient-to-r from-amber-200 via-pink-200 to-amber-100 bg-clip-text text-transparent">
+                        Elige un deseo para nuestros próximos planes 🌠
+                    </h3>
+                    <p class="text-xs sm:text-sm text-slate-300/90 mt-1">
+                        Toca la carta astral que más te guste:
+                    </p>
+                </div>
+
+                <!-- 3 Cartas Astrales -->
+                <div class="space-y-3 pt-1">
+                    <div data-wish="Noches de risas y planes espontáneos ✨" class="oracle-wish-card oracle-card rounded-2xl p-4 cursor-pointer flex items-center gap-4">
+                        <div class="floating-orb w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-300/25 to-pink-500/25 border border-amber-300/40 flex items-center justify-center shrink-0 shadow-lg">
+                            <span class="text-2xl">✨</span>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-cinzel text-sm sm:text-base font-bold text-amber-200">
+                                Noches de risas y planes espontáneos
+                            </h4>
+                            <p class="text-xs text-slate-300/90 mt-0.5 leading-relaxed">
+                                Que nunca nos falten excusas para vernos y disfrutar al máximo.
+                            </p>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-amber-300/60 text-xs"></i>
+                    </div>
+
+                    <div data-wish="Complicidad y aventuras nuevas 🌙" class="oracle-wish-card oracle-card rounded-2xl p-4 cursor-pointer flex items-center gap-4">
+                        <div class="floating-orb w-12 h-12 rounded-2xl bg-gradient-to-br from-violet-400/25 to-pink-500/25 border border-violet-300/40 flex items-center justify-center shrink-0 shadow-lg" style="animation-delay: 0.6s;">
+                            <span class="text-2xl">🌙</span>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-cinzel text-sm sm:text-base font-bold text-pink-200">
+                                Complicidad y aventuras nuevas
+                            </h4>
+                            <p class="text-xs text-slate-300/90 mt-0.5 leading-relaxed">
+                                Descubrir lugares bonitos juntos, buena música y charlas inolvidables.
+                            </p>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-pink-300/60 text-xs"></i>
+                    </div>
+
+                    <div data-wish="Momentos que nos sorprendan 💫" class="oracle-wish-card oracle-card rounded-2xl p-4 cursor-pointer flex items-center gap-4">
+                        <div class="floating-orb w-12 h-12 rounded-2xl bg-gradient-to-br from-pink-400/25 to-amber-300/25 border border-pink-300/40 flex items-center justify-center shrink-0 shadow-lg" style="animation-delay: 1.2s;">
+                            <span class="text-2xl">💫</span>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-cinzel text-sm sm:text-base font-bold text-amber-100">
+                                Momentos que nos sorprendan
+                            </h4>
+                            <p class="text-xs text-slate-300/90 mt-0.5 leading-relaxed">
+                                Dejar que todo fluya de la manera más bonita y natural posible.
+                            </p>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-amber-300/60 text-xs"></i>
+                    </div>
+                </div>
+
+                <div class="flex justify-between items-center pt-2">
+                    <button id="backToLetterBtn" class="text-xs text-slate-400 hover:text-slate-200 flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-solid fa-chevron-left text-[10px]"></i>
+                        <span>Volver a la carta</span>
+                    </button>
+                    <span class="text-[11px] text-amber-200/70 italic">Toca una carta ✨</span>
+                </div>
+            </div>
+
+            <!-- PASO 2: RETO DEL DESTINO -->
+            <div id="datePactStep2View" class="hidden text-center space-y-5 py-2 chain-step-appear">
+                <span class="inline-block px-3.5 py-1 rounded-full bg-pink-500/20 border border-pink-400/30 text-[10px] uppercase tracking-[0.25em] text-pink-200">
+                    🌠 Deseo Enviado al Cosmos
+                </span>
+
+                <div class="mx-auto w-14 h-14 rounded-2xl bg-gradient-to-br from-pink-500/25 to-amber-300/25 border border-pink-300/40 flex items-center justify-center shadow-lg">
+                    <i class="fa-solid fa-wand-magic-sparkles text-2xl text-amber-300 animate-pulse"></i>
+                </div>
+
+                <h3 class="font-cinzel text-xl sm:text-2xl font-bold text-white leading-snug px-2">
+                    Una preguntita para ti ✨
+                </h3>
+
+                <p class="font-playfair italic text-base sm:text-lg text-amber-100/95 leading-relaxed px-2">
+                    "Las estrellas dicen que apenas estamos comenzando... ¿Aceptas seguir saliendo y compartiendo más momentos conmigo?"
+                </p>
+
+                <div id="persuasiveMsgBanner" class="min-h-[48px] flex items-center justify-center px-4 py-2.5 rounded-2xl bg-amber-300/10 border border-amber-300/30 text-amber-200 text-xs sm:text-sm font-medium transition-all duration-300">
+                    <span>✨ Las estrellas esperan tu confirmación para el siguiente plan ✨</span>
+                </div>
+
+                <div id="pactButtonsArena" class="relative min-h-[115px] flex flex-col sm:flex-row items-center justify-center gap-3.5 pt-2">
+                    <button id="acceptDatesYesBtn" class="btn-celestial px-7 py-4 rounded-2xl font-bold text-slate-950 text-sm sm:text-base tracking-wide flex items-center justify-center gap-2 z-20 cursor-pointer shadow-xl transition-transform duration-300">
+                        <span>¡Sí, me encanta la idea! 💖</span>
+                    </button>
+
+                    <button id="rejectDatesNoBtn" class="px-5 py-3 rounded-2xl font-medium text-xs sm:text-sm text-slate-300 bg-slate-800/85 hover:bg-slate-800 border border-white/15 backdrop-blur-md transition-all duration-200 cursor-pointer z-30">
+                        Mmm, lo pensaré 🙈
+                    </button>
+                </div>
+            </div>
+
+            <!-- PASO 3: LA SEÑAL EN VIVO -->
+            <div id="liveSignalStep3View" class="hidden text-center space-y-4 py-1 chain-step-appear">
+                <div class="mx-auto w-14 h-14 rounded-full bg-gradient-to-tr from-amber-300/30 via-pink-500/30 to-violet-500/30 border border-amber-300/60 flex items-center justify-center shadow-[0_0_30px_rgba(252,211,77,0.4)]">
+                    <i class="fa-solid fa-heart text-2xl text-pink-400 animate-bounce"></i>
+                </div>
+
+                <div>
+                    <span class="text-[10px] uppercase tracking-[0.28em] text-amber-300 font-semibold block mb-1">
+                        🤫 Secreto entre tú y yo
+                    </span>
+                    <h3 class="font-cinzel text-xl sm:text-2xl font-bold bg-gradient-to-r from-amber-200 via-pink-200 to-amber-200 bg-clip-text text-transparent">
+                        ¡Estoy justo a tu lado esperando! ✨
+                    </h3>
+                    <p class="text-xs sm:text-sm text-slate-200/90 mt-1.5 leading-relaxed px-1">
+                        Como no estoy viendo tu pantalla y quiero saber qué te pareció mi detalle, <span class="text-amber-300 font-semibold">¡elije qué acción harás ahora mismo conmigo!</span>:
+                    </p>
+                </div>
+
+                <!-- 3 Tarjetas de Acción Física en Vivo -->
+                <div class="space-y-2.5 text-left">
+                    <div data-signal="🤗 Elegí darte un abrazo fuerte ahora mismo" class="live-signal-card oracle-card rounded-2xl p-3.5 cursor-pointer flex items-center gap-3.5">
+                        <div class="w-11 h-11 rounded-xl bg-pink-500/20 border border-pink-400/40 flex items-center justify-center shrink-0 text-xl">
+                            🤗
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-cinzel text-xs sm:text-sm font-bold text-pink-200">
+                                Opción 1: Darle un abrazo ahora mismo
+                            </h4>
+                            <p class="text-[11px] sm:text-xs text-slate-300/90 mt-0.5 leading-snug">
+                                Voltéate, mírame y dame un abrazo fuerte sin decir nada (así sabré que te encantó).
+                            </p>
+                        </div>
+                    </div>
+
+                    <div data-signal="👀 Elegí mirada cómplice y tomar tu mano" class="live-signal-card oracle-card rounded-2xl p-3.5 cursor-pointer flex items-center gap-3.5">
+                        <div class="w-11 h-11 rounded-xl bg-amber-400/20 border border-amber-300/40 flex items-center justify-center shrink-0 text-xl">
+                            👀
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-cinzel text-xs sm:text-sm font-bold text-amber-200">
+                                Opción 2: Mirada cómplice y tomar su mano
+                            </h4>
+                            <p class="text-[11px] sm:text-xs text-slate-300/90 mt-0.5 leading-snug">
+                                Mírame a los ojos con una sonrisa misteriosa y toma o choca mi mano.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div data-signal="📱 Elegí mostrarte mi pantalla y darte tu abrazo" class="live-signal-card oracle-card rounded-2xl p-3.5 cursor-pointer flex items-center gap-3.5">
+                        <div class="w-11 h-11 rounded-xl bg-violet-400/20 border border-violet-300/40 flex items-center justify-center shrink-0 text-xl">
+                            📱
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-cinzel text-xs sm:text-sm font-bold text-violet-200">
+                                Opción 3: Mostrarme esta pantalla y un abrazo
+                            </h4>
+                            <p class="text-[11px] sm:text-xs text-slate-300/90 mt-0.5 leading-snug">
+                                Toca aquí, muéstrame tu celular para que lea esto y dame mi abrazo.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PASE ESTELAR CONFIRMADO -->
+                <div id="finalApprovedBadge" class="ticket-border rounded-2xl p-4 text-center space-y-2 transition-all duration-500">
+                    <div class="flex items-center justify-center gap-2 text-amber-300 font-cinzel text-xs sm:text-sm font-bold tracking-wider uppercase">
+                        <i class="fa-solid fa-certificate"></i>
+                        <span>✨ Detalle Creado para Yina ✨</span>
+                    </div>
+                    <p id="selectedWishSummary" class="text-[11px] sm:text-xs text-pink-200 font-medium"></p>
+                    <p id="forHimMessage" class="text-xs sm:text-sm text-white/95 font-playfair italic leading-relaxed">
+                        "Si estás leyendo esto porque Yina te mostró su celular: ¡Sí le encantó tu detalle! Prepárate para tu abrazo y para seguir disfrutando juntos 💖✨"
+                    </p>
+                </div>
+
+                <div class="pt-1 flex justify-center">
+                    <button id="launchMoreStarsFinalBtn" class="px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/15 text-xs text-amber-200 font-medium transition-all cursor-pointer flex items-center gap-2">
+                        <i class="fa-solid fa-meteor"></i>
+                        <span>Lanzar más estrellas fugaces 🌠</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BOTÓN DISCRETO DE PERSONALIZACIÓN -->
+    <button id="openCustomizerBtn" title="Personalizar mensajes y crear enlace" class="fixed bottom-3.5 left-3.5 z-30 w-9 h-9 rounded-full bg-slate-900/40 hover:bg-slate-800/80 border border-white/10 text-slate-400/60 hover:text-amber-200 flex items-center justify-center transition-all backdrop-blur-sm">
+        <i class="fa-solid fa-gear text-xs"></i>
+    </button>
+
+    <!-- MODAL DE EDICIÓN Y GENERADOR DE LINK -->
+    <div id="customizerModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300">
+        <div class="glass-card w-full max-w-xl rounded-3xl p-5 sm:p-7 relative max-h-[90vh] overflow-y-auto custom-scroll border border-white/15">
+            <div class="flex items-center justify-between pb-4 mb-4 border-b border-white/10">
+                <div class="flex items-center gap-2.5">
+                    <i class="fa-solid fa-sliders text-amber-300"></i>
+                    <h3 class="font-cinzel text-lg font-semibold text-white">Personalizar Detalle para Yina</h3>
+                </div>
+                <button id="closeCustomizerBtn" class="w-8 h-8 rounded-full bg-white/5 hover:bg-white/15 flex items-center justify-center text-slate-300">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="space-y-4 text-left text-xs sm:text-sm">
+                <!-- Sección para cargar el MP3 descargado -->
+                <div class="p-3.5 rounded-2xl bg-amber-300/10 border border-amber-300/30 space-y-2">
+                    <div class="flex items-center justify-between">
+                        <span class="text-amber-200 font-semibold flex items-center gap-2">
+                            <i class="fa-solid fa-music text-amber-300"></i>
+                            <span>Canción: Coldplay - Yellow (MP3)</span>
+                        </span>
+                        <span id="mp3LoadedBadge" class="text-[11px] px-2.5 py-0.5 rounded-full bg-amber-400/20 text-amber-200 border border-amber-300/30">
+                            Melodía instrumental activa
+                        </span>
+                    </div>
+                    <p class="text-[11px] text-slate-300 leading-relaxed">
+                        Si descargaste <strong>Coldplay - Yellow</strong> en MP3 en tu celular o PC, selecciónalo aquí abajo para que suene la canción original (o guárdalo en la misma carpeta con el nombre <code class="text-amber-300">yellow.mp3</code>):
+                    </p>
+                    <div class="flex items-center gap-2 pt-1">
+                        <label for="mp3FileInput" class="px-4 py-2 rounded-xl bg-amber-300 hover:bg-amber-200 text-slate-950 font-semibold text-xs cursor-pointer transition-all inline-flex items-center gap-2 shadow-md">
+                            <i class="fa-solid fa-folder-open"></i>
+                            <span>Elegir MP3 descargado</span>
+                        </label>
+                        <input id="mp3FileInput" type="file" accept="audio/*" class="hidden">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-amber-200/90 font-medium mb-1">Pregunta de Seguridad Inicial:</label>
+                    <textarea id="inputQuestion" rows="2" class="w-full rounded-xl bg-slate-900/80 border border-white/15 p-3 text-slate-100 focus:outline-none focus:border-amber-300"></textarea>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-pink-300 font-medium mb-1">Estrella I (Letra Y):</label>
+                        <textarea id="inputStar0" rows="3" class="w-full rounded-xl bg-slate-900/80 border border-white/15 p-2.5 text-slate-100 focus:outline-none focus:border-pink-400"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-pink-300 font-medium mb-1">Estrella II (Letra I):</label>
+                        <textarea id="inputStar1" rows="3" class="w-full rounded-xl bg-slate-900/80 border border-white/15 p-2.5 text-slate-100 focus:outline-none focus:border-pink-400"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-pink-300 font-medium mb-1">Estrella III (Letra N):</label>
+                        <textarea id="inputStar2" rows="3" class="w-full rounded-xl bg-slate-900/80 border border-white/15 p-2.5 text-slate-100 focus:outline-none focus:border-pink-400"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-pink-300 font-medium mb-1">Estrella IV (Letra A):</label>
+                        <textarea id="inputStar3" rows="3" class="w-full rounded-xl bg-slate-900/80 border border-white/15 p-2.5 text-slate-100 focus:outline-none focus:border-pink-400"></textarea>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-amber-200/90 font-medium mb-1">Firma o Dedicatoria Final:</label>
+                    <input id="inputSignature" type="text" class="w-full rounded-xl bg-slate-900/80 border border-white/15 p-2.5 text-slate-100 focus:outline-none focus:border-amber-300">
+                </div>
+            </div>
+
+            <div id="copyFeedbackBanner" class="hidden mt-4 p-3 rounded-xl bg-emerald-500/20 border border-emerald-400/40 text-emerald-200 text-xs text-center">
+                ¡Cambios aplicados y enlace copiado al portapapeles! ✨
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center justify-end gap-2.5 mt-6 pt-4 border-t border-white/10">
+                <button id="resetDefaultsBtn" class="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 text-xs">
+                    Restaurar original
+                </button>
+                <button id="saveAndCopyLinkBtn" class="btn-celestial w-full sm:w-auto px-5 py-2.5 rounded-xl font-semibold text-slate-950 text-xs sm:text-sm flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-link"></i>
+                    <span>Aplicar y Copiar Link Personalizado</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /********************************************************************
+         * 1. CONFIGURACIÓN Y TEXTOS (EN PRIMERA PERSONA)
+         ********************************************************************/
+        var DEFAULT_CONFIG = {
+            question: "Antes de abrir este cielo que armé especialmente para ti: ¿Confirmas que tienes la sonrisa más linda y que me debes un momento juntos?",
+            stars: [
+                {
+                    letter: "Y",
+                    roman: "Estrella I",
+                    title: "Brillo Especial",
+                    message: "Yina, hay personas que tienen una vibra tan bonita que hacen que cualquier lugar se sienta especial... y tú tienes exactamente esa magia conmigo."
+                },
+                {
+                    letter: "I",
+                    roman: "Estrella II",
+                    title: "Tiempo Contigo",
+                    message: "Lo que más disfruto es cómo las charlas y las risas contigo fluyen tan natural que las horas se pasan volando cuando estamos juntos."
+                },
+                {
+                    letter: "N",
+                    roman: "Estrella III",
+                    title: "Qué Suerte Coincidir",
+                    message: "Entre tantas cosas en el mundo, qué gran suerte la mía haberte cruzado y empezar a conocerte cada día un poco más."
+                },
+                {
+                    letter: "A",
+                    roman: "Estrella IV",
+                    title: "Lo Que Nos Espera",
+                    message: "Quería darte una sorpresa bonita hoy porque me encanta pasar tiempo a tu lado y descubrir todo lo que nos espera."
+                }
+            ],
+            signature: "— De mí para ti, con mucho cariño 💫"
+        };
+
+        var appConfig = JSON.parse(JSON.stringify(DEFAULT_CONFIG));
+
+        function loadConfigFromURL() {
+            try {
+                var params = new URLSearchParams(window.location.search);
+                if (params.get('q')) appConfig.question = params.get('q');
+                if (params.get('s0')) appConfig.stars[0].message = params.get('s0');
+                if (params.get('s1')) appConfig.stars[1].message = params.get('s1');
+                if (params.get('s2')) appConfig.stars[2].message = params.get('s2');
+                if (params.get('s3')) appConfig.stars[3].message = params.get('s3');
+                if (params.get('sig')) appConfig.signature = params.get('sig');
+            } catch (err) {
+                console.warn("No se pudieron leer parámetros de la URL:", err);
+            }
+            applyConfigToDOM();
+        }
+
+        function applyConfigToDOM() {
+            document.getElementById('securityQuestionText').textContent = '"' + appConfig.question + '"';
+            document.getElementById('finalLetterSignature').textContent = appConfig.signature;
+        }
+
+        /********************************************************************
+         * 2. MOTOR DE MÚSICA: MP3 REAL + MELODÍA DE "YELLOW" INTEGRADA
+         ********************************************************************/
+        var realMp3Audio = document.getElementById('realMp3Audio');
+        var mp3FileInput = document.getElementById('mp3FileInput');
+        var mp3LoadedBadge = document.getElementById('mp3LoadedBadge');
+        var musicStatusLabel = document.getElementById('musicStatusLabel');
+
+        var isMusicPlaying = false;
+        var isMuted = false;
+        var useRealMp3 = false;
+        var audioCtx = null;
+        var yellowSynthTimer = null;
+        var yellowStepIndex = 0;
+
+        // Si el archivo "yellow.mp3" existe en la misma carpeta, se activa automáticamente
+        realMp3Audio.addEventListener('canplaythrough', function() {
+            useRealMp3 = true;
+            if (mp3LoadedBadge) {
+                mp3LoadedBadge.textContent = '¡Archivo yellow.mp3 detectado! ✨';
+                mp3LoadedBadge.className = 'text-[11px] px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-200 border border-emerald-400/40';
+            }
+        });
+
+        // Permite probar o cambiar el MP3 manualmente desde el botón de configuración (⚙️)
+        mp3FileInput.addEventListener('change', function(e) {
+            var file = e.target.files && e.target.files[0];
+            if (!file) return;
+
+            var fileURL = URL.createObjectURL(file);
+            realMp3Audio.src = fileURL;
+            realMp3Audio.load();
+            useRealMp3 = true;
+
+            if (mp3LoadedBadge) {
+                mp3LoadedBadge.textContent = '¡MP3 cargado: ' + file.name.slice(0, 18) + '!';
+                mp3LoadedBadge.className = 'text-[11px] px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-200 border border-emerald-400/40';
+            }
+            if (musicStatusLabel) {
+                musicStatusLabel.textContent = 'Coldplay - Yellow';
+            }
+
+            if (yellowSynthTimer) {
+                clearInterval(yellowSynthTimer);
+                yellowSynthTimer = null;
+            }
+
+            realMp3Audio.volume = 0.85;
+            realMp3Audio.play().then(function() {
+                isMusicPlaying = true;
+                isMuted = false;
+                updateAudioIcon();
+            }).catch(function(err) {
+                console.warn('Esperando interacción para reproducir MP3:', err);
+            });
+        });
+
+        // Al tocar la cápsula del disco giratorio, también activa/pausa la música sin abrir menús técnicos
+        document.getElementById('quickLoadMp3Btn').addEventListener('click', function() {
+            toggleBackgroundMusic();
+        });
+
+        // Progresión y melodía inspirada en "Yellow" (Coldplay) en Si Mayor (B, F#, E, B)
+        // para que suene inmediatamente si aún no se ha cargado el archivo MP3
+        var YELLOW_SEQUENCE = [
+            // Compás 1: Acorde B Mayor ("Look at the stars...")
+            { bass: 123.47, chord: [246.94, 369.99, 493.88], melody: 622.25 }, // D#5
+            { bass: null,   chord: null,                     melody: 554.37 }, // C#5
+            { bass: null,   chord: [369.99, 493.88],         melody: 493.88 }, // B4
+            { bass: null,   chord: null,                     melody: 369.99 }, // F#4
+            // Compás 2: Acorde F# Mayor ("...look how they shine for you")
+            { bass: 92.50,  chord: [277.18, 369.99, 466.16], melody: 622.25 }, // D#5
+            { bass: null,   chord: null,                     melody: 554.37 }, // C#5
+            { bass: null,   chord: [277.18, 369.99],         melody: 493.88 }, // B4
+            { bass: null,   chord: null,                     melody: 415.30 }, // G#4
+            // Compás 3: Acorde E Mayor ("...and everything you do")
+            { bass: 82.41,  chord: [246.94, 329.63, 415.30], melody: 622.25 }, // D#5
+            { bass: null,   chord: null,                     melody: 554.37 }, // C#5
+            { bass: null,   chord: [246.94, 329.63],         melody: 493.88 }, // B4
+            { bass: null,   chord: null,                     melody: 415.30 }, // G#4
+            // Compás 4: Acorde B Mayor ("...yeah, they were all yellow")
+            { bass: 123.47, chord: [246.94, 369.99, 493.88], melody: 369.99 }, // F#4
+            { bass: null,   chord: null,                     melody: 415.30 }, // G#4
+            { bass: null,   chord: [369.99, 493.88],         melody: 493.88 }, // B4
+            { bass: null,   chord: null,                     melody: 622.25 }  // D#5
+        ];
+
+        function ensureAudioCtx() {
+            if (!audioCtx) {
+                var AudioContextClass = window.AudioContext || window.webkitAudioContext;
+                audioCtx = new AudioContextClass();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+        }
+
+        function playWarmNote(freq, duration, volume, waveType) {
+            if (!audioCtx || isMuted || !freq) return;
+            try {
+                var now = audioCtx.currentTime;
+                var osc = audioCtx.createOscillator();
+                var gain = audioCtx.createGain();
+
+                osc.type = waveType || 'sine';
+                osc.frequency.setValueAtTime(freq, now);
+
+                gain.gain.setValueAtTime(0.0001, now);
+                gain.gain.exponentialRampToValueAtTime(volume, now + 0.06);
+                gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                osc.start(now);
+                osc.stop(now + duration + 0.05);
+            } catch (e) {}
+        }
+
+        function startYellowInstrumentalLoop() {
+            ensureAudioCtx();
+            if (yellowSynthTimer) clearInterval(yellowSynthTimer);
+
+            yellowSynthTimer = setInterval(function() {
+                if (isMuted || useRealMp3) return;
+                var step = YELLOW_SEQUENCE[yellowStepIndex % YELLOW_SEQUENCE.length];
+                yellowStepIndex++;
+
+                if (step.bass) {
+                    playWarmNote(step.bass, 2.2, 0.045, 'triangle');
+                }
+                if (step.chord) {
+                    step.chord.forEach(function(cFreq, idx) {
+                        setTimeout(function() {
+                            playWarmNote(cFreq, 1.6, 0.025, 'sine');
+                        }, idx * 45);
+                    });
+                }
+                if (step.melody) {
+                    playWarmNote(step.melody, 1.1, 0.055, 'sine');
+                }
+            }, 520);
+        }
+
+        function updateAudioIcon() {
+            var icon = document.getElementById('audioIcon');
+            var disc = document.getElementById('discIcon');
+            if (isMusicPlaying && !isMuted) {
+                icon.className = 'fa-solid fa-music text-sm text-amber-300 animate-pulse';
+                if (disc) disc.style.animationPlayState = 'running';
+            } else {
+                icon.className = 'fa-solid fa-volume-xmark text-sm text-slate-400';
+                if (disc) disc.style.animationPlayState = 'paused';
+            }
+        }
+
+        function startBackgroundMusic() {
+            isMusicPlaying = true;
+            isMuted = false;
+            realMp3Audio.muted = false;
+            realMp3Audio.volume = 0.85;
+            updateAudioIcon();
+
+            // Reproducir directamente el archivo MP3 alojado en la misma carpeta de GitHub
+            var playPromise = realMp3Audio.play();
+
+            if (playPromise !== undefined) {
+                playPromise.then(function() {
+                    useRealMp3 = true;
+                    if (yellowSynthTimer) {
+                        clearInterval(yellowSynthTimer);
+                        yellowSynthTimer = null;
+                    }
+                }).catch(function() {
+                    // Respaldo instrumental automático solo si el navegador no encuentra el archivo MP3
+                    useRealMp3 = false;
+                    startYellowInstrumentalLoop();
+                });
+            } else {
+                startYellowInstrumentalLoop();
+            }
+        }
+
+        function toggleBackgroundMusic() {
+            if (!isMusicPlaying) {
+                startBackgroundMusic();
+                return;
+            }
+
+            isMuted = !isMuted;
+            if (useRealMp3) {
+                realMp3Audio.muted = isMuted;
+                if (!isMuted && realMp3Audio.paused) {
+                    realMp3Audio.play().catch(function() {});
+                }
+            } else {
+                ensureAudioCtx();
+            }
+            updateAudioIcon();
+        }
+
+        document.getElementById('audioToggleBtn').addEventListener('click', toggleBackgroundMusic);
+
+        function playSparkleSound() {
+            try {
+                ensureAudioCtx();
+                [523.25, 659.25, 783.99, 1046.50].forEach(function(freq, i) {
+                    var now = audioCtx.currentTime + i * 0.08;
+                    var osc = audioCtx.createOscillator();
+                    var gain = audioCtx.createGain();
+                    osc.frequency.setValueAtTime(freq, now);
+                    gain.gain.setValueAtTime(0.0001, now);
+                    gain.gain.exponentialRampToValueAtTime(0.035, now + 0.05);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.8);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(now);
+                    osc.stop(now + 0.9);
+                });
+            } catch (e) {}
+        }
+
+        /********************************************************************
+         * 3. FASE 1: BOTÓN TRAVIESO "NO CREO"
+         ********************************************************************/
+        var noBtn = document.getElementById('noBtn');
+        var yesBtn = document.getElementById('yesBtn');
+        var dodgeHint = document.getElementById('dodgeHint');
+        var noTexts = [
+            "¡Casi! 😏",
+            "Ese botón no vale ✨",
+            "No puedes huir de aquí",
+            "Intenta con el otro botón 😉",
+            "Sabes que sí 💖",
+            "¡Ups, muy lenta! 🌠",
+            "Ese botón está de adorno 🙈"
+        ];
+        var dodgeIndex = 0;
+
+        function moveNoButton(e) {
+            if (e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            if (!isMusicPlaying) startBackgroundMusic();
+            playSparkleSound();
+
+            var rect = noBtn.getBoundingClientRect();
+            spawnBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 12);
+
+            noBtn.textContent = noTexts[dodgeIndex % noTexts.length];
+            dodgeIndex++;
+            dodgeHint.classList.remove('opacity-0');
+
+            var btnWidth = noBtn.offsetWidth || 150;
+            var btnHeight = noBtn.offsetHeight || 46;
+            var margin = 20;
+            var maxX = Math.max(margin, window.innerWidth - btnWidth - margin);
+            var maxY = Math.max(margin + 60, window.innerHeight - btnHeight - margin);
+
+            var yesRect = yesBtn.getBoundingClientRect();
+            var targetX = 0, targetY = 0, attempts = 0;
+            do {
+                targetX = margin + Math.random() * (maxX - margin);
+                targetY = margin + 60 + Math.random() * (maxY - (margin + 60));
+                attempts++;
+            } while (
+                attempts < 12 &&
+                Math.abs(targetX - yesRect.left) < 160 &&
+                Math.abs(targetY - yesRect.top) < 90
+            );
+
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = targetX + 'px';
+            noBtn.style.top = targetY + 'px';
+            noBtn.style.zIndex = '50';
+        }
+
+        noBtn.addEventListener('mouseover', moveNoButton);
+        noBtn.addEventListener('touchstart', moveNoButton, { passive: false });
+        noBtn.addEventListener('click', moveNoButton);
+
+        /********************************************************************
+         * 4. MOTOR DE CANVAS: ESTRELLAS Y CONSTELACIÓN "YINA"
+         ********************************************************************/
+        var canvas = document.getElementById('cosmosCanvas');
+        var ctx = canvas.getContext('2d');
+
+        var width = window.innerWidth;
+        var height = window.innerHeight;
+        var currentPhase = 1;
+        var constellationProgress = 0;
+
+        var bgStars = [];
+        var particles = [];
+        var shootingStars = [];
+
+        var LETTER_SHAPES = [
+            {
+                letter: 'Y',
+                nodes: [
+                    { rx: 0.0, ry: 0.0 },
+                    { rx: 1.0, ry: 0.0 },
+                    { rx: 0.5, ry: 0.48 },
+                    { rx: 0.5, ry: 1.0 }
+                ],
+                edges: [[0, 2], [1, 2], [2, 3]],
+                mainNodeIndex: 2
+            },
+            {
+                letter: 'I',
+                nodes: [
+                    { rx: 0.2, ry: 0.0 },
+                    { rx: 0.8, ry: 0.0 },
+                    { rx: 0.5, ry: 0.0 },
+                    { rx: 0.5, ry: 1.0 },
+                    { rx: 0.2, ry: 1.0 },
+                    { rx: 0.8, ry: 1.0 }
+                ],
+                edges: [[0, 1], [2, 3], [4, 5]],
+                mainNodeIndex: 2
+            },
+            {
+                letter: 'N',
+                nodes: [
+                    { rx: 0.0, ry: 1.0 },
+                    { rx: 0.0, ry: 0.0 },
+                    { rx: 1.0, ry: 1.0 },
+                    { rx: 1.0, ry: 0.0 }
+                ],
+                edges: [[0, 1], [1, 2], [2, 3]],
+                mainNodeIndex: 1
+            },
+            {
+                letter: 'A',
+                nodes: [
+                    { rx: 0.0, ry: 1.0 },
+                    { rx: 0.5, ry: 0.0 },
+                    { rx: 1.0, ry: 1.0 },
+                    { rx: 0.22, ry: 0.58 },
+                    { rx: 0.78, ry: 0.58 }
+                ],
+                edges: [[0, 1], [1, 2], [3, 4]],
+                mainNodeIndex: 1
+            }
+        ];
+
+        var constellationLetters = [];
+        var discoveredStars = [false, false, false, false];
+
+        function initBackgroundStars() {
+            bgStars.length = 0;
+            var count = Math.min(220, Math.floor((width * height) / 6000) + 80);
+            for (var i = 0; i < count; i++) {
+                bgStars.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    radius: Math.random() * 1.7 + 0.4,
+                    alpha: Math.random() * 0.8 + 0.2,
+                    twinkleSpeed: Math.random() * 0.025 + 0.008,
+                    twinklePhase: Math.random() * Math.PI * 2,
+                    hue: Math.random() > 0.7 ? (Math.random() > 0.5 ? '#fde68a' : '#fbcfe8') : '#ffffff'
+                });
+            }
+        }
+
+        function computeConstellationLayout() {
+            var isMobile = width < 640;
+            var totalSpanWidth = isMobile ? width * 0.86 : Math.min(width * 0.76, 860);
+            var letterHeight = isMobile ? Math.min(height * 0.20, 135) : Math.min(height * 0.28, 195);
+            var letterWidth = (totalSpanWidth * 0.62) / 4;
+            var gap = (totalSpanWidth - letterWidth * 4) / 3;
+
+            var startX = (width - totalSpanWidth) / 2;
+            var startY = (height - letterHeight) / 2 - (isMobile ? 18 : 10);
+
+            constellationLetters = LETTER_SHAPES.map(function(item, idx) {
+                var lx = startX + idx * (letterWidth + gap);
+                var ly = startY;
+                var nodes = item.nodes.map(function(n) {
+                    return {
+                        x: lx + n.rx * letterWidth,
+                        y: ly + n.ry * letterHeight,
+                        curX: width / 2 + (Math.random() - 0.5) * width,
+                        curY: height / 2 + (Math.random() - 0.5) * height
+                    };
+                });
+                return {
+                    letter: item.letter,
+                    nodes: nodes,
+                    edges: item.edges,
+                    mainNodeIndex: item.mainNodeIndex,
+                    mainCoord: nodes[item.mainNodeIndex]
+                };
+            });
+
+            updateStarHotspotsDOM();
+        }
+
+        function buildStarHotspotsDOM() {
+            var container = document.getElementById('starHotspotsContainer');
+            container.innerHTML = '';
+
+            appConfig.stars.forEach(function(starInfo, idx) {
+                var btn = document.createElement('button');
+                btn.className = 'star-hotspot pointer-events-auto group focus:outline-none';
+                btn.id = 'hotspot-' + idx;
+                btn.setAttribute('aria-label', 'Abrir mensaje de ' + starInfo.roman);
+                btn.innerHTML = `
+                    <div class="star-ring">
+                        <span class="w-3.5 h-3.5 rounded-full bg-amber-200 shadow-[0_0_16px_#fcd34d] group-hover:scale-125 transition-transform"></span>
+                    </div>
+                    <span class="mt-1 px-2.5 py-0.5 rounded-full text-[10px] sm:text-xs font-cinzel tracking-wider bg-slate-950/80 text-amber-200 border border-amber-300/30 shadow-md whitespace-nowrap">
+                        ` + starInfo.roman + `
+                    </span>
+                `;
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    openStarModal(idx);
+                });
+                container.appendChild(btn);
+            });
+        }
+
+        function updateStarHotspotsDOM() {
+            if (!constellationLetters.length) return;
+            constellationLetters.forEach(function(item, idx) {
+                var el = document.getElementById('hotspot-' + idx);
+                if (el && item.mainCoord) {
+                    el.style.left = item.mainCoord.x + 'px';
+                    el.style.top = item.mainCoord.y + 'px';
+                }
+            });
+        }
+
+        function spawnBurst(x, y, count) {
+            if (count === undefined) count = 35;
+            var colors = ['#fcd34d', '#f472b6', '#c084fc', '#fde68a', '#ffffff'];
+            for (var i = 0; i < count; i++) {
+                var angle = Math.random() * Math.PI * 2;
+                var speed = Math.random() * 4.8 + 0.8;
+                particles.push({
+                    x: x, y: y,
+                    vx: Math.cos(angle) * speed,
+                    vy: Math.sin(angle) * speed,
+                    size: Math.random() * 2.8 + 1,
+                    alpha: 1,
+                    decay: Math.random() * 0.018 + 0.012,
+                    color: colors[Math.floor(Math.random() * colors.length)]
+                });
+            }
+        }
+
+        function spawnShootingStar() {
+            var startX = Math.random() * width * 0.85;
+            var startY = Math.random() * height * 0.35;
+            var angle = (Math.PI / 6) + Math.random() * (Math.PI / 8);
+            var speed = 11 + Math.random() * 7;
+            shootingStars.push({
+                x: startX, y: startY,
+                vx: Math.cos(angle) * speed,
+                vy: Math.sin(angle) * speed,
+                length: 90 + Math.random() * 60,
+                alpha: 1
+            });
+        }
+
+        function triggerShootingStarShower(count) {
+            if (count === undefined) count = 7;
+            playSparkleSound();
+            for (var i = 0; i < count; i++) {
+                setTimeout(function() {
+                    spawnShootingStar();
+                }, i * 260);
+            }
+        }
+
+        function handlePointerTrail(clientX, clientY) {
+            var colors = ['#fde68a', '#f9a8d4', '#ddd6fe'];
+            for (var i = 0; i < 2; i++) {
+                particles.push({
+                    x: clientX + (Math.random() - 0.5) * 10,
+                    y: clientY + (Math.random() - 0.5) * 10,
+                    vx: (Math.random() - 0.5) * 1.1,
+                    vy: (Math.random() - 0.5) * 1.1 - 0.3,
+                    size: Math.random() * 2.2 + 0.8,
+                    alpha: 0.9,
+                    decay: 0.022,
+                    color: colors[Math.floor(Math.random() * colors.length)]
+                });
+            }
+        }
+
+        window.addEventListener('mousemove', function(e) {
+            handlePointerTrail(e.clientX, e.clientY);
+        });
+        window.addEventListener('touchmove', function(e) {
+            if (e.touches && e.touches[0]) {
+                handlePointerTrail(e.touches[0].clientX, e.touches[0].clientY);
+            }
+        }, { passive: true });
+
+        function resizeCanvas() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width;
+            canvas.height = height;
+            initBackgroundStars();
+            computeConstellationLayout();
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+
+        /********************************************************************
+         * 5. TRANSICIÓN A FASE 2 Y ANIMACIÓN
+         ********************************************************************/
+        yesBtn.addEventListener('click', function() {
+            if (!isMusicPlaying || realMp3Audio.paused) {
+                startBackgroundMusic();
+            }
+            playSparkleSound();
+
+            var rect = yesBtn.getBoundingClientRect();
+            spawnBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 75);
+
+            var phase1 = document.getElementById('phase1Screen');
+            phase1.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
+            noBtn.style.display = 'none';
+
+            currentPhase = 2;
+            triggerShootingStarShower(4);
+
+            setTimeout(function() {
+                phase1.classList.add('hidden');
+                document.getElementById('starHotspotsContainer').classList.remove('hidden');
+                updateStarHotspotsDOM();
+                document.getElementById('hudProgress').classList.remove('opacity-0', '-translate-y-4');
+                document.getElementById('stardustHint').classList.remove('opacity-0');
+            }, 650);
+        });
+
+        function animateCosmos() {
+            ctx.clearRect(0, 0, width, height);
+
+            for (var i = 0; i < bgStars.length; i++) {
+                var s = bgStars[i];
+                s.twinklePhase += s.twinkleSpeed;
+                var currentAlpha = s.alpha * (0.55 + 0.45 * Math.sin(s.twinklePhase));
+
+                ctx.beginPath();
+                ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
+                ctx.fillStyle = s.hue;
+                ctx.globalAlpha = currentAlpha;
+                ctx.fill();
+            }
+            ctx.globalAlpha = 1;
+
+            if (Math.random() < 0.006) spawnShootingStar();
+
+            for (var j = shootingStars.length - 1; j >= 0; j--) {
+                var st = shootingStars[j];
+                st.x += st.vx;
+                st.y += st.vy;
+                st.alpha -= 0.016;
+
+                if (st.alpha <= 0 || st.x > width + 100 || st.y > height + 100) {
+                    shootingStars.splice(j, 1);
+                    continue;
+                }
+
+                var tailX = st.x - (st.vx / Math.hypot(st.vx, st.vy)) * st.length;
+                var tailY = st.y - (st.vy / Math.hypot(st.vx, st.vy)) * st.length;
+
+                var grad = ctx.createLinearGradient(st.x, st.y, tailX, tailY);
+                grad.addColorStop(0, 'rgba(254, 240, 138, ' + st.alpha + ')');
+                grad.addColorStop(0.4, 'rgba(244, 114, 182, ' + (st.alpha * 0.6) + ')');
+                grad.addColorStop(1, 'rgba(255, 255, 255, 0)');
+
+                ctx.beginPath();
+                ctx.moveTo(st.x, st.y);
+                ctx.lineTo(tailX, tailY);
+                ctx.strokeStyle = grad;
+                ctx.lineWidth = 2.2;
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.arc(st.x, st.y, 2.4, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(255, 255, 255, ' + st.alpha + ')';
+                ctx.fill();
+            }
+
+            if (currentPhase === 2) {
+                if (constellationProgress < 1) {
+                    constellationProgress = Math.min(1, constellationProgress + 0.008);
+                }
+
+                constellationLetters.forEach(function(letterObj, lIdx) {
+                    letterObj.nodes.forEach(function(node) {
+                        node.curX += (node.x - node.curX) * 0.08;
+                        node.curY += (node.y - node.curY) * 0.08;
+                    });
+
+                    var isDiscovered = discoveredStars[lIdx];
+                    ctx.save();
+                    ctx.lineWidth = isDiscovered ? 2.4 : 1.5;
+                    ctx.strokeStyle = isDiscovered
+                        ? 'rgba(244, 114, 182, 0.85)'
+                        : 'rgba(252, 211, 77, ' + (0.42 * constellationProgress) + ')';
+                    ctx.shadowColor = isDiscovered ? '#f472b6' : '#fcd34d';
+                    ctx.shadowBlur = isDiscovered ? 14 : 8;
+
+                    letterObj.edges.forEach(function(edge) {
+                        var iA = edge[0];
+                        var iB = edge[1];
+                        var nA = letterObj.nodes[iA];
+                        var nB = letterObj.nodes[iB];
+                        ctx.beginPath();
+                        ctx.moveTo(nA.curX, nA.curY);
+                        ctx.lineTo(
+                            nA.curX + (nB.curX - nA.curX) * constellationProgress,
+                            nA.curY + (nB.curY - nA.curY) * constellationProgress
+                        );
+                        ctx.stroke();
+                    });
+                    ctx.restore();
+
+                    letterObj.nodes.forEach(function(node, nIdx) {
+                        var isMain = nIdx === letterObj.mainNodeIndex;
+                        ctx.save();
+                        ctx.beginPath();
+                        ctx.arc(node.curX, node.curY, isMain ? 5.2 : 2.8, 0, Math.PI * 2);
+                        ctx.fillStyle = isMain
+                            ? (isDiscovered ? '#f472b6' : '#fde68a')
+                            : 'rgba(255, 255, 255, 0.85)';
+                        ctx.shadowColor = isMain ? '#fcd34d' : '#ffffff';
+                        ctx.shadowBlur = isMain ? 18 : 6;
+                        ctx.fill();
+                        ctx.restore();
+                    });
+                });
+            }
+
+            for (var k = particles.length - 1; k >= 0; k--) {
+                var p = particles[k];
+                p.x += p.vx;
+                p.y += p.vy;
+                p.alpha -= p.decay;
+
+                if (p.alpha <= 0) {
+                    particles.splice(k, 1);
+                    continue;
+                }
+
+                ctx.save();
+                ctx.globalAlpha = p.alpha;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fillStyle = p.color;
+                ctx.shadowColor = p.color;
+                ctx.shadowBlur = 8;
+                ctx.fill();
+                ctx.restore();
+            }
+
+            requestAnimationFrame(animateCosmos);
+        }
+
+        /********************************************************************
+         * 6. MODALES DE ESTRELLAS Y PROGRESO
+         ********************************************************************/
+        var starModal = document.getElementById('starModal');
+        var starModalCard = document.getElementById('starModalCard');
+        var modalStarLetter = document.getElementById('modalStarLetter');
+        var modalStarRoman = document.getElementById('modalStarRoman');
+        var modalStarTitle = document.getElementById('modalStarTitle');
+        var modalStarMessage = document.getElementById('modalStarMessage');
+        var typewriterTimer = null;
+
+        function openStarModal(index) {
+            var starData = appConfig.stars[index];
+            if (!starData) return;
+
+            playSparkleSound();
+            var coord = constellationLetters[index] ? constellationLetters[index].mainCoord : null;
+            if (coord) spawnBurst(coord.x, coord.y, 45);
+
+            modalStarLetter.textContent = starData.letter;
+            modalStarRoman.textContent = starData.roman;
+            modalStarTitle.textContent = starData.title;
+            modalStarMessage.textContent = '';
+
+            starModal.classList.remove('opacity-0', 'pointer-events-none');
+            starModalCard.classList.remove('scale-95');
+            starModalCard.classList.add('scale-100');
+
+            if (typewriterTimer) clearInterval(typewriterTimer);
+            var charIdx = 0;
+            var fullText = '"' + starData.message + '"';
+            typewriterTimer = setInterval(function() {
+                if (charIdx < fullText.length) {
+                    modalStarMessage.textContent += fullText.charAt(charIdx);
+                    charIdx++;
+                } else {
+                    clearInterval(typewriterTimer);
+                }
+            }, 24);
+
+            if (!discoveredStars[index]) {
+                discoveredStars[index] = true;
+                var hotspotEl = document.getElementById('hotspot-' + index);
+                if (hotspotEl) hotspotEl.classList.add('discovered');
+                updateDiscoveryProgress();
+            }
+        }
+
+        function closeStarModal() {
+            if (typewriterTimer) clearInterval(typewriterTimer);
+            starModal.classList.add('opacity-0', 'pointer-events-none');
+            starModalCard.classList.remove('scale-100');
+            starModalCard.classList.add('scale-95');
+        }
+
+        document.getElementById('closeStarModalBtn').addEventListener('click', closeStarModal);
+        document.getElementById('ackStarModalBtn').addEventListener('click', closeStarModal);
+
+        function updateDiscoveryProgress() {
+            var count = discoveredStars.filter(Boolean).length;
+            document.getElementById('discoveredCount').textContent = count;
+
+            discoveredStars.forEach(function(isDisc, idx) {
+                var dot = document.querySelector('[data-dot="' + idx + '"]');
+                if (dot && isDisc) {
+                    dot.classList.remove('bg-slate-600');
+                    dot.classList.add('bg-amber-300', 'shadow-[0_0_10px_#fcd34d]', 'scale-125');
+                }
+            });
+
+            if (count === 4) {
+                var wrapper = document.getElementById('finalTriggerWrapper');
+                var btn = document.getElementById('openFinalModalBtn');
+                wrapper.classList.remove('opacity-0', 'translate-y-6', 'pointer-events-none');
+                btn.classList.remove('pointer-events-none');
+                triggerShootingStarShower(6);
+            }
+        }
+
+        /********************************************************************
+         * 7. MODAL FINAL: ORÁCULO, RETO Y SEÑAL EN VIVO
+         ********************************************************************/
+        var finalModal = document.getElementById('finalModal');
+        var finalModalCard = document.getElementById('finalModalCard');
+        var finalIntroView = document.getElementById('finalIntroView');
+        var wishOracleStep1View = document.getElementById('wishOracleStep1View');
+        var datePactStep2View = document.getElementById('datePactStep2View');
+        var liveSignalStep3View = document.getElementById('liveSignalStep3View');
+
+        var acceptDatesYesBtn = document.getElementById('acceptDatesYesBtn');
+        var rejectDatesNoBtn = document.getElementById('rejectDatesNoBtn');
+        var persuasiveMsgBanner = document.getElementById('persuasiveMsgBanner');
+
+        var chosenOracleWish = "Noches de risas y planes espontáneos ✨";
+        var yesScaleFactor = 1;
+        var pactDodgeCount = 0;
+
+        var persuasiveMessages = [
+            "¡Ey! Las estrellas vieron ese intento 😜✨",
+            "Ese botón está de adorno en esta galaxia 🌌",
+            "Mi intuición dice que quieres pulsar el otro botón 😉",
+            "¡Casi! Pero el universo insiste en que tengamos más salidas 🌠",
+            "Prometo buenas risas, grandes planes y momentos bonitos ✨",
+            "¡Mira qué bonito brilla el botón de decir que SÍ! 👉💖"
+        ];
+
+        function showFinalSubView(viewName) {
+            finalIntroView.classList.add('hidden');
+            wishOracleStep1View.classList.add('hidden');
+            datePactStep2View.classList.add('hidden');
+            liveSignalStep3View.classList.add('hidden');
+
+            rejectDatesNoBtn.style.position = '';
+            rejectDatesNoBtn.style.left = '';
+            rejectDatesNoBtn.style.top = '';
+
+            if (viewName === 'intro') finalIntroView.classList.remove('hidden');
+            if (viewName === 'oracle') wishOracleStep1View.classList.remove('hidden');
+            if (viewName === 'pact') datePactStep2View.classList.remove('hidden');
+            if (viewName === 'signal') liveSignalStep3View.classList.remove('hidden');
+        }
+
+        function openFinalModal() {
+            triggerShootingStarShower(10);
+            spawnBurst(width / 2, height / 2, 95);
+            showFinalSubView('intro');
+            finalModal.classList.remove('opacity-0', 'pointer-events-none');
+            finalModalCard.classList.remove('scale-95');
+            finalModalCard.classList.add('scale-100');
+        }
+
+        function closeFinalModal() {
+            rejectDatesNoBtn.style.position = '';
+            finalModal.classList.add('opacity-0', 'pointer-events-none');
+            finalModalCard.classList.remove('scale-100');
+            finalModalCard.classList.add('scale-95');
+        }
+
+        document.getElementById('openFinalModalBtn').addEventListener('click', openFinalModal);
+        document.getElementById('closeFinalModalBtn').addEventListener('click', closeFinalModal);
+        document.getElementById('admireSkyBtn').addEventListener('click', closeFinalModal);
+
+        document.getElementById('shootStarWishBtn').addEventListener('click', function() {
+            triggerShootingStarShower(12);
+            spawnBurst(width / 2, height * 0.3, 65);
+            showFinalSubView('oracle');
+        });
+
+        document.getElementById('backToLetterBtn').addEventListener('click', function() {
+            showFinalSubView('intro');
+        });
+
+        document.querySelectorAll('.oracle-wish-card').forEach(function(card) {
+            card.addEventListener('click', function() {
+                document.querySelectorAll('.oracle-wish-card').forEach(function(c) {
+                    c.classList.remove('selected-card');
+                });
+                card.classList.add('selected-card');
+
+                chosenOracleWish = card.getAttribute('data-wish') || chosenOracleWish;
+                playSparkleSound();
+                triggerShootingStarShower(8);
+
+                var rect = card.getBoundingClientRect();
+                spawnBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 45);
+
+                setTimeout(function() {
+                    yesScaleFactor = 1;
+                    acceptDatesYesBtn.style.transform = 'scale(1)';
+                    showFinalSubView('pact');
+                }, 420);
+            });
+        });
+
+        function dodgePactNoButton(e) {
+            if (e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            playSparkleSound();
+
+            var rect = rejectDatesNoBtn.getBoundingClientRect();
+            spawnBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 16);
+
+            var msg = persuasiveMessages[pactDodgeCount % persuasiveMessages.length];
+            persuasiveMsgBanner.innerHTML = '<span class="chain-step-appear text-amber-200 font-semibold">' + msg + '</span>';
+
+            var shortNoLabels = [
+                "¡Por allá no es! 🙈",
+                "Botón travieso 😜",
+                "Dale al SÍ 👉💖",
+                "¡Casi me atrapas! ✨",
+                "Opción de adorno 😉",
+                "El cosmos dice SÍ 🌠"
+            ];
+            rejectDatesNoBtn.textContent = shortNoLabels[pactDodgeCount % shortNoLabels.length];
+            pactDodgeCount++;
+
+            yesScaleFactor = Math.min(1.18, yesScaleFactor + 0.03);
+            acceptDatesYesBtn.style.transform = 'scale(' + yesScaleFactor + ')';
+
+            var btnW = rejectDatesNoBtn.offsetWidth || 160;
+            var btnH = rejectDatesNoBtn.offsetHeight || 44;
+            var pad = 24;
+            var maxX = Math.max(pad, window.innerWidth - btnW - pad);
+            var maxY = Math.max(pad + 60, window.innerHeight - btnH - pad);
+
+            var yesRect = acceptDatesYesBtn.getBoundingClientRect();
+            var nextX = 0, nextY = 0, tries = 0;
+            do {
+                nextX = pad + Math.random() * (maxX - pad);
+                nextY = pad + 60 + Math.random() * (maxY - (pad + 60));
+                tries++;
+            } while (
+                tries < 12 &&
+                Math.abs(nextX - yesRect.left) < 170 &&
+                Math.abs(nextY - yesRect.top) < 95
+            );
+
+            rejectDatesNoBtn.style.position = 'fixed';
+            rejectDatesNoBtn.style.left = nextX + 'px';
+            rejectDatesNoBtn.style.top = nextY + 'px';
+            rejectDatesNoBtn.style.zIndex = '60';
+        }
+
+        rejectDatesNoBtn.addEventListener('mouseover', dodgePactNoButton);
+        rejectDatesNoBtn.addEventListener('touchstart', dodgePactNoButton, { passive: false });
+        rejectDatesNoBtn.addEventListener('click', dodgePactNoButton);
+
+        acceptDatesYesBtn.addEventListener('click', function() {
+            playSparkleSound();
+            triggerShootingStarShower(16);
+            spawnBurst(width / 2, height / 2, 110);
+
+            document.getElementById('selectedWishSummary').textContent = '🌟 Deseo elegido: ' + chosenOracleWish;
+            showFinalSubView('signal');
+        });
+
+        document.querySelectorAll('.live-signal-card').forEach(function(card) {
+            card.addEventListener('click', function() {
+                document.querySelectorAll('.live-signal-card').forEach(function(c) {
+                    c.classList.remove('selected-card');
+                });
+                card.classList.add('selected-card');
+
+                var signalText = card.getAttribute('data-signal') || '';
+                var forHimEl = document.getElementById('forHimMessage');
+                forHimEl.innerHTML = '"Si estás leyendo esto porque Yina te mostró su celular: <strong>¡Sí le encantó tu detalle!</strong> (' + signalText + '). Prepárate para tu abrazo y para seguir disfrutando juntos 💖✨"';
+
+                playSparkleSound();
+                triggerShootingStarShower(10);
+                var rect = card.getBoundingClientRect();
+                spawnBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 60);
+            });
+        });
+
+        document.getElementById('launchMoreStarsFinalBtn').addEventListener('click', function() {
+            triggerShootingStarShower(14);
+            spawnBurst(width / 2, height * 0.35, 75);
+        });
+
+        /********************************************************************
+         * 8. PERSONALIZADOR Y GENERADOR DE ENLACE
+         ********************************************************************/
+        var customizerModal = document.getElementById('customizerModal');
+        var copyBanner = document.getElementById('copyFeedbackBanner');
+
+        function openCustomizer() {
+            document.getElementById('inputQuestion').value = appConfig.question;
+            document.getElementById('inputStar0').value = appConfig.stars[0].message;
+            document.getElementById('inputStar1').value = appConfig.stars[1].message;
+            document.getElementById('inputStar2').value = appConfig.stars[2].message;
+            document.getElementById('inputStar3').value = appConfig.stars[3].message;
+            document.getElementById('inputSignature').value = appConfig.signature;
+            copyBanner.classList.add('hidden');
+            customizerModal.classList.remove('opacity-0', 'pointer-events-none');
+        }
+
+        function closeCustomizer() {
+            customizerModal.classList.add('opacity-0', 'pointer-events-none');
+        }
+
+        document.getElementById('openCustomizerBtn').addEventListener('click', openCustomizer);
+        document.getElementById('closeCustomizerBtn').addEventListener('click', closeCustomizer);
+
+        document.getElementById('resetDefaultsBtn').addEventListener('click', function() {
+            appConfig = JSON.parse(JSON.stringify(DEFAULT_CONFIG));
+            openCustomizer();
+            applyConfigToDOM();
+        });
+
+        document.getElementById('saveAndCopyLinkBtn').addEventListener('click', function() {
+            appConfig.question = document.getElementById('inputQuestion').value.trim() || DEFAULT_CONFIG.question;
+            appConfig.stars[0].message = document.getElementById('inputStar0').value.trim() || DEFAULT_CONFIG.stars[0].message;
+            appConfig.stars[1].message = document.getElementById('inputStar1').value.trim() || DEFAULT_CONFIG.stars[1].message;
+            appConfig.stars[2].message = document.getElementById('inputStar2').value.trim() || DEFAULT_CONFIG.stars[2].message;
+            appConfig.stars[3].message = document.getElementById('inputStar3').value.trim() || DEFAULT_CONFIG.stars[3].message;
+            appConfig.signature = document.getElementById('inputSignature').value.trim() || DEFAULT_CONFIG.signature;
+
+            applyConfigToDOM();
+
+            var params = new URLSearchParams();
+            params.set('q', appConfig.question);
+            params.set('s0', appConfig.stars[0].message);
+            params.set('s1', appConfig.stars[1].message);
+            params.set('s2', appConfig.stars[2].message);
+            params.set('s3', appConfig.stars[3].message);
+            params.set('sig', appConfig.signature);
+
+            var customURL = window.location.origin + window.location.pathname + '?' + params.toString();
+            window.history.replaceState({}, '', '?' + params.toString());
+
+            var tempInput = document.createElement('textarea');
+            tempInput.value = customURL;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            try {
+                document.execCommand('copy');
+            } catch (err) {
+                console.warn('No se pudo copiar automáticamente:', err);
+            }
+            document.body.removeChild(tempInput);
+
+            copyBanner.classList.remove('hidden');
+            playSparkleSound();
+        });
+
+        /********************************************************************
+         * 9. INICIALIZACIÓN
+         ********************************************************************/
+        window.onload = function () {
+            loadConfigFromURL();
+            buildStarHotspotsDOM();
+            resizeCanvas();
+            animateCosmos();
+        };
+    </script>
+</body>
+</html>
