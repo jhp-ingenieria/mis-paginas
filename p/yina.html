@@ -1,0 +1,1680 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Universo Reservado para Yina ✨</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --gold: #fcd34d;
+            --rose: #f472b6;
+            --violet: #a78bfa;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #04050f;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: #f8fafc;
+        }
+
+        .font-cinzel {
+            font-family: 'Cinzel', serif;
+        }
+
+        .font-playfair {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Nebulosas atmosféricas de fondo */
+        .nebula-bg {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+            background:
+                radial-gradient(circle at 18% 22%, rgba(91, 33, 182, 0.24) 0%, transparent 45%),
+                radial-gradient(circle at 82% 28%, rgba(219, 39, 119, 0.18) 0%, transparent 45%),
+                radial-gradient(circle at 50% 78%, rgba(30, 58, 138, 0.28) 0%, transparent 55%),
+                radial-gradient(circle at 50% 50%, rgba(251, 191, 36, 0.06) 0%, transparent 60%);
+            animation: nebulaPulse 14s ease-in-out infinite alternate;
+        }
+
+        @keyframes nebulaPulse {
+            0% { opacity: 0.75; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.06); }
+        }
+
+        /* Tarjetas Glassmorphism */
+        .glass-card {
+            background: rgba(13, 16, 38, 0.68);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            box-shadow:
+                0 25px 60px -15px rgba(0, 0, 0, 0.8),
+                0 0 35px rgba(244, 114, 182, 0.12),
+                inset 0 1px 1px rgba(255, 255, 255, 0.22);
+        }
+
+        .glass-pill {
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(252, 211, 77, 0.25);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45), 0 0 20px rgba(252, 211, 77, 0.1);
+        }
+
+        /* Botón principal brillante */
+        .btn-celestial {
+            background: linear-gradient(135deg, #f472b6 0%, #c084fc 50%, #fbbf24 100%);
+            background-size: 200% 200%;
+            animation: shimmerGradient 4s ease infinite, softPulse 2.5s ease-in-out infinite;
+            box-shadow: 0 0 25px rgba(244, 114, 182, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.6);
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .btn-celestial:hover {
+            transform: translateY(-2px) scale(1.03);
+            box-shadow: 0 0 35px rgba(251, 191, 36, 0.75), 0 0 15px rgba(244, 114, 182, 0.6);
+        }
+
+        .btn-celestial:active {
+            transform: scale(0.97);
+        }
+
+        @keyframes shimmerGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes softPulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(244, 114, 182, 0.45), 0 0 40px rgba(192, 132, 252, 0.2); }
+            50% { box-shadow: 0 0 32px rgba(251, 191, 36, 0.65), 0 0 55px rgba(244, 114, 182, 0.4); }
+        }
+
+        /* Marcadores DOM para las 4 Estrellas Principales */
+        .star-hotspot {
+            position: fixed;
+            transform: translate(-50%, -50%);
+            z-index: 25;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.6s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .star-hotspot:hover {
+            transform: translate(-50%, -50%) scale(1.16);
+        }
+
+        .star-ring {
+            width: 54px;
+            height: 54px;
+            border-radius: 9999px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .star-ring::before {
+            content: '';
+            position: absolute;
+            inset: 4px;
+            border-radius: 9999px;
+            border: 1px dashed rgba(252, 211, 77, 0.65);
+            animation: spinSlow 10s linear infinite;
+        }
+
+        .star-ring::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 9999px;
+            background: radial-gradient(circle, rgba(252, 211, 77, 0.32) 0%, rgba(244, 114, 182, 0.15) 50%, transparent 72%);
+            animation: haloPulse 2s ease-in-out infinite;
+        }
+
+        .star-hotspot.discovered .star-ring::before {
+            border-color: rgba(244, 114, 182, 0.9);
+            border-style: solid;
+        }
+
+        @keyframes spinSlow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes haloPulse {
+            0%, 100% { transform: scale(0.92); opacity: 0.7; }
+            50% { transform: scale(1.22); opacity: 1; }
+        }
+
+        /* Cursor de máquina de escribir */
+        .typewriter-cursor::after {
+            content: '▋';
+            display: inline-block;
+            margin-left: 3px;
+            color: #fcd34d;
+            animation: blinkCursor 0.8s infinite;
+        }
+
+        @keyframes blinkCursor {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Scrollbar sutil para modales en pantallas pequeñas */
+        .custom-scroll::-webkit-scrollbar {
+            width: 5px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.4);
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: rgba(244, 114, 182, 0.4);
+            border-radius: 9999px;
+        }
+
+        /* Tarjetas Astrales Interactivas (Oráculo y Señal en Vivo) */
+        .oracle-card {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.65) 0%, rgba(15, 23, 42, 0.85) 100%);
+            border: 1px solid rgba(252, 211, 77, 0.22);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.12);
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .oracle-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top right, rgba(252, 211, 77, 0.18), transparent 60%);
+            opacity: 0;
+            transition: opacity 0.35s ease;
+        }
+
+        .oracle-card:hover, .oracle-card:active {
+            transform: translateY(-3px) scale(1.015);
+            border-color: rgba(252, 211, 77, 0.65);
+            box-shadow: 0 14px 30px -5px rgba(244, 114, 182, 0.25), 0 0 20px rgba(252, 211, 77, 0.2);
+        }
+
+        .oracle-card:hover::before {
+            opacity: 1;
+        }
+
+        .oracle-card.selected-card {
+            border-color: #fcd34d;
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.18) 0%, rgba(244, 114, 182, 0.18) 100%);
+            box-shadow: 0 0 30px rgba(252, 211, 77, 0.4), inset 0 0 15px rgba(252, 211, 77, 0.2);
+        }
+
+        .chain-step-appear {
+            animation: stepSlideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes stepSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(16px) scale(0.97);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .floating-orb {
+            animation: floatSlow 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes floatSlow {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-5px); }
+        }
+
+        .ticket-border {
+            background: linear-gradient(135deg, rgba(252, 211, 77, 0.16) 0%, rgba(244, 114, 182, 0.16) 50%, rgba(167, 139, 250, 0.16) 100%);
+            border: 1px dashed rgba(252, 211, 77, 0.6);
+            box-shadow: 0 0 35px rgba(252, 211, 77, 0.15);
+        }
+    </style>
+</head>
+<body class="relative select-none">
+
+    <!-- Fondo de Nebulosa -->
+    <div class="nebula-bg"></div>
+
+    <!-- Canvas Interactivo a Pantalla Completa -->
+    <canvas id="cosmosCanvas" class="fixed inset-0 w-full h-full z-10 block"></canvas>
+
+    <!-- Controles Superiores Flotantes -->
+    <header class="fixed top-0 left-0 right-0 z-30 p-3 sm:p-5 flex items-center justify-between pointer-events-none">
+        <!-- Indicador de progreso (Fase 2) -->
+        <div id="hudProgress" class="glass-pill px-4 py-2.5 rounded-full flex items-center gap-3 opacity-0 -translate-y-4 transition-all duration-700 pointer-events-auto max-w-[82vw] sm:max-w-xl">
+            <div class="flex items-center gap-1.5 shrink-0" id="starDotsContainer">
+                <span class="w-2.5 h-2.5 rounded-full bg-slate-600 transition-all duration-500" data-dot="0"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-slate-600 transition-all duration-500" data-dot="1"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-slate-600 transition-all duration-500" data-dot="2"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-slate-600 transition-all duration-500" data-dot="3"></span>
+            </div>
+            <p id="hudText" class="text-xs sm:text-sm text-amber-100/90 font-medium truncate sm:whitespace-normal">
+                Toca las 4 estrellas brillantes de tu nombre para revelar lo que esconden (<span id="discoveredCount" class="text-amber-300 font-semibold">0</span>/4)
+            </p>
+        </div>
+
+        <!-- Botón de Música Web Audio -->
+        <button id="audioToggleBtn" aria-label="Activar o silenciar música" class="glass-pill w-11 h-11 rounded-full flex items-center justify-center text-amber-200 hover:text-white hover:scale-105 active:scale-95 transition-all pointer-events-auto ml-auto shadow-lg">
+            <i id="audioIcon" class="fa-solid fa-volume-xmark text-sm"></i>
+        </button>
+    </header>
+
+    <!-- FASE 1: EL ACCESO CÓMPLICE -->
+    <main id="phase1Screen" class="fixed inset-0 z-20 flex items-center justify-center p-4 transition-all duration-700">
+        <div id="lockCard" class="glass-card relative w-full max-w-md rounded-3xl p-6 sm:p-9 text-center overflow-visible">
+            <!-- Destello decorativo superior -->
+            <div class="mx-auto mb-5 w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-300/20 via-pink-500/20 to-violet-500/20 border border-amber-300/30 flex items-center justify-center shadow-inner">
+                <i class="fa-solid fa-wand-magic-sparkles text-2xl text-amber-300 animate-pulse"></i>
+            </div>
+
+            <!-- Subtítulo coordenadas -->
+            <span class="inline-block text-[11px] uppercase tracking-[0.28em] text-pink-300/80 mb-2 font-medium">
+                Coordenadas Astrales • Acceso Exclusivo
+            </span>
+
+            <!-- Título principal -->
+            <h1 class="font-cinzel text-2xl sm:text-3xl font-bold bg-gradient-to-r from-amber-200 via-pink-200 to-amber-100 bg-clip-text text-transparent mb-4 leading-snug">
+                Universo reservado para Yina ✨
+            </h1>
+
+            <!-- Línea divisoria elegante -->
+            <div class=" flex items-center justify-center gap-3 my-4 opacity-60">
+                <span class="h-px w-12 bg-gradient-to-r from-transparent to-amber-300"></span>
+                <i class="fa-regular fa-star text-xs text-amber-300"></i>
+                <span class="h-px w-12 bg-gradient-to-l from-transparent to-amber-300"></span>
+            </div>
+
+            <!-- Pregunta cómplice -->
+            <p id="securityQuestionText" class="font-playfair italic text-base sm:text-lg text-slate-200/95 leading-relaxed mb-8 px-1">
+                "Pregunta de seguridad antes de desbloquear tu cielo: ¿Confirmas que tienes la sonrisa más linda y que me debes un momento juntos?"
+            </p>
+
+            <!-- Contenedor de Botones -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-3.5 min-h-[60px] relative">
+                <!-- Botón Sí -->
+                <button id="yesBtn" class="btn-celestial w-full sm:w-auto px-7 py-3.5 rounded-2xl font-semibold text-slate-950 text-sm sm:text-base tracking-wide flex items-center justify-center gap-2 z-20 cursor-pointer">
+                    <span>Sí, lo confirmo ✨</span>
+                </button>
+
+                <!-- Botón Travieso No -->
+                <button id="noBtn" class="px-6 py-3 rounded-2xl font-medium text-xs sm:text-sm text-slate-300 bg-slate-800/75 hover:bg-slate-800 border border-white/15 backdrop-blur-md transition-all duration-200 cursor-pointer z-30">
+                    No creo 🙈
+                </button>
+            </div>
+
+            <p id="dodgeHint" class="text-[11px] text-amber-200/60 mt-5 min-h-[16px] transition-opacity duration-300 opacity-0">
+                El universo solo acepta respuestas sinceras ✨
+            </p>
+        </div>
+    </main>
+
+    <!-- CONTENEDOR DE MARCADORES INTERACTIVOS DE LAS 4 ESTRELLAS (FASE 2) -->
+    <div id="starHotspotsContainer" class="fixed inset-0 pointer-events-none z-20 hidden"></div>
+
+    <!-- BOTÓN INFERIOR PARA LA SUPERNOVA FINAL (SE DESBLOQUEA AL LLEGAR A 4/4) -->
+    <div id="finalTriggerWrapper" class="fixed bottom-16 sm:bottom-10 left-1/2 -translate-x-1/2 z-30 pointer-events-none opacity-0 translate-y-6 transition-all duration-700 w-[90%] max-w-md flex flex-col items-center">
+        <button id="openFinalModalBtn" class="btn-celestial px-6 sm:px-8 py-4 rounded-full font-cinzel font-bold text-slate-950 text-sm sm:text-base tracking-wider shadow-2xl flex items-center gap-3 pointer-events-none">
+            <i class="fa-solid fa-Bahai animate-spin"></i>
+            <span>✨ Ver el mensaje secreto final ✨</span>
+        </button>
+    </div>
+
+    <!-- INSTRUCCIÓN SUTIL INFERIOR EN FASE 2 -->
+    <div id="stardustHint" class="fixed bottom-4 left-1/2 -translate-x-1/2 z-20 pointer-events-none opacity-0 transition-opacity duration-1000 text-center w-full px-4">
+        <p class="text-[11px] sm:text-xs text-slate-400/80 tracking-widest uppercase">
+            Desliza tu dedo o cursor por el cielo para crear polvo estelar ✨
+        </p>
+    </div>
+
+    <!-- MODAL DE ESTRELLA INDIVIDUAL (FASE 3) -->
+    <div id="starModal" class="fixed inset-0 z-40 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300">
+        <div id="starModalCard" class="glass-card w-full max-w-md rounded-3xl p-6 sm:p-8 relative transform scale-95 transition-all duration-300 border border-amber-300/30">
+            <!-- Cerrar -->
+            <button id="closeStarModalBtn" aria-label="Cerrar mensaje" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/5 hover:bg-white/15 border border-white/10 flex items-center justify-center text-slate-300 hover:text-white transition-all">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <!-- Insignia de Letra -->
+            <div class="flex items-center gap-3 mb-5">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-300/25 to-pink-500/25 border border-amber-300/40 flex items-center justify-center shadow-lg">
+                    <span id="modalStarLetter" class="font-cinzel text-2xl font-bold text-amber-300">Y</span>
+                </div>
+                <div>
+                    <span id="modalStarRoman" class="text-[11px] uppercase tracking-[0.25em] text-pink-300 block">Estrella I</span>
+                    <h3 id="modalStarTitle" class="font-cinzel text-lg text-white font-semibold">Luz de tu constelación</h3>
+                </div>
+            </div>
+
+            <!-- Texto con efecto máquina de escribir -->
+            <div class="min-h-[110px] flex items-center bg-slate-900/45 rounded-2xl p-4 sm:p-5 border border-white/10 mb-6">
+                <p id="modalStarMessage" class="font-playfair text-base sm:text-lg text-amber-50/95 leading-relaxed italic typewriter-cursor"></p>
+            </div>
+
+            <!-- Botón continuar -->
+            <div class="flex justify-end">
+                <button id="ackStarModalBtn" class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-amber-300/90 to-pink-400/90 hover:from-amber-300 hover:to-pink-400 text-slate-950 font-semibold text-sm transition-all shadow-md">
+                    Guardar en mi cielo ✨
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL FINAL DE SUPERNOVA: CARTA, ORÁCULO DE DESEOS, RETO DEL DESTINO Y SEÑAL EN VIVO -->
+    <div id="finalModal" class="fixed inset-0 z-40 flex items-center justify-center p-4 bg-slate-950/75 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-500">
+        <div id="finalModalCard" class="glass-card w-full max-w-lg rounded-3xl p-5 sm:p-8 relative transform scale-95 transition-all duration-500 border border-pink-400/35 max-h-[92vh] overflow-y-auto custom-scroll text-center">
+            <button id="closeFinalModalBtn" aria-label="Cerrar carta final" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/5 hover:bg-white/15 border border-white/10 flex items-center justify-center text-slate-300 hover:text-white transition-all z-20">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <!-- VISTA 0: CARTA INICIAL DE SUPERNOVA (SUTIL, MAGNÉTICA Y CON ILUSIÓN) -->
+            <div id="finalIntroView" class="chain-step-appear">
+                <div class="mx-auto mb-4 w-16 h-16 rounded-full bg-gradient-to-tr from-amber-300/30 via-pink-500/30 to-violet-500/30 border border-amber-200/50 flex items-center justify-center shadow-[0_0_30px_rgba(251,191,36,0.35)]">
+                    <i class="fa-solid fa-crown text-2xl text-amber-300"></i>
+                </div>
+
+                <span class="text-[11px] uppercase tracking-[0.3em] text-amber-300/90 block mb-1">Constelación Completa • 4/4</span>
+                <h2 class="font-cinzel text-2xl sm:text-3xl font-bold bg-gradient-to-r from-amber-200 via-pink-200 to-amber-200 bg-clip-text text-transparent mb-5">
+                    Para ti, Yina ✨
+                </h2>
+
+                <div class="bg-slate-900/50 border border-white/10 rounded-2xl p-5 sm:p-6 text-left space-y-4 mb-6 shadow-inner">
+                    <p id="finalLetterParagraph1" class="font-playfair text-base sm:text-lg text-slate-100 leading-relaxed">
+                        Dicen que las estrellas llevan millones de años brillando allá arriba, pero pocas cosas tienen una energía tan bonita y especial como la que se siente al compartir tiempo contigo.
+                    </p>
+                    <p id="finalLetterParagraph2" class="font-playfair text-base sm:text-lg text-slate-100 leading-relaxed">
+                        Qué bonito es cuando todo fluye así de natural, entre risas, miradas cómplices y ganas de descubrir qué más nos espera. Quise crearte este pequeño universo con tu nombre para sacarte una sonrisa hoy.
+                    </p>
+                    <p id="finalLetterSignature" class="font-cinzel text-sm sm:text-base text-amber-300 text-right pt-2">
+                        — Por muchos más momentos increíbles juntos 💫
+                    </p>
+                </div>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+                    <button id="shootStarWishBtn" class="btn-celestial w-full sm:w-auto px-6 py-3.5 rounded-2xl font-semibold text-slate-950 text-sm flex items-center justify-center gap-2 cursor-pointer">
+                        <i class="fa-solid fa-meteor"></i>
+                        <span>Pedir un deseo y lanzar estrellas 🌠</span>
+                    </button>
+                    <button id="admireSkyBtn" class="w-full sm:w-auto px-5 py-3.5 rounded-2xl bg-white/10 hover:bg-white/15 border border-white/15 text-xs sm:text-sm text-slate-200 font-medium transition-all cursor-pointer">
+                        Ver mi constelación
+                    </button>
+                </div>
+            </div>
+
+            <!-- PASO 1: EL ORÁCULO DE LOS DESEOS (CARTAS VISUALES FLOTANTES, SIN FORMULARIOS) -->
+            <div id="wishOracleStep1View" class="hidden text-left space-y-4 chain-step-appear">
+                <div class="text-center">
+                    <span class="inline-block px-3.5 py-1 rounded-full bg-amber-300/15 border border-amber-300/30 text-[10px] uppercase tracking-[0.25em] text-amber-200 mb-2">
+                        ✨ El Oráculo de las Estrellas ✨
+                    </span>
+                    <h3 class="font-cinzel text-xl sm:text-2xl font-bold bg-gradient-to-r from-amber-200 via-pink-200 to-amber-100 bg-clip-text text-transparent">
+                        Elige la magia que quieres atraer 🌠
+                    </h3>
+                    <p class="text-xs sm:text-sm text-slate-300/90 mt-1">
+                        Mientras las estrellas fugaces cruzan tu cielo, toca la carta astral que más te ilusione para nuestros próximos momentos:
+                    </p>
+                </div>
+
+                <!-- 3 Cartas Astrales Interactivas -->
+                <div class="space-y-3 pt-1">
+                    <!-- Carta 1 -->
+                    <div data-wish="Noches de risas y planes espontáneos ✨" class="oracle-wish-card oracle-card rounded-2xl p-4 cursor-pointer flex items-center gap-4">
+                        <div class="floating-orb w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-300/25 to-pink-500/25 border border-amber-300/40 flex items-center justify-center shrink-0 shadow-lg">
+                            <span class="text-2xl">✨</span>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-cinzel text-sm sm:text-base font-bold text-amber-200">
+                                Noches de risas y planes espontáneos
+                            </h4>
+                            <p class="text-xs text-slate-300/90 mt-0.5 leading-relaxed">
+                                Que nunca nos falten excusas para vernos, reírnos de todo y perder la noción del tiempo.
+                            </p>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-amber-300/60 text-xs"></i>
+                    </div>
+
+                    <!-- Carta 2 -->
+                    <div data-wish="Complicidad y aventuras nuevas 🌙" class="oracle-wish-card oracle-card rounded-2xl p-4 cursor-pointer flex items-center gap-4">
+                        <div class="floating-orb w-12 h-12 rounded-2xl bg-gradient-to-br from-violet-400/25 to-pink-500/25 border border-violet-300/40 flex items-center justify-center shrink-0 shadow-lg" style="animation-delay: 0.6s;">
+                            <span class="text-2xl">🌙</span>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-cinzel text-sm sm:text-base font-bold text-pink-200">
+                                Complicidad y aventuras nuevas
+                            </h4>
+                            <p class="text-xs text-slate-300/90 mt-0.5 leading-relaxed">
+                                Descubrir lugares bonitos juntos, buena música de fondo y charlas que duren horas.
+                            </p>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-pink-300/60 text-xs"></i>
+                    </div>
+
+                    <!-- Carta 3 -->
+                    <div data-wish="Momentos que nos sorprendan 💫" class="oracle-wish-card oracle-card rounded-2xl p-4 cursor-pointer flex items-center gap-4">
+                        <div class="floating-orb w-12 h-12 rounded-2xl bg-gradient-to-br from-pink-400/25 to-amber-300/25 border border-pink-300/40 flex items-center justify-center shrink-0 shadow-lg" style="animation-delay: 1.2s;">
+                            <span class="text-2xl">💫</span>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-cinzel text-sm sm:text-base font-bold text-amber-100">
+                                Momentos que nos sorprendan
+                            </h4>
+                            <p class="text-xs text-slate-300/90 mt-0.5 leading-relaxed">
+                                Dejar que todo fluya bonito, paso a paso, y coleccionar recuerdos inolvidables.
+                            </p>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-amber-300/60 text-xs"></i>
+                    </div>
+                </div>
+
+                <div class="flex justify-between items-center pt-2">
+                    <button id="backToLetterBtn" class="text-xs text-slate-400 hover:text-slate-200 flex items-center gap-1.5 cursor-pointer">
+                        <i class="fa-solid fa-chevron-left text-[10px]"></i>
+                        <span>Volver a la carta</span>
+                    </button>
+                    <span class="text-[11px] text-amber-200/70 italic">Toca una carta para pedir tu deseo ✨</span>
+                </div>
+            </div>
+
+            <!-- PASO 2: EL RETO DEL DESTINO (BOTÓN TRAVIESO SUTIL Y ENCANTADOR) -->
+            <div id="datePactStep2View" class="hidden text-center space-y-5 py-2 chain-step-appear">
+                <span class="inline-block px-3.5 py-1 rounded-full bg-pink-500/20 border border-pink-400/30 text-[10px] uppercase tracking-[0.25em] text-pink-200">
+                    🌠 Deseo Enviado al Cosmos
+                </span>
+
+                <div class="mx-auto w-14 h-14 rounded-2xl bg-gradient-to-br from-pink-500/25 to-amber-300/25 border border-pink-300/40 flex items-center justify-center shadow-lg">
+                    <i class="fa-solid fa-wand-magic-sparkles text-2xl text-amber-300 animate-pulse"></i>
+                </div>
+
+                <h3 class="font-cinzel text-xl sm:text-2xl font-bold text-white leading-snug px-2">
+                    Promesa a las Estrellas ✨
+                </h3>
+
+                <p class="font-playfair italic text-base sm:text-lg text-amber-100/95 leading-relaxed px-2">
+                    "El universo dice que apenas estamos empezando a escribir los mejores planes... ¿Aceptas seguir compartiendo más salidas, risas y momentos juntos?"
+                </p>
+
+                <!-- Píldora flotante con mensajitos encantadores cuando intenta tocar 'Lo pensaré' -->
+                <div id="persuasiveMsgBanner" class="min-h-[48px] flex items-center justify-center px-4 py-2.5 rounded-2xl bg-amber-300/10 border border-amber-300/30 text-amber-200 text-xs sm:text-sm font-medium transition-all duration-300">
+                    <span>✨ Las estrellas esperan tu confirmación para iluminar el próximo plan ✨</span>
+                </div>
+
+                <!-- Zona de Botones Sí y No Huidizo -->
+                <div id="pactButtonsArena" class="relative min-h-[115px] flex flex-col sm:flex-row items-center justify-center gap-3.5 pt-2">
+                    <button id="acceptDatesYesBtn" class="btn-celestial px-7 py-4 rounded-2xl font-bold text-slate-950 text-sm sm:text-base tracking-wide flex items-center justify-center gap-2 z-20 cursor-pointer shadow-xl transition-transform duration-300">
+                        <span>¡Sí, me encanta la idea! 💖</span>
+                    </button>
+
+                    <button id="rejectDatesNoBtn" class="px-5 py-3 rounded-2xl font-medium text-xs sm:text-sm text-slate-300 bg-slate-800/85 hover:bg-slate-800 border border-white/15 backdrop-blur-md transition-all duration-200 cursor-pointer z-30">
+                        Mmm, lo pensaré 🙈
+                    </button>
+                </div>
+            </div>
+
+            <!-- PASO 3: LA SEÑAL EN VIVO (DINÁMICA FÍSICA CON ÉL A SU LADO) -->
+            <div id="liveSignalStep3View" class="hidden text-center space-y-4 py-1 chain-step-appear">
+                <div class="mx-auto w-14 h-14 rounded-full bg-gradient-to-tr from-amber-300/30 via-pink-500/30 to-violet-500/30 border border-amber-300/60 flex items-center justify-center shadow-[0_0_30px_rgba(252,211,77,0.4)]">
+                    <i class="fa-solid fa-heart text-2xl text-pink-400 animate-bounce"></i>
+                </div>
+
+                <div>
+                    <span class="text-[10px] uppercase tracking-[0.28em] text-amber-300 font-semibold block mb-1">
+                        🤫 Secreto entre tú y las estrellas
+                    </span>
+                    <h3 class="font-cinzel text-xl sm:text-2xl font-bold bg-gradient-to-r from-amber-200 via-pink-200 to-amber-200 bg-clip-text text-transparent">
+                        ¡Él está justo a tu lado esperando! ✨
+                    </h3>
+                    <p class="text-xs sm:text-sm text-slate-200/90 mt-1.5 leading-relaxed px-1">
+                        Como él no está viendo tu pantalla y no sabe si te gustó el detalle... <span class="text-amber-300 font-semibold">¡no le digas nada con palabras!</span> Elige cómo darle la señal ahora mismo:
+                    </p>
+                </div>
+
+                <!-- 3 Tarjetas de Acción Física en Vivo -->
+                <div class="space-y-2.5 text-left">
+                    <!-- Acción 1: Abrazo -->
+                    <div data-signal="🤗 Elegí darte un abrazo fuerte ahora mismo" class="live-signal-card oracle-card rounded-2xl p-3.5 cursor-pointer flex items-center gap-3.5">
+                        <div class="w-11 h-11 rounded-xl bg-pink-500/20 border border-pink-400/40 flex items-center justify-center shrink-0 text-xl">
+                            🤗
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-cinzel text-xs sm:text-sm font-bold text-pink-200">
+                                Opción 1: Darle un abrazo ahora mismo
+                            </h4>
+                            <p class="text-[11px] sm:text-xs text-slate-300/90 mt-0.5 leading-snug">
+                                Míralo, sonríele y dale un abrazo fuerte sin decirle por qué (así sabrá que te encantó).
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Acción 2: Mirada cómplice y mano -->
+                    <div data-signal="👀 Elegí mirada cómplice y tomar tu mano" class="live-signal-card oracle-card rounded-2xl p-3.5 cursor-pointer flex items-center gap-3.5">
+                        <div class="w-11 h-11 rounded-xl bg-amber-400/20 border border-amber-300/40 flex items-center justify-center shrink-0 text-xl">
+                            👀
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-cinzel text-xs sm:text-sm font-bold text-amber-200">
+                                Opción 2: Mirada cómplice y tomar su mano
+                            </h4>
+                            <p class="text-[11px] sm:text-xs text-slate-300/90 mt-0.5 leading-snug">
+                                Gira hacia él con una sonrisa misteriosa, míralo a los ojos y toma o choca su mano.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Acción 3: Mostrarle la pantalla + abrazo -->
+                    <div data-signal="📱 Elegí mostrarte mi pantalla y darte tu abrazo" class="live-signal-card oracle-card rounded-2xl p-3.5 cursor-pointer flex items-center gap-3.5">
+                        <div class="w-11 h-11 rounded-xl bg-violet-400/20 border border-violet-300/40 flex items-center justify-center shrink-0 text-xl">
+                            📱
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-cinzel text-xs sm:text-sm font-bold text-violet-200">
+                                Opción 3: Mostrarle esta pantalla y un abrazo
+                            </h4>
+                            <p class="text-[11px] sm:text-xs text-slate-300/90 mt-0.5 leading-snug">
+                                Toca aquí, gira tu celular hacia él para que lea el pase de abajo y dale ese abrazo que se ganó.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PASE ESTELAR CONFIRMADO (PARA CUANDO ELLA LE MUESTRE LA PANTALLA) -->
+                <div id="finalApprovedBadge" class="ticket-border rounded-2xl p-4 text-center space-y-2 transition-all duration-500">
+                    <div class="flex items-center justify-center gap-2 text-amber-300 font-cinzel text-xs sm:text-sm font-bold tracking-wider uppercase">
+                        <i class="fa-solid fa-certificate"></i>
+                        <span>✨ Detalle Aprobado por Yina ✨</span>
+                    </div>
+                    <p id="selectedWishSummary" class="text-[11px] sm:text-xs text-pink-200 font-medium"></p>
+                    <p id="forHimMessage" class="text-xs sm:text-sm text-white/95 font-playfair italic leading-relaxed">
+                        "Si estás leyendo esto porque Yina te mostró su celular: ¡Sí le encantó tu detalle! Prepárate para tu abrazo y para la próxima salida juntos 💖✨"
+                    </p>
+                </div>
+
+                <div class="pt-1 flex justify-center">
+                    <button id="launchMoreStarsFinalBtn" class="px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/15 text-xs text-amber-200 font-medium transition-all cursor-pointer flex items-center gap-2">
+                        <i class="fa-solid fa-meteor"></i>
+                        <span>Lanzar más estrellas fugaces 🌠</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BOTÓN DISCRETO DE PERSONALIZACIÓN (ESQUINA INFERIOR IZQUIERDA) -->
+    <button id="openCustomizerBtn" title="Personalizar mensajes y crear enlace" class="fixed bottom-3.5 left-3.5 z-30 w-9 h-9 rounded-full bg-slate-900/40 hover:bg-slate-800/80 border border-white/10 text-slate-400/60 hover:text-amber-200 flex items-center justify-center transition-all backdrop-blur-sm">
+        <i class="fa-solid fa-gear text-xs"></i>
+    </button>
+
+    <!-- MODAL DE EDICIÓN Y GENERADOR DE LINK -->
+    <div id="customizerModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300">
+        <div class="glass-card w-full max-w-xl rounded-3xl p-5 sm:p-7 relative max-h-[90vh] overflow-y-auto custom-scroll border border-white/15">
+            <div class="flex items-center justify-between pb-4 mb-4 border-b border-white/10">
+                <div class="flex items-center gap-2.5">
+                    <i class="fa-solid fa-sliders text-amber-300"></i>
+                    <h3 class="font-cinzel text-lg font-semibold text-white">Personalizar Detalle para Yina</h3>
+                </div>
+                <button id="closeCustomizerBtn" class="w-8 h-8 rounded-full bg-white/5 hover:bg-white/15 flex items-center justify-center text-slate-300">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="space-y-4 text-left text-xs sm:text-sm">
+                <div>
+                    <label class="block text-amber-200/90 font-medium mb-1">Pregunta de Seguridad Inicial:</label>
+                    <textarea id="inputQuestion" rows="2" class="w-full rounded-xl bg-slate-900/80 border border-white/15 p-3 text-slate-100 focus:outline-none focus:border-amber-300"></textarea>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-pink-300 font-medium mb-1">Estrella I (Letra Y):</label>
+                        <textarea id="inputStar0" rows="3" class="w-full rounded-xl bg-slate-900/80 border border-white/15 p-2.5 text-slate-100 focus:outline-none focus:border-pink-400"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-pink-300 font-medium mb-1">Estrella II (Letra I):</label>
+                        <textarea id="inputStar1" rows="3" class="w-full rounded-xl bg-slate-900/80 border border-white/15 p-2.5 text-slate-100 focus:outline-none focus:border-pink-400"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-pink-300 font-medium mb-1">Estrella III (Letra N):</label>
+                        <textarea id="inputStar2" rows="3" class="w-full rounded-xl bg-slate-900/80 border border-white/15 p-2.5 text-slate-100 focus:outline-none focus:border-pink-400"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-pink-300 font-medium mb-1">Estrella IV (Letra A):</label>
+                        <textarea id="inputStar3" rows="3" class="w-full rounded-xl bg-slate-900/80 border border-white/15 p-2.5 text-slate-100 focus:outline-none focus:border-pink-400"></textarea>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-amber-200/90 font-medium mb-1">Firma o Dedicatoria Final:</label>
+                    <input id="inputSignature" type="text" class="w-full rounded-xl bg-slate-900/80 border border-white/15 p-2.5 text-slate-100 focus:outline-none focus:border-amber-300">
+                </div>
+            </div>
+
+            <!-- Feedback de copiado -->
+            <div id="copyFeedbackBanner" class="hidden mt-4 p-3 rounded-xl bg-emerald-500/20 border border-emerald-400/40 text-emerald-200 text-xs text-center">
+                ¡Cambios aplicados y enlace copiado al portapapeles! ✨
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center justify-end gap-2.5 mt-6 pt-4 border-t border-white/10">
+                <button id="resetDefaultsBtn" class="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 text-xs">
+                    Restaurar original
+                </button>
+                <button id="saveAndCopyLinkBtn" class="btn-celestial w-full sm:w-auto px-5 py-2.5 rounded-xl font-semibold text-slate-950 text-xs sm:text-sm flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-link"></i>
+                    <span>Aplicar y Copiar Link Personalizado</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /********************************************************************
+         * 1. CONFIGURACIÓN Y TEXTOS (CON SOPORTE DE URL QUERY PARAMS)
+         ********************************************************************/
+        const DEFAULT_CONFIG = {
+            question: "Pregunta de seguridad antes de desbloquear tu cielo: ¿Confirmas que tienes la sonrisa más linda y que me debes un momento juntos?",
+            stars: [
+                {
+                    letter: "Y",
+                    roman: "Estrella I",
+                    title: "Luz Propia",
+                    message: "Hay personas que tienen una vibra tan bonita que hacen que cualquier lugar se sienta especial con solo llegar... y tú tienes exactamente esa magia."
+                },
+                {
+                    letter: "I",
+                    roman: "Estrella II",
+                    title: "Tiempo sin Reloj",
+                    message: "Lo mejor de coincidir contigo es cómo las charlas, las risas y los momentos fluyen tan natural que el tiempo se pasa volando sin darnos cuenta."
+                },
+                {
+                    letter: "N",
+                    roman: "Estrella III",
+                    title: "Qué Suerte Coincidir",
+                    message: "Entre tantos caminos y personas en el mundo, qué coincidencia tan bonita haber empezado a conocernos y descubrir todo lo que compartimos."
+                },
+                {
+                    letter: "A",
+                    roman: "Estrella IV",
+                    title: "Lo Que Nos Espera",
+                    message: "Dicen que los mejores planes son los que empiezan con una sonrisa cómplice... y contigo siempre dan ganas de crear nuevos recuerdos."
+                }
+            ],
+            signature: "— Por muchos más momentos increíbles juntos 💫"
+        };
+
+        let appConfig = JSON.parse(JSON.stringify(DEFAULT_CONFIG));
+
+        function loadConfigFromURL() {
+            try {
+                const params = new URLSearchParams(window.location.search);
+                if (params.get('q')) appConfig.question = params.get('q');
+                if (params.get('s0')) appConfig.stars[0].message = params.get('s0');
+                if (params.get('s1')) appConfig.stars[1].message = params.get('s1');
+                if (params.get('s2')) appConfig.stars[2].message = params.get('s2');
+                if (params.get('s3')) appConfig.stars[3].message = params.get('s3');
+                if (params.get('sig')) appConfig.signature = params.get('sig');
+            } catch (err) {
+                console.warn("No se pudieron leer parámetros de la URL:", err);
+            }
+            applyConfigToDOM();
+        }
+
+        function applyConfigToDOM() {
+            document.getElementById('securityQuestionText').textContent = `"${appConfig.question}"`;
+            document.getElementById('finalLetterSignature').textContent = appConfig.signature;
+        }
+
+        /********************************************************************
+         * 2. SINTETIZADOR CELESTIAL (WEB AUDIO API)
+         ********************************************************************/
+        class CelestialAudio {
+            constructor() {
+                this.ctx = null;
+                this.isPlaying = false;
+                this.isMuted = false;
+                this.loopTimer = null;
+                this.chordIndex = 0;
+                // Acordes suaves tipo caja de música / piano espacial (Fmaj7, G6, Em7, Am9)
+                this.chords = [
+                    [349.23, 440.00, 523.25, 659.25, 783.99],
+                    [392.00, 493.88, 587.33, 659.25, 880.00],
+                    [329.63, 392.00, 493.88, 587.33, 783.99],
+                    [440.00, 523.25, 659.25, 783.99, 987.77]
+                ];
+            }
+
+            init() {
+                if (!this.ctx) {
+                    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+                    this.ctx = new AudioCtx();
+                }
+                if (this.ctx.state === 'suspended') {
+                    this.ctx.resume();
+                }
+            }
+
+            playNote(freq, duration = 2.6, delay = 0, volume = 0.045, type = 'sine') {
+                if (this.isMuted || !this.ctx) return;
+                const now = this.ctx.currentTime + delay;
+
+                const osc = this.ctx.createOscillator();
+                const oscHarmonic = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+
+                osc.type = type;
+                osc.frequency.setValueAtTime(freq, now);
+
+                // Armónico suave de octava superior para efecto caja de música
+                oscHarmonic.type = 'triangle';
+                oscHarmonic.frequency.setValueAtTime(freq * 2, now);
+
+                const harmonicGain = this.ctx.createGain();
+                harmonicGain.gain.setValueAtTime(0.18, now);
+
+                gain.gain.setValueAtTime(0.0001, now);
+                gain.gain.exponentialRampToValueAtTime(volume, now + 0.08);
+                gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+
+                osc.connect(gain);
+                oscHarmonic.connect(harmonicGain);
+                harmonicGain.connect(gain);
+                gain.connect(this.ctx.destination);
+
+                osc.start(now);
+                oscHarmonic.start(now);
+                osc.stop(now + duration + 0.05);
+                oscHarmonic.stop(now + duration + 0.05);
+            }
+
+            startAmbientMusic() {
+                this.init();
+                if (this.isPlaying) return;
+                this.isPlaying = true;
+                this.updateIcon();
+
+                const playArpeggioBar = () => {
+                    if (!this.isPlaying || this.isMuted) return;
+                    const chord = this.chords[this.chordIndex % this.chords.length];
+                    this.chordIndex++;
+
+                    chord.forEach((freq, idx) => {
+                        this.playNote(freq, 3.2, idx * 0.42, 0.038, 'sine');
+                    });
+                };
+
+                playArpeggioBar();
+                this.loopTimer = setInterval(playArpeggioBar, 2800);
+            }
+
+            playSparkleChime(pitchMultiplier = 1) {
+                this.init();
+                if (this.isMuted) return;
+                const notes = [523.25, 659.25, 783.99, 1046.50, 1318.51];
+                notes.forEach((n, i) => {
+                    this.playNote(n * pitchMultiplier, 1.4, i * 0.07, 0.04, 'sine');
+                });
+            }
+
+            playDodgePop() {
+                this.init();
+                if (this.isMuted) return;
+                this.playNote(587.33, 0.18, 0, 0.03, 'triangle');
+                this.playNote(880.00, 0.22, 0.05, 0.03, 'sine');
+            }
+
+            toggleMute() {
+                this.init();
+                if (!this.isPlaying) {
+                    this.isMuted = false;
+                    this.startAmbientMusic();
+                } else {
+                    this.isMuted = !this.isMuted;
+                }
+                this.updateIcon();
+            }
+
+            updateIcon() {
+                const icon = document.getElementById('audioIcon');
+                if (this.isPlaying && !this.isMuted) {
+                    icon.className = 'fa-solid fa-music text-sm text-amber-300 animate-pulse';
+                } else {
+                    icon.className = 'fa-solid fa-volume-xmark text-sm text-slate-400';
+                }
+            }
+        }
+
+        const sound = new CelestialAudio();
+        document.getElementById('audioToggleBtn').addEventListener('click', () => sound.toggleMute());
+
+        /********************************************************************
+         * 3. FASE 1: BOTÓN TRAVIESO "NO CREO" Y DESBLOQUEO
+         ********************************************************************/
+        const noBtn = document.getElementById('noBtn');
+        const yesBtn = document.getElementById('yesBtn');
+        const dodgeHint = document.getElementById('dodgeHint');
+        const noTexts = [
+            "¡Casi! 😏",
+            "Botón equivocado ✨",
+            "No puedes huir de la verdad",
+            "Intenta con el otro botón 😉",
+            "Sabes que sí 💖",
+            "¡Ups, muy lenta! 🌠",
+            "Ese botón está de adorno 🙈"
+        ];
+        let dodgeIndex = 0;
+
+        function moveNoButton(e) {
+            if (e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            sound.playDodgePop();
+
+            const rect = noBtn.getBoundingClientRect();
+            spawnBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 12);
+
+            noBtn.textContent = noTexts[dodgeIndex % noTexts.length];
+            dodgeIndex++;
+            dodgeHint.classList.remove('opacity-0');
+
+            // Calcular límites seguros dentro de la pantalla
+            const btnWidth = noBtn.offsetWidth || 150;
+            const btnHeight = noBtn.offsetHeight || 46;
+            const margin = 20;
+            const maxX = Math.max(margin, window.innerWidth - btnWidth - margin);
+            const maxY = Math.max(margin + 60, window.innerHeight - btnHeight - margin);
+
+            // Evitar que caiga justo encima del botón Sí
+            const yesRect = yesBtn.getBoundingClientRect();
+            let targetX, targetY, attempts = 0;
+            do {
+                targetX = margin + Math.random() * (maxX - margin);
+                targetY = margin + 60 + Math.random() * (maxY - (margin + 60));
+                attempts++;
+            } while (
+                attempts < 12 &&
+                Math.abs(targetX - yesRect.left) < 160 &&
+                Math.abs(targetY - yesRect.top) < 90
+            );
+
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = `${targetX}px`;
+            noBtn.style.top = `${targetY}px`;
+            noBtn.style.zIndex = '50';
+        }
+
+        noBtn.addEventListener('mouseover', moveNoButton);
+        noBtn.addEventListener('touchstart', moveNoButton, { passive: false });
+        noBtn.addEventListener('click', moveNoButton);
+
+        /********************************************************************
+         * 4. MOTOR DE CANVAS: ESTRELLAS, POLVO ESTELAR Y CONSTELACIÓN "YINA"
+         ********************************************************************/
+        const canvas = document.getElementById('cosmosCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let width = window.innerWidth;
+        let height = window.innerHeight;
+        let currentPhase = 1; // 1 = Acceso, 2 = Constelación
+        let constellationProgress = 0; // 0 a 1 para trazar las líneas
+
+        // Listas de entidades en el cielo
+        const bgStars = [];
+        const particles = [];
+        const shootingStars = [];
+
+        // Geometría normalizada de cada letra (Y, I, N, A)
+        // Cada letra tiene nodos y segmentos que los conectan, más el índice del nodo principal (estrella secreta)
+        const LETTER_SHAPES = [
+            {
+                // Y
+                letter: 'Y',
+                nodes: [
+                    { rx: 0.0, ry: 0.0 },   // 0: arriba izq
+                    { rx: 1.0, ry: 0.0 },   // 1: arriba der
+                    { rx: 0.5, ry: 0.48 },  // 2: centro unión (ESTRELLA PRINCIPAL I)
+                    { rx: 0.5, ry: 1.0 }    // 3: base
+                ],
+                edges: [[0, 2], [1, 2], [2, 3]],
+                mainNodeIndex: 2
+            },
+            {
+                // I
+                letter: 'I',
+                nodes: [
+                    { rx: 0.2, ry: 0.0 },
+                    { rx: 0.8, ry: 0.0 },
+                    { rx: 0.5, ry: 0.0 },   // 2: tope centro (ESTRELLA PRINCIPAL II)
+                    { rx: 0.5, ry: 1.0 },
+                    { rx: 0.2, ry: 1.0 },
+                    { rx: 0.8, ry: 1.0 }
+                ],
+                edges: [[0, 1], [2, 3], [4, 5]],
+                mainNodeIndex: 2
+            },
+            {
+                // N
+                letter: 'N',
+                nodes: [
+                    { rx: 0.0, ry: 1.0 },   // 0: abajo izq
+                    { rx: 0.0, ry: 0.0 },   // 1: arriba izq (ESTRELLA PRINCIPAL III)
+                    { rx: 1.0, ry: 1.0 },   // 2: abajo der
+                    { rx: 1.0, ry: 0.0 }    // 3: arriba der
+                ],
+                edges: [[0, 1], [1, 2], [2, 3]],
+                mainNodeIndex: 1
+            },
+            {
+                // A
+                letter: 'A',
+                nodes: [
+                    { rx: 0.0, ry: 1.0 },   // 0: abajo izq
+                    { rx: 0.5, ry: 0.0 },   // 1: cúspide (ESTRELLA PRINCIPAL IV)
+                    { rx: 1.0, ry: 1.0 },   // 2: abajo der
+                    { rx: 0.22, ry: 0.58 }, // 3: puente izq
+                    { rx: 0.78, ry: 0.58 }  // 4: puente der
+                ],
+                edges: [[0, 1], [1, 2], [3, 4]],
+                mainNodeIndex: 1
+            }
+        ];
+
+        let constellationLetters = [];
+        const discoveredStars = [false, false, false, false];
+
+        function initBackgroundStars() {
+            bgStars.length = 0;
+            const count = Math.min(220, Math.floor((width * height) / 6000) + 80);
+            for (let i = 0; i < count; i++) {
+                bgStars.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    radius: Math.random() * 1.7 + 0.4,
+                    alpha: Math.random() * 0.8 + 0.2,
+                    twinkleSpeed: Math.random() * 0.025 + 0.008,
+                    twinklePhase: Math.random() * Math.PI * 2,
+                    hue: Math.random() > 0.7 ? (Math.random() > 0.5 ? '#fde68a' : '#fbcfe8') : '#ffffff'
+                });
+            }
+        }
+
+        function computeConstellationLayout() {
+            const isMobile = width < 640;
+            const totalSpanWidth = isMobile ? width * 0.86 : Math.min(width * 0.76, 860);
+            const letterHeight = isMobile ? Math.min(height * 0.20, 135) : Math.min(height * 0.28, 195);
+            const letterWidth = (totalSpanWidth * 0.62) / 4;
+            const gap = (totalSpanWidth - letterWidth * 4) / 3;
+
+            const startX = (width - totalSpanWidth) / 2;
+            const startY = (height - letterHeight) / 2 - (isMobile ? 18 : 10);
+
+            constellationLetters = LETTER_SHAPES.map((item, idx) => {
+                const lx = startX + idx * (letterWidth + gap);
+                const ly = startY;
+                const nodes = item.nodes.map(n => ({
+                    x: lx + n.rx * letterWidth,
+                    y: ly + n.ry * letterHeight,
+                    curX: width / 2 + (Math.random() - 0.5) * width,
+                    curY: height / 2 + (Math.random() - 0.5) * height
+                }));
+                return {
+                    letter: item.letter,
+                    nodes,
+                    edges: item.edges,
+                    mainNodeIndex: item.mainNodeIndex,
+                    mainCoord: nodes[item.mainNodeIndex]
+                };
+            });
+
+            updateStarHotspotsDOM();
+        }
+
+        function buildStarHotspotsDOM() {
+            const container = document.getElementById('starHotspotsContainer');
+            container.innerHTML = '';
+
+            appConfig.stars.forEach((starInfo, idx) => {
+                const btn = document.createElement('button');
+                btn.className = 'star-hotspot pointer-events-auto group focus:outline-none';
+                btn.id = `hotspot-${idx}`;
+                btn.setAttribute('aria-label', `Abrir mensaje de ${starInfo.roman}`);
+                btn.innerHTML = `
+                    <div class="star-ring">
+                        <span class="w-3.5 h-3.5 rounded-full bg-amber-200 shadow-[0_0_16px_#fcd34d] group-hover:scale-125 transition-transform"></span>
+                    </div>
+                    <span class="mt-1 px-2.5 py-0.5 rounded-full text-[10px] sm:text-xs font-cinzel tracking-wider bg-slate-950/80 text-amber-200 border border-amber-300/30 shadow-md whitespace-nowrap">
+                        ${starInfo.roman}
+                    </span>
+                `;
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    openStarModal(idx);
+                });
+                container.appendChild(btn);
+            });
+        }
+
+        function updateStarHotspotsDOM() {
+            if (!constellationLetters.length) return;
+            constellationLetters.forEach((item, idx) => {
+                const el = document.getElementById(`hotspot-${idx}`);
+                if (el && item.mainCoord) {
+                    el.style.left = `${item.mainCoord.x}px`;
+                    el.style.top = `${item.mainCoord.y}px`;
+                }
+            });
+        }
+
+        // Explosiones y polvo estelar
+        function spawnBurst(x, y, count = 35) {
+            const colors = ['#fcd34d', '#f472b6', '#c084fc', '#fde68a', '#ffffff'];
+            for (let i = 0; i < count; i++) {
+                const angle = Math.random() * Math.PI * 2;
+                const speed = Math.random() * 4.8 + 0.8;
+                particles.push({
+                    x,
+                    y,
+                    vx: Math.cos(angle) * speed,
+                    vy: Math.sin(angle) * speed,
+                    size: Math.random() * 2.8 + 1,
+                    alpha: 1,
+                    decay: Math.random() * 0.018 + 0.012,
+                    color: colors[Math.floor(Math.random() * colors.length)]
+                });
+            }
+        }
+
+        function spawnShootingStar() {
+            const startX = Math.random() * width * 0.85;
+            const startY = Math.random() * height * 0.35;
+            const angle = (Math.PI / 6) + Math.random() * (Math.PI / 8);
+            const speed = 11 + Math.random() * 7;
+            shootingStars.push({
+                x: startX,
+                y: startY,
+                vx: Math.cos(angle) * speed,
+                vy: Math.sin(angle) * speed,
+                length: 90 + Math.random() * 60,
+                alpha: 1
+            });
+        }
+
+        function triggerShootingStarShower(count = 7) {
+            sound.playSparkleChime(1.2);
+            for (let i = 0; i < count; i++) {
+                setTimeout(() => spawnShootingStar(), i * 260);
+            }
+        }
+
+        // Rastro de polvo estelar al mover el dedo o el mouse
+        function handlePointerTrail(clientX, clientY) {
+            const colors = ['#fde68a', '#f9a8d4', '#ddd6fe'];
+            for (let i = 0; i < 2; i++) {
+                particles.push({
+                    x: clientX + (Math.random() - 0.5) * 10,
+                    y: clientY + (Math.random() - 0.5) * 10,
+                    vx: (Math.random() - 0.5) * 1.1,
+                    vy: (Math.random() - 0.5) * 1.1 - 0.3,
+                    size: Math.random() * 2.2 + 0.8,
+                    alpha: 0.9,
+                    decay: 0.022,
+                    color: colors[Math.floor(Math.random() * colors.length)]
+                });
+            }
+        }
+
+        window.addEventListener('mousemove', (e) => handlePointerTrail(e.clientX, e.clientY));
+        window.addEventListener('touchmove', (e) => {
+            if (e.touches && e.touches[0]) {
+                handlePointerTrail(e.touches[0].clientX, e.touches[0].clientY);
+            }
+        }, { passive: true });
+
+        function resizeCanvas() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width;
+            canvas.height = height;
+            initBackgroundStars();
+            computeConstellationLayout();
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+
+        /********************************************************************
+         * 5. TRANSICIÓN A FASE 2 Y LOOP DE ANIMACIÓN DEL CIELO
+         ********************************************************************/
+        yesBtn.addEventListener('click', () => {
+            sound.startAmbientMusic();
+            sound.playSparkleChime(1);
+
+            const rect = yesBtn.getBoundingClientRect();
+            spawnBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 75);
+
+            // Desvanecer Fase 1
+            const phase1 = document.getElementById('phase1Screen');
+            phase1.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
+            noBtn.style.display = 'none';
+
+            // Iniciar Fase 2
+            currentPhase = 2;
+            triggerShootingStarShower(4);
+
+            setTimeout(() => {
+                phase1.classList.add('hidden');
+                const hotspots = document.getElementById('starHotspotsContainer');
+                hotspots.classList.remove('hidden');
+                updateStarHotspotsDOM();
+
+                const hud = document.getElementById('hudProgress');
+                hud.classList.remove('opacity-0', '-translate-y-4');
+
+                const hint = document.getElementById('stardustHint');
+                hint.classList.remove('opacity-0');
+            }, 650);
+        });
+
+        function animateCosmos() {
+            ctx.clearRect(0, 0, width, height);
+
+            // 1. Dibujar estrellas de fondo parpadeantes
+            for (let i = 0; i < bgStars.length; i++) {
+                const s = bgStars[i];
+                s.twinklePhase += s.twinkleSpeed;
+                const currentAlpha = s.alpha * (0.55 + 0.45 * Math.sin(s.twinklePhase));
+
+                ctx.beginPath();
+                ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
+                ctx.fillStyle = s.hue;
+                ctx.globalAlpha = currentAlpha;
+                ctx.fill();
+            }
+            ctx.globalAlpha = 1;
+
+            // 2. Dibujar estrellas fugaces ocasionales
+            if (Math.random() < 0.006) {
+                spawnShootingStar();
+            }
+
+            for (let i = shootingStars.length - 1; i >= 0; i--) {
+                const st = shootingStars[i];
+                st.x += st.vx;
+                st.y += st.vy;
+                st.alpha -= 0.016;
+
+                if (st.alpha <= 0 || st.x > width + 100 || st.y > height + 100) {
+                    shootingStars.splice(i, 1);
+                    continue;
+                }
+
+                const tailX = st.x - (st.vx / Math.hypot(st.vx, st.vy)) * st.length;
+                const tailY = st.y - (st.vy / Math.hypot(st.vx, st.vy)) * st.length;
+
+                const grad = ctx.createLinearGradient(st.x, st.y, tailX, tailY);
+                grad.addColorStop(0, `rgba(254, 240, 138, ${st.alpha})`);
+                grad.addColorStop(0.4, `rgba(244, 114, 182, ${st.alpha * 0.6})`);
+                grad.addColorStop(1, 'rgba(255, 255, 255, 0)');
+
+                ctx.beginPath();
+                ctx.moveTo(st.x, st.y);
+                ctx.lineTo(tailX, tailY);
+                ctx.strokeStyle = grad;
+                ctx.lineWidth = 2.2;
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.arc(st.x, st.y, 2.4, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 255, 255, ${st.alpha})`;
+                ctx.fill();
+            }
+
+            // 3. Dibujar Constelación "Y I N A" en Fase 2
+            if (currentPhase === 2) {
+                if (constellationProgress < 1) {
+                    constellationProgress = Math.min(1, constellationProgress + 0.008);
+                }
+
+                constellationLetters.forEach((letterObj, lIdx) => {
+                    // Interpolar nodos hacia su posición final
+                    letterObj.nodes.forEach(node => {
+                        node.curX += (node.x - node.curX) * 0.08;
+                        node.curY += (node.y - node.curY) * 0.08;
+                    });
+
+                    // Dibujar líneas de unión de la letra
+                    const isDiscovered = discoveredStars[lIdx];
+                    ctx.save();
+                    ctx.lineWidth = isDiscovered ? 2.4 : 1.5;
+                    ctx.strokeStyle = isDiscovered
+                        ? 'rgba(244, 114, 182, 0.85)'
+                        : `rgba(252, 211, 77, ${0.42 * constellationProgress})`;
+                    ctx.shadowColor = isDiscovered ? '#f472b6' : '#fcd34d';
+                    ctx.shadowBlur = isDiscovered ? 14 : 8;
+
+                    letterObj.edges.forEach(([iA, iB]) => {
+                        const nA = letterObj.nodes[iA];
+                        const nB = letterObj.nodes[iB];
+                        ctx.beginPath();
+                        ctx.moveTo(nA.curX, nA.curY);
+                        ctx.lineTo(
+                            nA.curX + (nB.curX - nA.curX) * constellationProgress,
+                            nA.curY + (nB.curY - nA.curY) * constellationProgress
+                        );
+                        ctx.stroke();
+                    });
+                    ctx.restore();
+
+                    // Dibujar cada nodo secundario de la letra
+                    letterObj.nodes.forEach((node, nIdx) => {
+                        const isMain = nIdx === letterObj.mainNodeIndex;
+                        ctx.save();
+                        ctx.beginPath();
+                        ctx.arc(node.curX, node.curY, isMain ? 5.2 : 2.8, 0, Math.PI * 2);
+                        ctx.fillStyle = isMain
+                            ? (isDiscovered ? '#f472b6' : '#fde68a')
+                            : 'rgba(255, 255, 255, 0.85)';
+                        ctx.shadowColor = isMain ? '#fcd34d' : '#ffffff';
+                        ctx.shadowBlur = isMain ? 18 : 6;
+                        ctx.fill();
+                        ctx.restore();
+                    });
+                });
+            }
+
+            // 4. Actualizar y dibujar partículas de polvo estelar
+            for (let i = particles.length - 1; i >= 0; i--) {
+                const p = particles[i];
+                p.x += p.vx;
+                p.y += p.vy;
+                p.alpha -= p.decay;
+
+                if (p.alpha <= 0) {
+                    particles.splice(i, 1);
+                    continue;
+                }
+
+                ctx.save();
+                ctx.globalAlpha = p.alpha;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fillStyle = p.color;
+                ctx.shadowColor = p.color;
+                ctx.shadowBlur = 8;
+                ctx.fill();
+                ctx.restore();
+            }
+
+            requestAnimationFrame(animateCosmos);
+        }
+
+        /********************************************************************
+         * 6. MODALES DE LAS 4 ESTRELLAS Y PROGRESO (FASE 3)
+         ********************************************************************/
+        const starModal = document.getElementById('starModal');
+        const starModalCard = document.getElementById('starModalCard');
+        const modalStarLetter = document.getElementById('modalStarLetter');
+        const modalStarRoman = document.getElementById('modalStarRoman');
+        const modalStarTitle = document.getElementById('modalStarTitle');
+        const modalStarMessage = document.getElementById('modalStarMessage');
+        let typewriterTimer = null;
+
+        function openStarModal(index) {
+            const starData = appConfig.stars[index];
+            if (!starData) return;
+
+            sound.playSparkleChime(1 + index * 0.08);
+
+            const coord = constellationLetters[index]?.mainCoord;
+            if (coord) {
+                spawnBurst(coord.x, coord.y, 45);
+            }
+
+            modalStarLetter.textContent = starData.letter;
+            modalStarRoman.textContent = starData.roman;
+            modalStarTitle.textContent = starData.title;
+            modalStarMessage.textContent = '';
+
+            starModal.classList.remove('opacity-0', 'pointer-events-none');
+            starModalCard.classList.remove('scale-95');
+            starModalCard.classList.add('scale-100');
+
+            // Efecto máquina de escribir
+            if (typewriterTimer) clearInterval(typewriterTimer);
+            let charIdx = 0;
+            const fullText = `"${starData.message}"`;
+            typewriterTimer = setInterval(() => {
+                if (charIdx < fullText.length) {
+                    modalStarMessage.textContent += fullText.charAt(charIdx);
+                    charIdx++;
+                } else {
+                    clearInterval(typewriterTimer);
+                }
+            }, 24);
+
+            // Marcar estrella como descubierta
+            if (!discoveredStars[index]) {
+                discoveredStars[index] = true;
+                const hotspotEl = document.getElementById(`hotspot-${index}`);
+                if (hotspotEl) hotspotEl.classList.add('discovered');
+                updateDiscoveryProgress();
+            }
+        }
+
+        function closeStarModal() {
+            if (typewriterTimer) clearInterval(typewriterTimer);
+            starModal.classList.add('opacity-0', 'pointer-events-none');
+            starModalCard.classList.remove('scale-100');
+            starModalCard.classList.add('scale-95');
+        }
+
+        document.getElementById('closeStarModalBtn').addEventListener('click', closeStarModal);
+        document.getElementById('ackStarModalBtn').addEventListener('click', closeStarModal);
+
+        function updateDiscoveryProgress() {
+            const count = discoveredStars.filter(Boolean).length;
+            document.getElementById('discoveredCount').textContent = count;
+
+            discoveredStars.forEach((isDisc, idx) => {
+                const dot = document.querySelector(`[data-dot="${idx}"]`);
+                if (dot && isDisc) {
+                    dot.classList.remove('bg-slate-600');
+                    dot.classList.add('bg-amber-300', 'shadow-[0_0_10px_#fcd34d]', 'scale-125');
+                }
+            });
+
+            if (count === 4) {
+                const wrapper = document.getElementById('finalTriggerWrapper');
+                const btn = document.getElementById('openFinalModalBtn');
+                wrapper.classList.remove('opacity-0', 'translate-y-6', 'pointer-events-none');
+                btn.classList.remove('pointer-events-none');
+                triggerShootingStarShower(6);
+            }
+        }
+
+        /********************************************************************
+         * 7. ORÁCULO VISUAL DE DESEOS, RETO DEL DESTINO Y SEÑAL EN VIVO
+         ********************************************************************/
+        const finalModal = document.getElementById('finalModal');
+        const finalModalCard = document.getElementById('finalModalCard');
+        const finalIntroView = document.getElementById('finalIntroView');
+        const wishOracleStep1View = document.getElementById('wishOracleStep1View');
+        const datePactStep2View = document.getElementById('datePactStep2View');
+        const liveSignalStep3View = document.getElementById('liveSignalStep3View');
+
+        const acceptDatesYesBtn = document.getElementById('acceptDatesYesBtn');
+        const rejectDatesNoBtn = document.getElementById('rejectDatesNoBtn');
+        const persuasiveMsgBanner = document.getElementById('persuasiveMsgBanner');
+
+        let chosenOracleWish = "Noches de risas y planes espontáneos ✨";
+        let yesScaleFactor = 1;
+        let pactDodgeCount = 0;
+
+        const persuasiveMessages = [
+            "¡Ey! Las estrellas vieron ese intento 😜✨",
+            "Ese botón está de adorno en esta galaxia 🌌",
+            "Mi intuición dice que quieres pulsar el otro botón 😉",
+            "¡Casi! Pero el universo insiste en que tengamos más salidas 🌠",
+            "Prometo buenas risas, grandes planes y momentos bonitos ✨",
+            "¡Mira qué bonito brilla el botón de decir que SÍ! 👉💖"
+        ];
+
+        function showFinalSubView(viewName) {
+            finalIntroView.classList.add('hidden');
+            wishOracleStep1View.classList.add('hidden');
+            datePactStep2View.classList.add('hidden');
+            liveSignalStep3View.classList.add('hidden');
+
+            rejectDatesNoBtn.style.position = '';
+            rejectDatesNoBtn.style.left = '';
+            rejectDatesNoBtn.style.top = '';
+
+            if (viewName === 'intro') finalIntroView.classList.remove('hidden');
+            if (viewName === 'oracle') wishOracleStep1View.classList.remove('hidden');
+            if (viewName === 'pact') datePactStep2View.classList.remove('hidden');
+            if (viewName === 'signal') liveSignalStep3View.classList.remove('hidden');
+        }
+
+        function openFinalModal() {
+            triggerShootingStarShower(10);
+            spawnBurst(width / 2, height / 2, 95);
+            showFinalSubView('intro');
+            finalModal.classList.remove('opacity-0', 'pointer-events-none');
+            finalModalCard.classList.remove('scale-95');
+            finalModalCard.classList.add('scale-100');
+        }
+
+        function closeFinalModal() {
+            rejectDatesNoBtn.style.position = '';
+            finalModal.classList.add('opacity-0', 'pointer-events-none');
+            finalModalCard.classList.remove('scale-100');
+            finalModalCard.classList.add('scale-95');
+        }
+
+        document.getElementById('openFinalModalBtn').addEventListener('click', openFinalModal);
+        document.getElementById('closeFinalModalBtn').addEventListener('click', closeFinalModal);
+        document.getElementById('admireSkyBtn').addEventListener('click', closeFinalModal);
+
+        document.getElementById('shootStarWishBtn').addEventListener('click', () => {
+            triggerShootingStarShower(12);
+            spawnBurst(width / 2, height * 0.3, 65);
+            showFinalSubView('oracle');
+        });
+
+        document.getElementById('backToLetterBtn').addEventListener('click', () => {
+            showFinalSubView('intro');
+        });
+
+        document.querySelectorAll('.oracle-wish-card').forEach(card => {
+            card.addEventListener('click', (e) => {
+                document.querySelectorAll('.oracle-wish-card').forEach(c => c.classList.remove('selected-card'));
+                card.classList.add('selected-card');
+
+                chosenOracleWish = card.getAttribute('data-wish') || chosenOracleWish;
+                sound.playSparkleChime(1.2);
+                triggerShootingStarShower(8);
+
+                const rect = card.getBoundingClientRect();
+                spawnBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 45);
+
+                setTimeout(() => {
+                    yesScaleFactor = 1;
+                    acceptDatesYesBtn.style.transform = 'scale(1)';
+                    showFinalSubView('pact');
+                }, 420);
+            });
+        });
+
+        function dodgePactNoButton(e) {
+            if (e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            sound.playDodgePop();
+
+            const rect = rejectDatesNoBtn.getBoundingClientRect();
+            spawnBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 16);
+
+            const msg = persuasiveMessages[pactDodgeCount % persuasiveMessages.length];
+            persuasiveMsgBanner.innerHTML = `<span class="chain-step-appear text-amber-200 font-semibold">${msg}</span>`;
+
+            const shortNoLabels = [
+                "¡Por allá no es! 🙈",
+                "Botón travieso 😜",
+                "Dale al SÍ 👉💖",
+                "¡Casi me atrapas! ✨",
+                "Opción de adorno 😉",
+                "El cosmos dice SÍ 🌠"
+            ];
+            rejectDatesNoBtn.textContent = shortNoLabels[pactDodgeCount % shortNoLabels.length];
+            pactDodgeCount++;
+
+            yesScaleFactor = Math.min(1.18, yesScaleFactor + 0.03);
+            acceptDatesYesBtn.style.transform = `scale(${yesScaleFactor})`;
+
+            const btnW = rejectDatesNoBtn.offsetWidth || 160;
+            const btnH = rejectDatesNoBtn.offsetHeight || 44;
+            const pad = 24;
+            const maxX = Math.max(pad, window.innerWidth - btnW - pad);
+            const maxY = Math.max(pad + 60, window.innerHeight - btnH - pad);
+
+            const yesRect = acceptDatesYesBtn.getBoundingClientRect();
+            let nextX, nextY, tries = 0;
+            do {
+                nextX = pad + Math.random() * (maxX - pad);
+                nextY = pad + 60 + Math.random() * (maxY - (pad + 60));
+                tries++;
+            } while (
+                tries < 12 &&
+                Math.abs(nextX - yesRect.left) < 170 &&
+                Math.abs(nextY - yesRect.top) < 95
+            );
+
+            rejectDatesNoBtn.style.position = 'fixed';
+            rejectDatesNoBtn.style.left = `${nextX}px`;
+            rejectDatesNoBtn.style.top = `${nextY}px`;
+            rejectDatesNoBtn.style.zIndex = '60';
+        }
+
+        rejectDatesNoBtn.addEventListener('mouseover', dodgePactNoButton);
+        rejectDatesNoBtn.addEventListener('touchstart', dodgePactNoButton, { passive: false });
+        rejectDatesNoBtn.addEventListener('click', dodgePactNoButton);
+
+        acceptDatesYesBtn.addEventListener('click', () => {
+            sound.playSparkleChime(1.35);
+            triggerShootingStarShower(16);
+            spawnBurst(width / 2, height / 2, 110);
+
+            document.getElementById('selectedWishSummary').textContent = `🌟 Deseo elegido: ${chosenOracleWish}`;
+            showFinalSubView('signal');
+        });
+
+        document.querySelectorAll('.live-signal-card').forEach(card => {
+            card.addEventListener('click', () => {
+                document.querySelectorAll('.live-signal-card').forEach(c => c.classList.remove('selected-card'));
+                card.classList.add('selected-card');
+
+                const signalText = card.getAttribute('data-signal') || '';
+                const forHimEl = document.getElementById('forHimMessage');
+                forHimEl.innerHTML = `"Si estás leyendo esto porque Yina te mostró su celular: <strong>¡Sí le encantó tu detalle!</strong> (${signalText}). Prepárate para tu abrazo y para la próxima salida juntos 💖✨"`;
+
+                sound.playSparkleChime(1.4);
+                triggerShootingStarShower(10);
+                const rect = card.getBoundingClientRect();
+                spawnBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 60);
+            });
+        });
+
+        document.getElementById('launchMoreStarsFinalBtn').addEventListener('click', () => {
+            triggerShootingStarShower(14);
+            spawnBurst(width / 2, height * 0.35, 75);
+        });
+
+        /********************************************************************
+         * 8. PERSONALIZADOR EN VIVO Y GENERADOR DE ENLACE (QUERY PARAMS)
+         ********************************************************************/
+        const customizerModal = document.getElementById('customizerModal');
+        const copyBanner = document.getElementById('copyFeedbackBanner');
+
+        function openCustomizer() {
+            document.getElementById('inputQuestion').value = appConfig.question;
+            document.getElementById('inputStar0').value = appConfig.stars[0].message;
+            document.getElementById('inputStar1').value = appConfig.stars[1].message;
+            document.getElementById('inputStar2').value = appConfig.stars[2].message;
+            document.getElementById('inputStar3').value = appConfig.stars[3].message;
+            document.getElementById('inputSignature').value = appConfig.signature;
+            copyBanner.classList.add('hidden');
+            customizerModal.classList.remove('opacity-0', 'pointer-events-none');
+        }
+
+        function closeCustomizer() {
+            customizerModal.classList.add('opacity-0', 'pointer-events-none');
+        }
+
+        document.getElementById('openCustomizerBtn').addEventListener('click', openCustomizer);
+        document.getElementById('closeCustomizerBtn').addEventListener('click', closeCustomizer);
+
+        document.getElementById('resetDefaultsBtn').addEventListener('click', () => {
+            appConfig = JSON.parse(JSON.stringify(DEFAULT_CONFIG));
+            openCustomizer();
+            applyConfigToDOM();
+        });
+
+        document.getElementById('saveAndCopyLinkBtn').addEventListener('click', () => {
+            appConfig.question = document.getElementById('inputQuestion').value.trim() || DEFAULT_CONFIG.question;
+            appConfig.stars[0].message = document.getElementById('inputStar0').value.trim() || DEFAULT_CONFIG.stars[0].message;
+            appConfig.stars[1].message = document.getElementById('inputStar1').value.trim() || DEFAULT_CONFIG.stars[1].message;
+            appConfig.stars[2].message = document.getElementById('inputStar2').value.trim() || DEFAULT_CONFIG.stars[2].message;
+            appConfig.stars[3].message = document.getElementById('inputStar3').value.trim() || DEFAULT_CONFIG.stars[3].message;
+            appConfig.signature = document.getElementById('inputSignature').value.trim() || DEFAULT_CONFIG.signature;
+
+            applyConfigToDOM();
+
+            const params = new URLSearchParams();
+            params.set('q', appConfig.question);
+            params.set('s0', appConfig.stars[0].message);
+            params.set('s1', appConfig.stars[1].message);
+            params.set('s2', appConfig.stars[2].message);
+            params.set('s3', appConfig.stars[3].message);
+            params.set('sig', appConfig.signature);
+
+            const customURL = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
+            window.history.replaceState({}, '', `?${params.toString()}`);
+
+            const tempInput = document.createElement('textarea');
+            tempInput.value = customURL;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            try {
+                document.execCommand('copy');
+            } catch (err) {
+                console.warn('No se pudo copiar automáticamente:', err);
+            }
+            document.body.removeChild(tempInput);
+
+            copyBanner.classList.remove('hidden');
+            sound.playSparkleChime(1.1);
+        });
+
+        /********************************************************************
+         * 9. INICIALIZACIÓN AL CARGAR LA VENTANA
+         ********************************************************************/
+        window.onload = function () {
+            loadConfigFromURL();
+            buildStarHotspotsDOM();
+            resizeCanvas();
+            animateCosmos();
+        };
+    </script>
+</body>
+</html>
