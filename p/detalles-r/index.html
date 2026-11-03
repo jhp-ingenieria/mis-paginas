@@ -1,0 +1,1919 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Nuestro Primer Capítulo ✨</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Cormorant Garamond, Caveat, Dancing Script & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Dancing+Script:wght@600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        hand: ['"Caveat"', 'cursive'],
+                        script: ['"Dancing Script"', 'cursive'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        paper: {
+                            light: '#FAF6F0',
+                            DEFAULT: '#F3ECE1',
+                            warm: '#EAE0D0',
+                            edge: '#DCD0BE'
+                        },
+                        espresso: {
+                            DEFAULT: '#3A2A22',
+                            light: '#5C463B',
+                            muted: '#846C5F'
+                        },
+                        terracotta: {
+                            light: '#E6BFB3',
+                            DEFAULT: '#B86B5A',
+                            dark: '#944E3F'
+                        },
+                        rosegold: {
+                            light: '#F4E1DA',
+                            DEFAULT: '#C88A78',
+                            dark: '#A36654'
+                        },
+                        sage: {
+                            light: '#DCE3DA',
+                            DEFAULT: '#7E8F7C',
+                            dark: '#5B6B59'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        * {
+            -webkit-tap-highlight-color: transparent;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #1B1310;
+            background-image:
+                radial-gradient(circle at 20% 20%, rgba(200, 138, 120, 0.16) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(184, 107, 90, 0.14) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, #2B1E19 0%, #160F0C 100%);
+            color: #3A2A22;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Linen Book Cover Texture (Stage 1) */
+        .book-cover {
+            background: linear-gradient(145deg, #9C5A4C 0%, #7E4337 55%, #653329 100%);
+            box-shadow:
+                0 30px 65px rgba(0, 0, 0, 0.65),
+                inset 0 1px 2px rgba(255, 255, 255, 0.25),
+                inset 14px 0 25px rgba(0, 0, 0, 0.35);
+            border: 1px solid rgba(230, 191, 179, 0.25);
+            position: relative;
+        }
+
+        /* Subtle Linen Crosshatch Pattern */
+        .book-cover::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image:
+                repeating-linear-gradient(0deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 1px, transparent 1px, transparent 4px),
+                repeating-linear-gradient(90deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 1px, transparent 1px, transparent 4px);
+            pointer-events: none;
+            border-radius: inherit;
+        }
+
+        /* Book Spine Crease */
+        .book-spine-groove {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 22px;
+            width: 6px;
+            background: linear-gradient(90deg, rgba(0,0,0,0.35), rgba(255,255,255,0.08), rgba(0,0,0,0.25));
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        /* Artisanal Cotton Paper Pages */
+        .journal-page {
+            background-color: #FAF6F0;
+            background-image:
+                radial-gradient(rgba(200, 138, 120, 0.06) 1px, transparent 0),
+                linear-gradient(180deg, #FAF6F0 0%, #F3ECE1 100%);
+            background-size: 24px 24px, 100% 100%;
+            box-shadow:
+                0 25px 60px rgba(0, 0, 0, 0.55),
+                0 4px 12px rgba(0, 0, 0, 0.2),
+                inset 0 0 45px rgba(212, 188, 160, 0.35),
+                6px 6px 0px #E6DCCD,
+                11px 11px 0px #D6C8B4;
+            border: 1px solid #E5D9C8;
+            position: relative;
+        }
+
+        /* Notebook Ruled Lines Effect */
+        .lined-paper {
+            background-image: repeating-linear-gradient(
+                transparent,
+                transparent 29px,
+                rgba(184, 107, 90, 0.14) 29px,
+                rgba(184, 107, 90, 0.14) 30px
+            );
+            line-height: 30px;
+        }
+
+        /* Washi Tape Accent */
+        .washi-tape {
+            width: 85px;
+            height: 22px;
+            background: rgba(200, 138, 120, 0.32);
+            border-left: 2px dashed rgba(255, 255, 255, 0.5);
+            border-right: 2px dashed rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(2px);
+            box-shadow: 0 2px 4px rgba(58, 42, 34, 0.08);
+        }
+
+        .washi-tape-sage {
+            width: 85px;
+            height: 22px;
+            background: rgba(126, 143, 124, 0.32);
+            border-left: 2px dashed rgba(255, 255, 255, 0.5);
+            border-right: 2px dashed rgba(255, 255, 255, 0.5);
+        }
+
+        /* Page Turn Transitions */
+        .page-stage {
+            transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+            transform-origin: left center;
+        }
+        .page-hidden {
+            display: none;
+            opacity: 0;
+            transform: perspective(1200px) rotateY(-8deg) translateY(12px) scale(0.98);
+        }
+        .page-active {
+            display: block;
+            opacity: 1;
+            transform: perspective(1200px) rotateY(0deg) translateY(0) scale(1);
+        }
+
+        /* Margin Note Cards */
+        .margin-note {
+            background: #FFFDF9;
+            border: 1px solid #E6DDD0;
+            box-shadow: 0 6px 18px rgba(58, 42, 34, 0.07);
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+        }
+        .margin-note:hover {
+            transform: translateY(-2px) rotate(-0.4deg);
+            box-shadow: 0 10px 24px rgba(184, 107, 90, 0.15);
+            border-color: #C88A78;
+        }
+        .margin-note.revealed {
+            background: linear-gradient(135deg, #FFFDF9 0%, #FAF0EC 100%);
+            border-color: #C88A78;
+        }
+
+        /* Romantic Primary Button */
+        .btn-romantic {
+            background: linear-gradient(135deg, #B86B5A 0%, #C88A78 50%, #A95C4B 100%);
+            color: #FAF6F0;
+            box-shadow: 0 10px 25px -5px rgba(184, 107, 90, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.35);
+            transition: all 0.3s ease;
+        }
+        .btn-romantic:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 28px -5px rgba(184, 107, 90, 0.65);
+        }
+        .btn-romantic:active {
+            transform: translateY(0) scale(0.99);
+        }
+
+        /* Secondary Sage / Cream Button */
+        .btn-soft {
+            background: #F3ECE1;
+            border: 1px solid #C88A78;
+            color: #5C463B;
+            transition: all 0.3s ease;
+        }
+        .btn-soft:hover {
+            background: #EAE0D0;
+            transform: translateY(-1px);
+        }
+
+        /* Wax Seal Styling */
+        .wax-seal {
+            width: 88px;
+            height: 88px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #D17A69 0%, #A84638 55%, #75281E 100%);
+            box-shadow:
+                0 8px 20px rgba(117, 40, 30, 0.55),
+                inset 0 3px 6px rgba(255, 210, 200, 0.4),
+                inset 0 -4px 8px rgba(45, 10, 6, 0.7);
+            border: 3px solid #963B2E;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .wax-seal::after {
+            content: "";
+            position: absolute;
+            inset: 7px;
+            border-radius: 50%;
+            border: 1.5px dashed rgba(250, 225, 215, 0.5);
+        }
+        .wax-seal:hover {
+            transform: scale(1.06) rotate(3deg);
+            box-shadow: 0 12px 28px rgba(168, 70, 56, 0.7);
+        }
+        .wax-seal:active {
+            transform: scale(0.95);
+        }
+
+        @keyframes pulseWarm {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(184, 107, 90, 0.5); }
+            50% { transform: scale(1.04); box-shadow: 0 0 0 14px rgba(184, 107, 90, 0); }
+        }
+        .seal-pulse {
+            animation: pulseWarm 2.2s infinite;
+        }
+
+        /* Floating Feather Animation */
+        @keyframes writeMotion {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(3px, -3px) rotate(-5deg); }
+            50% { transform: translate(6px, 0px) rotate(3deg); }
+            75% { transform: translate(2px, -2px) rotate(-3deg); }
+        }
+        .feather-writing {
+            animation: writeMotion 1.1s infinite ease-in-out;
+        }
+
+        /* Gentle Shake for Validation */
+        @keyframes gentleShake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+        .shake-hint {
+            animation: gentleShake 0.4s ease;
+        }
+
+        /* Spinning Mini Vinyl Animation for musica.mp3 */
+        @keyframes spinVinyl {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .vinyl-spinning {
+            animation: spinVinyl 4s linear infinite;
+        }
+
+        /* Interactive Playful Clause Cards */
+        .clause-card {
+            background: #FFFDF9;
+            border: 1.5px solid #E5D9C8;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            cursor: pointer;
+        }
+        .clause-card:hover {
+            transform: translateY(-3px) rotate(-0.5deg);
+            box-shadow: 0 12px 24px rgba(184, 107, 90, 0.14);
+        }
+        .clause-card.active {
+            background: linear-gradient(135deg, #FFFDF9 0%, #FAF0EC 100%);
+            border-color: #B86B5A;
+            box-shadow: 0 10px 22px rgba(184, 107, 90, 0.18);
+        }
+
+        /* Floating Mini Hearts for Playful Bribe Button */
+        @keyframes floatUpHeart {
+            0% { opacity: 1; transform: translateY(0) scale(0.8) rotate(0deg); }
+            100% { opacity: 0; transform: translateY(-95px) scale(1.35) rotate(14deg); }
+        }
+        .floating-heart {
+            position: fixed;
+            pointer-events: none;
+            z-index: 60;
+            animation: floatUpHeart 1.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* Pop-in animation for Bribe Bubble */
+        @keyframes popBubble {
+            0% { opacity: 0; transform: scale(0.92) translateY(6px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .bribe-pop {
+            animation: popBubble 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        #signature-canvas {
+            touch-action: none;
+            cursor: crosshair;
+        }
+    </style>
+</head>
+<body class="relative flex flex-col justify-between items-center py-5 px-3.5 sm:px-6 select-none">
+
+    <!-- Audio Element Inteligente: Compatible con musica.mp3 y cancion.mp3 en la misma carpeta de GitHub -->
+    <audio id="bg-music" loop preload="auto">
+        <source src="musica.mp3" type="audio/mpeg">
+        <source src="cancion.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Ambient Warm Bokeh & Floating Petals Canvas -->
+    <canvas id="ambient-canvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
+    <canvas id="celebration-canvas" class="fixed inset-0 pointer-events-none z-50"></canvas>
+
+    <!-- Top Navigation Bar (Progress & Mini-Vinyl Player) -->
+    <header id="main-header" class="w-full max-w-lg transition-all duration-500 z-30 flex items-center justify-between mb-3 px-1">
+        <!-- Chapter / Game Level Indicator -->
+        <div class="flex items-center gap-2 bg-[#2A1E19]/85 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-[#C88A78]/30 shadow-sm">
+            <i class="fa-solid fa-heart-pulse text-[#E6BFB3] text-xs"></i>
+            <span id="chapter-indicator" class="text-[11px] tracking-widest uppercase text-[#FAF6F0]/90 font-medium">
+                Yina & Jhonatan • Nivel 1
+            </span>
+        </div>
+
+        <!-- Mini Vinyl Player -->
+        <div class="flex items-center gap-2">
+            <button id="music-btn" onclick="toggleMusicBox()" title="Reproducir / Pausar nuestra canción" class="flex items-center gap-2 pl-2 pr-3.5 py-1 rounded-full bg-[#2A1E19]/90 hover:bg-[#3A2A22] border border-[#C88A78]/35 text-[#FAF6F0] text-xs transition shadow-md">
+                <!-- Spinning Mini-Vinyl Disc Icon -->
+                <div id="vinyl-disc" class="w-6 h-6 rounded-full bg-gradient-to-tr from-[#140D0B] via-[#3A2A22] to-[#140D0B] border border-[#E6BFB3]/50 flex items-center justify-center shadow-inner relative">
+                    <div class="w-2 h-2 rounded-full bg-[#C88A78] border border-[#FAF6F0]/60"></div>
+                </div>
+                <div class="text-left leading-tight">
+                    <span id="music-label" class="block text-[10px] font-semibold text-[#FAF6F0] tracking-wide">Tocar música</span>
+                    <span id="music-sub" class="block text-[9px] text-[#E6BFB3]/80">Nuestra canción 🎵</span>
+                </div>
+            </button>
+        </div>
+    </header>
+
+    <!-- ==========================================
+         MAIN ARTISANAL BOOK & GAME CONTAINER
+         ========================================== -->
+    <main id="main-book-container" class="w-full max-w-lg transition-all duration-500 z-20 my-auto">
+
+        <!-- ==========================================
+             STAGE 1: PORTADA DEL DIARIO INTERACTIVO (YINA & JHONATAN)
+             ========================================== -->
+        <section id="stage-1" class="page-stage page-active book-cover rounded-r-3xl rounded-l-lg p-7 sm:p-10 text-center relative overflow-hidden">
+            <div class="book-spine-groove"></div>
+
+            <!-- Top Bookmark Ribbon -->
+            <div class="w-8 h-16 bg-gradient-to-b from-[#D99B88] to-[#B86B5A] absolute top-0 right-8 shadow-md flex items-end justify-center pb-2" style="clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 82%, 0 100%);">
+                <span class="text-[10px] font-bold text-[#FAF6F0]/95">Y♥J</span>
+            </div>
+
+            <!-- Embossed Gold Inner Frame -->
+            <div class="border border-[#E6BFB3]/40 rounded-2xl p-6 sm:p-8 relative bg-black/15 backdrop-blur-[1px] ml-2">
+                <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FAF6F0]/10 border border-[#E6BFB3]/30 text-[#E6BFB3] text-[10px] tracking-[0.2em] uppercase mb-3 font-semibold">
+                    <span>🧠 Psicología</span>
+                    <span>×</span>
+                    <span>⚙️ Ingeniería</span>
+                </div>
+
+                <!-- Pressed Botanical Flower + Heart Illustration -->
+                <div class="my-3 flex justify-center">
+                    <div class="w-24 h-24 rounded-full bg-[#FAF6F0]/10 border border-[#E6BFB3]/35 flex items-center justify-center shadow-inner relative">
+                        <svg class="w-16 h-16" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M50 88 C50 65, 48 45, 50 28" stroke="#DCE3DA" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M49 68 C36 64, 30 54, 38 48 C44 44, 49 56, 49 68 Z" fill="#DCE3DA" fill-opacity="0.45" stroke="#DCE3DA" stroke-width="1.5"/>
+                            <path d="M50 58 C64 54, 70 44, 62 38 C56 34, 50 46, 50 58 Z" fill="#DCE3DA" fill-opacity="0.45" stroke="#DCE3DA" stroke-width="1.5"/>
+                            <circle cx="50" cy="28" r="12" fill="#F4E1DA" fill-opacity="0.85"/>
+                            <path d="M38 28 C38 18, 62 18, 62 28 C62 38, 50 42, 50 42 C50 42, 38 38, 38 28 Z" fill="#E6BFB3" stroke="#FAF6F0" stroke-width="1.2"/>
+                            <path d="M43 25 C43 19, 57 19, 57 25 C57 31, 50 35, 50 35 C50 35, 43 31, 43 25 Z" fill="#C88A78"/>
+                            <circle cx="50" cy="24" r="3" fill="#FAF6F0"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Personalized Dedication Badge for Yina -->
+                <div class="inline-block px-4 py-1 rounded-full bg-[#FAF6F0]/15 border border-[#E6BFB3]/40 text-[#FAF6F0] font-hand text-2xl sm:text-3xl mb-2">
+                    Para <span id="cover-her-name" class="font-bold text-[#F4E1DA]">Yina</span>, mi casualidad favorita ✨
+                </div>
+
+                <h1 class="font-serif text-3xl sm:text-4xl font-bold text-[#FAF6F0] tracking-tight leading-tight mt-1 mb-2">
+                    El Caso: <span class="italic font-normal text-[#F4E1DA]">Nuestro Primer Capítulo</span>
+                </h1>
+
+                <p class="text-xs text-[#E6BFB3]/90 uppercase tracking-widest font-semibold mb-3">
+                    Autor: Ing. Jhonatan • Evaluadora: Lic. Yina
+                </p>
+
+                <div class="w-16 h-[1px] bg-[#E6BFB3]/50 mx-auto my-3"></div>
+
+                <p class="font-serif italic text-base sm:text-lg text-[#F4E1DA]/95 leading-relaxed max-w-xs mx-auto mb-6">
+                    «Cuando un ingeniero conoce a la psicóloga más linda, todos sus cálculos fallan y empieza la mejor historia.»
+                </p>
+
+                <button onclick="openBookFirstPage()" class="w-full py-4 px-6 rounded-2xl bg-[#FAF6F0] hover:bg-white text-[#653329] font-bold text-sm sm:text-base shadow-xl transition transform hover:-translate-y-0.5 flex items-center justify-center gap-2.5">
+                    <i class="fa-solid fa-play text-xs text-[#B86B5A]"></i>
+                    <span>Empezar nuestra aventura (Con Música 🎶)</span>
+                </button>
+            </div>
+
+            <p class="text-[11px] text-[#F4E1DA]/70 mt-4 ml-2 font-sans">
+                Supera las 3 misiones del diario para desbloquear la sorpresa final ✨
+            </p>
+        </section>
+
+        <!-- ==========================================
+             STAGE 2: PÁGINA 1 - MISIÓN 1: EXPEDIENTE PSICOLÓGICO VS. INGENIERÍA
+             ========================================== -->
+        <section id="stage-2" class="page-stage page-hidden journal-page rounded-2xl p-6 sm:p-8">
+            <!-- Top Page Header -->
+            <div class="flex items-center justify-between border-b border-espresso/15 pb-3 mb-4 text-xs text-espresso-muted font-serif italic">
+                <span>Misión 01 • Expediente Clínico & Técnico</span>
+                <span>Pág. 01 de 04</span>
+            </div>
+
+            <!-- Playful Intro Combining Engineer + Psychologist + Short Time -->
+            <div class="mb-5">
+                <span class="inline-block px-3 py-0.5 rounded-full bg-rosegold-light/80 text-terracotta-dark text-[10px] font-bold uppercase tracking-widest mb-2">
+                    📋 Reporte de Tiempo Récord
+                </span>
+                <h2 class="font-serif text-2xl sm:text-3xl font-bold text-espresso leading-snug mb-2">
+                    Hola Yina, necesito tu diagnóstico profesional...
+                </h2>
+                <p class="text-sm text-espresso-light leading-relaxed">
+                    Como <span class="font-semibold text-terracotta-dark">ingeniero</span>, yo juraba que todo en la vida necesitaba meses de cálculos y planos. Pero llegaste tú, mi <span class="font-semibold text-terracotta-dark">psicóloga favorita</span>, y en muy poquito tiempo demoliste todas mis estructuras con una sola sonrisa.
+                </p>
+
+                <!-- Dynamic Special Memory Note -->
+                <div class="mt-3 p-3.5 rounded-xl bg-paper-warm/70 border-l-4 border-rosegold font-hand text-xl text-espresso leading-snug">
+                    «<span id="custom-memory-display">No hicieron falta meses: bastaron nuestras salidas, tu forma de analizarme con esa mirada tan linda y tu risa para saber que eras tú.</span>»
+                </div>
+            </div>
+
+            <!-- MINI-JUEGO 1A: 3 PISTAS DEL EXPEDIENTE -->
+            <div class="mb-5">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-xs font-bold uppercase tracking-wider text-terracotta-dark flex items-center gap-1.5">
+                        <i class="fa-solid fa-magnifying-glass-chart text-terracotta"></i>
+                        Paso 1: Toca y desbloquea las 3 pruebas
+                    </span>
+                    <span id="notes-counter" class="text-xs font-bold text-terracotta-dark bg-rosegold-light/60 px-2.5 py-0.5 rounded-full">
+                        0 / 3 listas
+                    </span>
+                </div>
+
+                <div class="space-y-2.5">
+                    <!-- Clue 1 -->
+                    <div id="note-card-0" onclick="revealMarginNote(0)" class="margin-note rounded-xl p-3.5 relative overflow-hidden">
+                        <div class="washi-tape absolute -top-2 right-6 rotate-3"></div>
+                        <div class="flex items-start gap-3">
+                            <div id="note-icon-0" class="w-8 h-8 rounded-full bg-rosegold-light text-terracotta-dark flex items-center justify-center shrink-0 font-bold text-sm mt-0.5">
+                                🧠
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="font-serif font-bold text-base sm:text-lg text-espresso">
+                                        1. El Efecto Psicóloga en mí
+                                    </h3>
+                                    <span id="note-badge-0" class="text-[11px] text-terracotta font-semibold">
+                                        Tocar para abrir ✨
+                                    </span>
+                                </div>
+                                <p id="note-body-0" class="hidden font-hand text-xl text-espresso-light mt-1 leading-snug">
+                                    Me encanta cómo me escuchas, cómo me lees la mente sin que diga nada y cómo tu sonrisa me sube la dopamina al 1000%. 🌸
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Clue 2 -->
+                    <div id="note-card-1" onclick="revealMarginNote(1)" class="margin-note rounded-xl p-3.5 relative overflow-hidden">
+                        <div class="washi-tape-sage absolute -top-2 left-8 -rotate-2"></div>
+                        <div class="flex items-start gap-3">
+                            <div id="note-icon-1" class="w-8 h-8 rounded-full bg-sage-light text-sage-dark flex items-center justify-center shrink-0 font-bold text-sm mt-0.5">
+                                ⚙️
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="font-serif font-bold text-base sm:text-lg text-espresso">
+                                        2. Colapso de Ingeniería
+                                    </h3>
+                                    <span id="note-badge-1" class="text-[11px] text-terracotta font-semibold">
+                                        Tocar para abrir ✨
+                                    </span>
+                                </div>
+                                <p id="note-body-1" class="hidden font-hand text-xl text-espresso-light mt-1 leading-snug">
+                                    Cualquier ingeniero sabe que una buena base toma tiempo, pero nuestra química rompió todas las leyes de la física en tiempo récord. ⚡📐
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Clue 3 -->
+                    <div id="note-card-2" onclick="revealMarginNote(2)" class="margin-note rounded-xl p-3.5 relative overflow-hidden">
+                        <div class="washi-tape absolute -top-2 right-10 -rotate-3"></div>
+                        <div class="flex items-start gap-3">
+                            <div id="note-icon-2" class="w-8 h-8 rounded-full bg-rosegold-light text-terracotta-dark flex items-center justify-center shrink-0 font-bold text-sm mt-0.5">
+                                💓
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="font-serif font-bold text-base sm:text-lg text-espresso">
+                                        3. Conclusión del Caso
+                                    </h3>
+                                    <span id="note-badge-2" class="text-[11px] text-terracotta font-semibold">
+                                        Tocar para abrir ✨
+                                    </span>
+                                </div>
+                                <p id="note-body-2" class="hidden font-hand text-xl text-espresso-light mt-1 leading-snug">
+                                    Llegaste sin avisar, Yina, y en poquísimo tiempo te convertiste en mi persona favorita para compartir cada día. 🌷
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MINI-JUEGO 1B: EL MEDIDOR DE DOPAMINA & CORAZÓN DE JHONATAN -->
+            <div class="bg-[#FFFDF9] border-2 border-rosegold/50 rounded-2xl p-4 mb-5 shadow-sm">
+                <div class="flex items-center justify-between mb-1.5">
+                    <span class="text-xs font-bold text-espresso flex items-center gap-1.5">
+                        <i class="fa-solid fa-bolt text-terracotta"></i>
+                        Mini-Juego: Mide mis latidos cuando te veo
+                    </span>
+                    <span id="meter-value-badge" class="text-xs font-bold text-terracotta-dark">
+                        25% • Tranquilo
+                    </span>
+                </div>
+
+                <!-- Animated Progress Bar -->
+                <div class="w-full h-3.5 bg-paper-warm rounded-full overflow-hidden border border-rosegold/40 mb-2.5">
+                    <div id="chemistry-bar" class="h-full bg-gradient-to-r from-[#C88A78] via-[#B86B5A] to-[#D14D41] transition-all duration-300 rounded-full" style="width: 25%;"></div>
+                </div>
+
+                <div class="flex items-center justify-between gap-2">
+                    <p id="meter-status-text" class="text-xs text-espresso-light italic">
+                        Toca el botón varias veces para ver qué pasa cuando Yina sonríe 👉
+                    </p>
+                    <button id="btn-boost-heart" onclick="boostHeartMeter(event)" class="px-3.5 py-2 rounded-xl bg-rosegold-light hover:bg-rosegold text-terracotta-dark hover:text-white font-bold text-xs shrink-0 transition shadow-sm flex items-center gap-1.5">
+                        <span>Sonreírle a Jhonatan</span>
+                        <span>😊💓</span>
+                    </button>
+                </div>
+            </div>
+
+            <p id="notes-hint" class="hidden text-xs text-terracotta font-semibold text-center mb-3 italic">
+                ¡Oye psicóloga bonita! Abre las 3 notas de arriba para pasar al Nivel 2 ✨
+            </p>
+
+            <!-- Navigation Footer -->
+            <div class="flex items-center justify-between gap-3 pt-2 border-t border-espresso/10">
+                <button onclick="goToStage(1)" class="px-4 py-3 rounded-xl text-xs font-medium text-espresso-muted hover:text-espresso transition">
+                    <i class="fa-solid fa-arrow-left mr-1"></i> Portada
+                </button>
+                <button id="btn-to-stage-3" onclick="proceedFromStage2()" class="btn-romantic flex-1 py-3.5 px-5 rounded-xl text-sm font-semibold flex items-center justify-center gap-2">
+                    <span>Ir al Nivel 2: Test de la Psicóloga</span>
+                    <i class="fa-solid fa-gamepad text-xs"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             STAGE 3: PÁGINA 2 - MISIÓN 2: ADIVINA EL PENSAMIENTO DEL INGENIERO & PLANES
+             ========================================== -->
+        <section id="stage-3" class="page-stage page-hidden journal-page rounded-2xl p-6 sm:p-8">
+            <div class="flex items-center justify-between border-b border-espresso/15 pb-3 mb-4 text-xs text-espresso-muted font-serif italic">
+                <span>Misión 02 • Test de Lectura de Mente</span>
+                <span>Pág. 02 de 04</span>
+            </div>
+
+            <!-- Live Fountain Pen Typewriter Sheet -->
+            <div class="bg-[#FFFDF9] border border-[#E5D9C8] rounded-2xl p-4 sm:p-5 mb-5 shadow-inner relative">
+                <div class="flex items-center justify-between mb-1">
+                    <span class="text-[11px] uppercase tracking-widest text-rosegold-dark font-semibold">
+                        Bitácora del Ing. Jhonatan • Escrito a pulso
+                    </span>
+                    <i id="quill-icon" class="fa-solid fa-feather-pointed text-terracotta text-sm feather-writing"></i>
+                </div>
+                <p id="typewriter-text" class="lined-paper font-hand text-xl sm:text-2xl text-espresso min-h-[90px]"></p>
+            </div>
+
+            <!-- MINI-JUEGO 2: TEST RÁPIDO PARA LA PSICÓLOGA YINA -->
+            <div class="bg-paper-warm/65 border-2 border-rosegold/50 rounded-2xl p-4 mb-5">
+                <div class="flex items-center justify-between mb-1">
+                    <span class="text-[10px] uppercase tracking-widest font-bold text-terracotta-dark">
+                        🎲 Reto para la Lic. Yina
+                    </span>
+                    <span id="quiz-badge" class="text-[11px] font-semibold text-espresso-muted">
+                        Elige una opción
+                    </span>
+                </div>
+                <h3 class="font-serif font-bold text-lg text-espresso mb-2.5">
+                    Como buena psicóloga... ¿Qué crees que piensa Jhonatan cada vez que está contigo?
+                </h3>
+
+                <div class="space-y-2">
+                    <button onclick="answerPsychQuiz(0, event)" id="quiz-opt-0" class="w-full text-left p-3 rounded-xl bg-[#FFFDF9] hover:bg-rosegold-light/40 border border-rosegold/50 text-xs sm:text-sm text-espresso font-medium transition flex items-center justify-between">
+                        <span>A) «Qué linda sonrisa tiene, ya me desconfiguró el cerebro 😍»</span>
+                        <i class="fa-regular fa-circle text-terracotta"></i>
+                    </button>
+                    <button onclick="answerPsychQuiz(1, event)" id="quiz-opt-1" class="w-full text-left p-3 rounded-xl bg-[#FFFDF9] hover:bg-rosegold-light/40 border border-rosegold/50 text-xs sm:text-sm text-espresso font-medium transition flex items-center justify-between">
+                        <span>B) «Con ella el tiempo pasa volando, no quiero que acabe la cita ⏳✨»</span>
+                        <i class="fa-regular fa-circle text-terracotta"></i>
+                    </button>
+                    <button onclick="answerPsychQuiz(2, event)" id="quiz-opt-2" class="w-full text-left p-3 rounded-xl bg-[#FFFDF9] hover:bg-rosegold-light/40 border border-rosegold/50 text-xs sm:text-sm text-espresso font-medium transition flex items-center justify-between">
+                        <span>C) «Tengo que pedirle que sea mi enamorada sí o sí ❤️»</span>
+                        <i class="fa-regular fa-circle text-terracotta"></i>
+                    </button>
+                </div>
+
+                <div id="quiz-feedback" class="hidden mt-3 p-3 rounded-xl bg-[#FFFDF9] border border-terracotta text-center font-hand text-xl text-terracotta-dark font-bold bribe-pop">
+                    ¡Bingo, psicóloga brillante! 🎯 Respuesta correcta: ¡LAS TRES AL MISMO TIEMPO! ❤️
+                </div>
+            </div>
+
+            <!-- Interactive Future Pages Wishlist -->
+            <div class="mb-6">
+                <div class="flex items-center justify-between mb-1">
+                    <h3 class="font-serif font-bold text-lg sm:text-xl text-espresso">
+                        Nuestros próximos planes en agenda:
+                    </h3>
+                </div>
+                <p class="text-xs text-espresso-light mb-3">
+                    Dejemos marcados nuestros planes favoritos para este Capítulo 1 juntos:
+                </p>
+
+                <div class="space-y-2">
+                    <div onclick="toggleWish(0)" data-wish="0" class="wish-item flex items-center gap-3 p-3 rounded-xl bg-[#FFFDF9] border border-rosegold cursor-pointer transition shadow-sm">
+                        <div class="wish-check w-5 h-5 rounded-md bg-terracotta text-white flex items-center justify-center text-xs shrink-0">
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+                        <span class="text-xs sm:text-sm text-espresso font-medium">
+                            ☕ Citas de postres, cafecito y charlas interminables (Psicóloga + Ingeniero)
+                        </span>
+                    </div>
+
+                    <div onclick="toggleWish(1)" data-wish="1" class="wish-item flex items-center gap-3 p-3 rounded-xl bg-[#FFFDF9] border border-rosegold cursor-pointer transition shadow-sm">
+                        <div class="wish-check w-5 h-5 rounded-md bg-terracotta text-white flex items-center justify-center text-xs shrink-0">
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+                        <span class="text-xs sm:text-sm text-espresso font-medium">
+                            🌷 Abrazarte fuerte, engreírte y ser tu lugar seguro siempre
+                        </span>
+                    </div>
+
+                    <div onclick="toggleWish(2)" data-wish="2" class="wish-item flex items-center gap-3 p-3 rounded-xl bg-[#FFFDF9] border border-rosegold cursor-pointer transition shadow-sm">
+                        <div class="wish-check w-5 h-5 rounded-md bg-terracotta text-white flex items-center justify-center text-xs shrink-0">
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+                        <span class="text-xs sm:text-sm text-espresso font-medium">
+                            🎶 Escuchar nuestras canciones favoritas y reírnos hasta que duela la panza
+                        </span>
+                    </div>
+
+                    <div onclick="toggleWish(3)" data-wish="3" class="wish-item flex items-center gap-3 p-3 rounded-xl bg-[#FFFDF9] border border-rosegold cursor-pointer transition shadow-sm">
+                        <div class="wish-check w-5 h-5 rounded-md bg-terracotta text-white flex items-center justify-center text-xs shrink-0">
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+                        <span class="text-xs sm:text-sm text-espresso font-medium">
+                            📸 Construir juntos la relación más bonita y sana desde el día uno
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation Footer -->
+            <div class="flex items-center justify-between gap-3 pt-2 border-t border-espresso/10">
+                <button onclick="goToStage(2)" class="px-4 py-3 rounded-xl text-xs font-medium text-espresso-muted hover:text-espresso transition">
+                    <i class="fa-solid fa-arrow-left mr-1"></i> Anterior
+                </button>
+                <button onclick="goToStage(4)" class="btn-romantic flex-1 py-3.5 px-5 rounded-xl text-sm font-semibold flex items-center justify-center gap-2">
+                    <span>Desbloquear el Sobre Secreto</span>
+                    <i class="fa-solid fa-envelope-open-text text-xs"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             STAGE 4: PÁGINA 3 - LA GRAN PROPUESTA PARA YINA (PLIEGO AMPLIO Y JUGUETÓN)
+             ========================================== -->
+        <section id="stage-4" class="page-stage page-hidden journal-page rounded-3xl p-6 sm:p-10 md:p-12">
+            <div class="flex items-center justify-between border-b border-espresso/15 pb-3.5 mb-6 text-xs text-espresso-muted font-serif italic">
+                <span>Misión Final • El Proyecto Más Importante de Jhonatan</span>
+                <span>Pág. 03 de 04</span>
+            </div>
+
+            <!-- CLOSED WAX-SEALED ENVELOPE VIEW -->
+            <div id="sealed-envelope-view" class="py-6 sm:py-10 text-center">
+                <span class="inline-block px-3.5 py-1 rounded-full bg-rosegold-light/70 text-terracotta-dark text-[11px] font-semibold uppercase tracking-widest mb-3">
+                    Confidencial • Exclusivo para la Lic. Yina
+                </span>
+                <h2 class="font-serif text-2xl sm:text-3xl font-bold text-espresso mb-2">
+                    Yina, llegaste al sobre más importante del diario...
+                </h2>
+                <p class="font-serif italic text-base sm:text-lg text-espresso-light max-w-md mx-auto mb-7">
+                    Contiene una propuesta diseñada con el 100% del corazón de este ingeniero que muere por ti.
+                </p>
+
+                <!-- Artisanal Cotton Envelope Graphic -->
+                <div class="relative mx-auto max-w-md bg-gradient-to-b from-[#F5EFE6] to-[#E5D8C5] border-2 border-[#D5C4AC] rounded-3xl p-9 sm:p-12 shadow-2xl overflow-hidden">
+                    <div class="absolute top-0 left-0 right-0 h-32 bg-[#EAE0D0] border-b border-[#CFBFA6]" style="clip-path: polygon(0 0, 100% 0, 50% 100%);"></div>
+
+                    <!-- Wax Seal Centerpiece -->
+                    <div class="relative z-10 mt-6 mb-4 flex flex-col items-center">
+                        <div onclick="openWaxSeal()" class="wax-seal seal-pulse" title="Toca para romper el sello de lacre">
+                            <div class="text-center text-[#FAF6F0]">
+                                <i class="fa-solid fa-heart text-2xl drop-shadow"></i>
+                                <span class="block text-[9px] tracking-widest uppercase mt-0.5 font-serif">Abrir</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="font-hand text-2xl sm:text-3xl text-espresso mt-4 relative z-10">
+                        Para: <span id="envelope-her-name" class="font-bold text-terracotta-dark">Yina</span> ✨
+                    </p>
+                    <p class="text-xs text-espresso-muted mt-1">
+                        De: Ing. Jhonatan • Toca el sello rojo para abrir
+                    </p>
+                </div>
+
+                <div class="mt-6">
+                    <button onclick="goToStage(3)" class="text-xs text-espresso-muted hover:text-espresso underline">
+                        ← Volver a la página anterior
+                    </button>
+                </div>
+            </div>
+
+            <!-- UNFOLDED SPACIOUS & PLAYFUL PROPOSAL VIEW -->
+            <div id="unfolded-letter-view" class="hidden space-y-8">
+
+                <!-- 1. SPACIOUS HERO LETTER & THE BIG QUESTION -->
+                <div class="bg-[#FFFDF9] border-2 border-[#E2D5C3] rounded-3xl p-6 sm:p-10 shadow-lg relative text-center">
+                    <div class="washi-tape absolute -top-3 left-1/2 -translate-x-1/2"></div>
+
+                    <p class="font-hand text-2xl sm:text-3xl text-espresso mb-3">
+                        Querida <span id="letter-her-name" class="text-terracotta-dark font-bold">Yina</span>:
+                    </p>
+
+                    <p class="font-serif text-base sm:text-xl text-espresso-light leading-relaxed max-w-xl mx-auto mb-6">
+                        Sé que no llevamos una eternidad conociéndonos, pero ni todas mis fórmulas de <strong>ingeniería</strong> ni todos tus libros de <strong>psicología</strong> pueden explicar lo rápido y bonito que hiciste clic conmigo. Contigo me siento el hombre más afortunado y ya no quiero quedarme solo en el prólogo...
+                    </p>
+
+                    <!-- THE BIG QUESTION CENTERPIECE -->
+                    <div class="py-8 sm:py-10 px-4 sm:px-8 my-4 rounded-3xl bg-gradient-to-br from-rosegold-light/65 via-[#FAF6F0] to-rosegold-light/65 border-2 border-rosegold/60 shadow-inner relative overflow-hidden">
+                        <span class="absolute top-3 left-4 text-rosegold/50 text-sm">♥</span>
+                        <span class="absolute top-3 right-4 text-rosegold/50 text-sm">♥</span>
+                        <span class="absolute bottom-3 left-4 text-rosegold/50 text-sm">♥</span>
+                        <span class="absolute bottom-3 right-4 text-rosegold/50 text-sm">♥</span>
+
+                        <span class="inline-block px-3.5 py-1 rounded-full bg-white/85 border border-rosegold/40 text-[11px] uppercase tracking-[0.22em] text-terracotta-dark font-bold mb-3">
+                            Propuesta Oficial • Jhonatan & Yina
+                        </span>
+
+                        <h3 class="font-script text-4xl sm:text-6xl text-terracotta-dark font-bold leading-tight py-2 drop-shadow-sm">
+                            Yina, ¿quieres ser mi enamorada?
+                        </h3>
+
+                        <p class="font-hand text-xl sm:text-2xl text-espresso-light mt-2">
+                            Prometo construir contigo la historia más linda, divertida y feliz de todas ✨
+                        </p>
+                    </div>
+
+                    <!-- Happiness / Excitement Meter -->
+                    <div class="max-w-md mx-auto mt-4 bg-paper-warm/60 rounded-2xl p-3 border border-rosegold/30">
+                        <div class="flex items-center justify-between text-xs font-bold text-terracotta-dark mb-1">
+                            <span>💖 Nivel de Felicidad del Proyecto:</span>
+                            <span id="happiness-level-text">100% Garantizado</span>
+                        </div>
+                        <div class="w-full h-2.5 bg-white rounded-full overflow-hidden">
+                            <div id="happiness-bar" class="h-full bg-gradient-to-r from-[#B86B5A] to-[#E05A47] transition-all duration-300" style="width: 100%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. PLAYFUL CONTRACT CLAUSES (ENGINEER & PSYCHOLOGIST EDITION) -->
+                <div class="bg-paper-warm/50 border border-[#DFD2C0] rounded-3xl p-5 sm:p-8">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+                        <div>
+                            <span class="text-[11px] uppercase tracking-widest text-terracotta-dark font-bold block">
+                                ✨ Convenio Oficial Ingeniero-Psicóloga
+                            </span>
+                            <h4 class="font-serif font-bold text-xl sm:text-2xl text-espresso">
+                                Beneficios VIP para mi Enamorada Yina:
+                            </h4>
+                        </div>
+                        <span id="clauses-badge" class="self-start sm:self-auto px-3 py-1 rounded-full bg-[#FFFDF9] border border-rosegold/50 text-xs font-semibold text-terracotta-dark">
+                            4/4 beneficios activos 🎁
+                        </span>
+                    </div>
+
+                    <p class="text-xs sm:text-sm text-espresso-light mb-4">
+                        Al aceptar ser enamorada de <strong>Jhonatan</strong>, activas automáticamente todos estos privilegios vitalicios:
+                    </p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                        <!-- Clause 0: Papas Fritas -->
+                        <div id="clause-0" onclick="toggleClause(0)" class="clause-card active rounded-2xl p-4 flex items-start gap-3.5 relative">
+                            <div class="w-11 h-11 rounded-2xl bg-rosegold-light/70 flex items-center justify-center text-2xl shrink-0 shadow-sm">
+                                🍟
+                            </div>
+                            <div class="flex-1 text-left">
+                                <div class="flex items-center justify-between gap-1">
+                                    <h5 class="font-serif font-bold text-base sm:text-lg text-espresso">Impuesto de Papas Fritas</h5>
+                                    <span class="clause-check text-xs text-terracotta font-bold"><i class="fa-solid fa-circle-check"></i></span>
+                                </div>
+                                <p class="text-xs text-espresso-light leading-relaxed mt-1">
+                                    Derecho calculado por ingeniería a robarme el 30% de mis papas aunque hayas dicho <em>«no tengo hambre»</em>.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Clause 1: Casaca de Ingeniero 24/7 -->
+                        <div id="clause-1" onclick="toggleClause(1)" class="clause-card active rounded-2xl p-4 flex items-start gap-3.5 relative">
+                            <div class="w-11 h-11 rounded-2xl bg-sage-light/80 flex items-center justify-center text-2xl shrink-0 shadow-sm">
+                                🧥
+                            </div>
+                            <div class="flex-1 text-left">
+                                <div class="flex items-center justify-between gap-1">
+                                    <h5 class="font-serif font-bold text-base sm:text-lg text-espresso">Casaca de Ingeniero 24/7</h5>
+                                    <span class="clause-check text-xs text-terracotta font-bold"><i class="fa-solid fa-circle-check"></i></span>
+                                </div>
+                                <p class="text-xs text-espresso-light leading-relaxed mt-1">
+                                    Soporte térmico inmediato con mi casaca o polera apenas sientas un poquito de frío.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Clause 2: Paciente & Fan #1 -->
+                        <div id="clause-2" onclick="toggleClause(2)" class="clause-card active rounded-2xl p-4 flex items-start gap-3.5 relative">
+                            <div class="w-11 h-11 rounded-2xl bg-rosegold-light/70 flex items-center justify-center text-2xl shrink-0 shadow-sm">
+                                🧠
+                            </div>
+                            <div class="flex-1 text-left">
+                                <div class="flex items-center justify-between gap-1">
+                                    <h5 class="font-serif font-bold text-base sm:text-lg text-espresso">Tu Fan #1 en Todo</h5>
+                                    <span class="clause-check text-xs text-terracotta font-bold"><i class="fa-solid fa-circle-check"></i></span>
+                                </div>
+                                <p class="text-xs text-espresso-light leading-relaxed mt-1">
+                                    Admirarte siempre como la psicóloga más brillante, escucharte y apoyarte en cada meta.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Clause 3: Terapia de Mimos -->
+                        <div id="clause-3" onclick="toggleClause(3)" class="clause-card active rounded-2xl p-4 flex items-start gap-3.5 relative">
+                            <div class="w-11 h-11 rounded-2xl bg-sage-light/80 flex items-center justify-center text-2xl shrink-0 shadow-sm">
+                                😘
+                            </div>
+                            <div class="flex-1 text-left">
+                                <div class="flex items-center justify-between gap-1">
+                                    <h5 class="font-serif font-bold text-base sm:text-lg text-espresso">Serotonina & Mimos</h5>
+                                    <span class="clause-check text-xs text-terracotta font-bold"><i class="fa-solid fa-circle-check"></i></span>
+                                </div>
+                                <p class="text-xs text-espresso-light leading-relaxed mt-1">
+                                    Abrazos largos recetados a diario, besos inesperados y hacerte la enamorada más feliz.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. PLAYFUL ROMANTIC BRIBE SPEECH BUBBLE -->
+                <div id="bribe-bubble-container" class="hidden">
+                    <div id="bribe-bubble" class="bg-[#FFFDF9] border-2 border-terracotta rounded-2xl p-4 sm:p-5 shadow-md relative text-center">
+                        <span class="inline-block text-[10px] uppercase tracking-widest bg-rosegold-light text-terracotta-dark font-bold px-2.5 py-0.5 rounded-full mb-1">
+                            💌 Contraoferta del Ing. Jhonatan en Tiempo Real
+                        </span>
+                        <p id="bribe-text" class="font-hand text-xl sm:text-2xl text-espresso leading-snug"></p>
+                    </div>
+                </div>
+
+                <!-- 4. SPACIOUS & PLAYFUL RESPONSE BUTTONS -->
+                <div class="pt-2 space-y-4 text-center">
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-3.5">
+                        <!-- Main Glowing YES Button -->
+                        <button id="btn-main-yes" onclick="acceptProposalPlayful()" class="btn-romantic w-full sm:flex-1 py-4 px-7 rounded-2xl text-base sm:text-lg font-bold flex items-center justify-center gap-2.5 shadow-xl transition-all duration-300">
+                            <span>¡SÍ, quiero ser tu enamorada, Jhonatan! ❤️</span>
+                        </button>
+
+                        <!-- Playful "Modo Psicóloga: Convénceme más" Button -->
+                        <button id="btn-convince-more" onclick="triggerRomanticBribe(event)" class="btn-soft w-full sm:w-auto py-3.5 px-5 rounded-2xl text-xs sm:text-sm font-semibold flex items-center justify-center gap-2">
+                            <span id="convince-btn-label">Modo Psicóloga: Convénceme más 🧐🙈</span>
+                        </button>
+                    </div>
+
+                    <p class="text-[11px] text-espresso-muted italic">
+                        (Diagnóstico clínico: Decir que SÍ produce felicidad extrema en ambos 🥰✨)
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             STAGE 5: PÁGINA 4 - EL SELLO OFICIAL Y MARCAPÁGINAS DE YINA & JHONATAN
+             ========================================== -->
+        <section id="stage-5" class="page-stage page-hidden space-y-6">
+
+            <!-- STEP A: CELEBRATION & OFFICIAL SIGNATURE STUDIO -->
+            <div class="journal-page rounded-3xl p-6 sm:p-9 border-2 border-rosegold">
+                <div class="flex items-center justify-between border-b border-espresso/15 pb-3 mb-5 text-xs text-espresso-muted font-serif italic">
+                    <span>Capítulo I • ¡La Enamorada Más Feliz del Mundo!</span>
+                    <span>Pág. 04 de 04</span>
+                </div>
+
+                <div class="text-center mb-6">
+                    <span class="inline-block px-4 py-1 rounded-full bg-rosegold-light text-terracotta-dark text-xs font-bold uppercase tracking-widest mb-2 shadow-sm">
+                        🎉 ¡YINA DIJO QUE SÍ! ❤️
+                    </span>
+                    <h2 class="font-serif text-2xl sm:text-4xl font-bold text-espresso">
+                        ¡Oficialmente Mi Enamorada!
+                    </h2>
+                    <p class="text-xs sm:text-sm text-espresso-light mt-1 max-w-lg mx-auto">
+                        Acabas de hacer a este ingeniero el hombre más feliz del planeta, Yina. Elige cómo celebraremos nuestro Día 1 y firma nuestra acta oficial:
+                    </p>
+                </div>
+
+                <!-- 1. First Official Date Selector -->
+                <div class="bg-paper-warm/60 border border-espresso/10 rounded-2xl p-4 sm:p-5 space-y-2.5 mb-5">
+                    <label class="block text-xs font-bold uppercase tracking-wider text-terracotta-dark">
+                        🥂 Yina, ¿cómo inauguramos nuestro Capítulo 1 como enamorados?
+                    </label>
+
+                    <label onclick="updateBookmarkLive()" class="flex items-center gap-3 p-3 rounded-xl bg-[#FFFDF9] border border-rosegold/40 cursor-pointer text-xs sm:text-sm text-espresso hover:border-terracotta transition">
+                        <input type="radio" name="chapter-promise" value="Con un abrazo larguísimo y una cita especial para celebrar nuestro Sí 🕯️🫂" checked class="accent-[#B86B5A]">
+                        <span>🕯️ Con un abrazo larguísimo y una cita especial para celebrar nuestro Sí</span>
+                    </label>
+
+                    <label onclick="updateBookmarkLive()" class="flex items-center gap-3 p-3 rounded-xl bg-[#FFFDF9] border border-rosegold/40 cursor-pointer text-xs sm:text-sm text-espresso hover:border-terracotta transition">
+                        <input type="radio" name="chapter-promise" value="Yendo por nuestra comida favorita y cobrando mi impuesto de papas 🍟😋" class="accent-[#B86B5A]">
+                        <span>🍟 Yendo por nuestra comida favorita y cobrando mi impuesto de papas</span>
+                    </label>
+
+                    <label onclick="updateBookmarkLive()" class="flex items-center gap-3 p-3 rounded-xl bg-[#FFFDF9] border border-rosegold/40 cursor-pointer text-xs sm:text-sm text-espresso hover:border-terracotta transition">
+                        <input type="radio" name="chapter-promise" value="Caminando juntos de la mano y llenándonos de besos desde hoy 🤝❤️" class="accent-[#B86B5A]">
+                        <span>🤝 Caminando juntos de la mano y llenándonos de besos desde hoy</span>
+                    </label>
+                </div>
+
+                <!-- 2. Spacious Finger Signature / Heart Stamp Pad -->
+                <div class="bg-[#FFFDF9] border-2 border-rosegold/50 rounded-2xl p-4 sm:p-5">
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-2.5">
+                        <span class="text-xs sm:text-sm font-semibold text-espresso flex items-center gap-1.5">
+                            <i class="fa-solid fa-pen-fancy text-terracotta"></i>
+                            Firma de la Lic. Yina (con tu dedo o sello):
+                        </span>
+                        <div class="flex items-center gap-2">
+                            <button onclick="stampRomanticHeart()" class="text-xs px-3 py-1.5 rounded-full bg-rosegold-light hover:bg-rosegold text-terracotta-dark hover:text-white font-semibold transition">
+                                ♥ Sello Yina & Jhonatan
+                            </button>
+                            <button onclick="clearSignaturePad()" class="text-xs text-espresso-muted hover:text-espresso underline px-2">
+                                Borrar
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="sig-wrapper" class="relative w-full h-36 rounded-xl bg-[#FAF6F0] border-2 border-dashed border-rosegold overflow-hidden">
+                        <canvas id="signature-canvas" class="w-full h-full"></canvas>
+                        <div id="sig-placeholder" class="absolute inset-0 flex items-center justify-center pointer-events-none font-hand text-xl text-espresso-muted/70 px-4 text-center">
+                            Dibuja tu firma aquí, Yina, para sellar nuestro certificado ↓
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP B: ARTISANAL COMMEMORATIVE BOOKMARK / CERTIFICATE -->
+            <div class="journal-page rounded-3xl p-6 sm:p-9 border-2 border-rosegold relative overflow-hidden">
+                <div class="w-6 h-6 rounded-full bg-[#241915] border-2 border-rosegold mx-auto mb-3 shadow-inner"></div>
+
+                <div class="text-center border-b border-espresso/15 pb-4">
+                    <span class="text-[10px] uppercase tracking-[0.25em] text-terracotta font-semibold block mb-1">
+                        Certificado Oficial • Psicología & Ingeniería del Amor
+                    </span>
+                    <h2 class="font-serif text-2xl sm:text-3xl font-bold text-espresso">
+                        Capítulo I: <span class="italic text-terracotta-dark">Yina & Jhonatan</span>
+                    </h2>
+                    <p class="font-hand text-xl text-espresso-light mt-0.5">
+                        «El comienzo de nuestra historia»
+                    </p>
+                </div>
+
+                <!-- Names & Date Metadata -->
+                <div class="grid grid-cols-2 gap-3.5 my-4 bg-[#FFFDF9] p-4 sm:p-5 rounded-2xl border border-[#E5D9C8] text-xs">
+                    <div>
+                        <span class="text-[10px] uppercase tracking-wider text-espresso-muted block">Enamorada Oficial (Psicóloga)</span>
+                        <span id="bookmark-her-name" class="font-serif font-bold text-base sm:text-lg text-espresso">Yina ✨</span>
+                    </div>
+                    <div>
+                        <span class="text-[10px] uppercase tracking-wider text-espresso-muted block">Enamorado Oficial (Ingeniero)</span>
+                        <span id="bookmark-his-name" class="font-serif font-bold text-base sm:text-lg text-terracotta-dark">Jhonatan ❤️</span>
+                    </div>
+                    <div>
+                        <span class="text-[10px] uppercase tracking-wider text-espresso-muted block">Fecha de Inicio</span>
+                        <span id="bookmark-date" class="font-medium text-espresso">-- de ----, 2026</span>
+                    </div>
+                    <div>
+                        <span class="text-[10px] uppercase tracking-wider text-espresso-muted block">Diagnóstico & Estado</span>
+                        <span class="font-semibold text-sage-dark">100% Enamorados y Felices ∞</span>
+                    </div>
+                </div>
+
+                <!-- Selected Inauguration Promise -->
+                <div class="bg-rosegold-light/45 border border-rosegold/60 rounded-2xl p-3.5 mb-4">
+                    <span class="text-[10px] uppercase tracking-wider text-terracotta-dark font-bold block mb-0.5">
+                        🌷 Nuestra Cita de Inauguración:
+                    </span>
+                    <p id="bookmark-promise" class="text-xs sm:text-sm text-espresso font-semibold"></p>
+                </div>
+
+                <!-- Accepted Playful Clauses Summary -->
+                <div class="mb-4">
+                    <span class="text-[10px] uppercase tracking-wider text-espresso-muted font-semibold block mb-1.5">
+                        🎁 Beneficios VIP Activados para Yina:
+                    </span>
+                    <div id="bookmark-clauses-list" class="flex flex-wrap gap-1.5"></div>
+                </div>
+
+                <!-- Selected Future Wishes -->
+                <div class="mb-4">
+                    <span class="text-[10px] uppercase tracking-wider text-espresso-muted font-semibold block mb-1.5">
+                        ✨ Nuestras próximas aventuras:
+                    </span>
+                    <ul id="bookmark-wishes-list" class="space-y-1 text-xs text-espresso-light bg-[#FFFDF9] p-3.5 rounded-xl border border-[#E5D9C8]">
+                    </ul>
+                </div>
+
+                <!-- Signature & Botanical Wax Seal Row -->
+                <div class="flex items-center justify-between pt-3 border-t border-dashed border-espresso/20">
+                    <div>
+                        <span class="text-[10px] uppercase tracking-wider text-espresso-muted block mb-1">
+                            Firma Oficial de Yina
+                        </span>
+                        <img id="bookmark-sig-img" alt="Firma de Yina" class="h-14 bg-[#FFFDF9] rounded-lg border border-rosegold/40 px-3 py-1 object-contain" />
+                    </div>
+                    <div class="w-16 h-16 rounded-full bg-gradient-to-br from-[#C86D5C] to-[#8C372A] text-[#FAF6F0] flex flex-col items-center justify-center shadow-md border-2 border-[#E6BFB3] -rotate-12 shrink-0">
+                        <span class="text-[8px] uppercase tracking-widest">Y ♥ J</span>
+                        <span class="font-serif font-bold text-xs">OFICIAL</span>
+                        <span class="text-[10px]">∞</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Share & Screenshot Action Card -->
+            <div class="bg-[#281C18]/90 backdrop-blur-md border border-[#C88A78]/35 rounded-2xl p-4 sm:p-5 text-center text-[#FAF6F0] space-y-3 shadow-xl">
+                <p class="text-xs sm:text-sm text-[#F4E1DA]">
+                    📸 <strong>¡Yina, tómale una captura de pantalla a nuestro certificado!</strong> Envíamela para celebrar que ya somos enamorados.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-2.5">
+                    <button onclick="copyRomanticReply()" class="btn-romantic flex-1 py-3.5 px-4 rounded-xl text-xs sm:text-sm font-semibold flex items-center justify-center gap-2">
+                        <i class="fa-regular fa-paper-plane"></i>
+                        <span id="copy-reply-label">Copiar respuesta para Jhonatan 💌</span>
+                    </button>
+                    <button onclick="launchPetalShower(85)" class="px-4 py-3 rounded-xl bg-white/10 hover:bg-white/15 border border-[#E6BFB3]/30 text-xs text-[#F4E1DA] transition">
+                        🌸 Más lluvia de pétalos
+                    </button>
+                    <button onclick="goToStage(4)" class="px-4 py-3 rounded-xl bg-white/5 hover:bg-white/10 text-xs text-[#E6BFB3]/80 transition">
+                        ← Ver carta
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Subtle Warm Footer -->
+    <footer class="w-full max-w-lg z-20 text-center mt-4">
+        <p class="text-[11px] text-[#E6BFB3]/60 font-serif italic">
+            Diseñado por el Ing. Jhonatan exclusivamente para su psicóloga favorita, Yina ❤️
+        </p>
+    </footer>
+
+    <!-- ==========================================
+         JAVASCRIPT ENGINE
+         ========================================== -->
+    <script>
+        /* --- APPLICATION STATE (PRECONFIGURED FOR YINA & JHONATAN) --- */
+        const state = {
+            herName: 'Yina',
+            hisName: 'Jhonatan',
+            customMemory: 'No hicieron falta meses: bastaron nuestras salidas, tu forma de analizarme con esa mirada tan linda y tu risa para saber que eras tú.',
+            currentStage: 1,
+            revealedNotes: [false, false, false],
+            heartMeter: 25,
+            quizSolved: false,
+            selectedWishes: [0, 1, 2, 3],
+            wishesCatalog: [
+                '☕ Citas de postres, cafecito y charlas interminables (Psicóloga + Ingeniero)',
+                '🌷 Abrazarte fuerte, engreírte y ser tu lugar seguro siempre',
+                '🎶 Escuchar nuestras canciones favoritas y reírnos hasta que duela la panza',
+                '📸 Construir juntos la relación más bonita y sana desde el día uno'
+            ],
+            activeClauses: [0, 1, 2, 3],
+            clausesCatalog: [
+                '🍟 Impuesto del 30% de Papas Fritas',
+                '🧥 Casaca de Ingeniero 24/7',
+                '🧠 Fan #1 de mi Psicóloga Favorita',
+                '😘 Dosis Diaria de Serotonina y Mimos'
+            ],
+            bribeCount: 0,
+            bribesCatalog: [
+                {
+                    bubble: "Informe de Ingeniería #1: Incluye llevarte tus postres favoritos y darte la razón incluso cuando uses psicología inversa conmigo 🍦🧠✨",
+                    btnText: "Mmm... ¿qué más ofrece el Ingeniero? 🧐"
+                },
+                {
+                    bubble: "Informe #2: Prometo escucharte hablar de tus casos y teorías psicológicas mirándote con ojitos de enamorado 24/7 😍📋",
+                    btnText: "Interesante diagnóstico... ¿algún bono extra? 😏"
+                },
+                {
+                    bubble: "Informe #3: Mis cálculos indican un 0% de margen de error: juntos somos el equipo perfecto (Ingeniero + Psicóloga) ⚙️❤️🧠",
+                    btnText: "Casi me convences... ¡una prueba más! 🙈"
+                },
+                {
+                    bubble: "Informe #4: Incluye abrazos recetados contra el estrés, fotos bonitas y hacerte reír todos los días 🥰📸",
+                    btnText: "A ver el argumento definitivo... 👀"
+                },
+                {
+                    bubble: "Diagnóstico Final: ¡Sabía que tu corazón de psicóloga también decía que SÍ! Mira cómo brilla el botón de arriba para ti, Yina 👉❤️✨",
+                    btnText: "¡Está bien, Jhonatan, ya me convenciste! 😂❤️"
+                }
+            ],
+            sealBroken: false,
+            hasSigned: false,
+            musicPlaying: false,
+            usingFallbackSynth: false,
+            musicTimer: null,
+            fadeInterval: null,
+            audioFilesToTry: ['musica.mp3', 'cancion.mp3'],
+            currentAudioFileIndex: 0
+        };
+
+        /* --- SMART LOCAL MP3 LOADER (musica.mp3 AND cancion.mp3) + FALLBACK --- */
+        let audioCtx = null;
+        let allMp3Failed = false;
+
+        function ensureAudioContext() {
+            if (!audioCtx) {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                if (AudioContext) audioCtx = new AudioContext();
+            }
+            if (audioCtx && audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+        }
+
+        function playNote(freq, duration = 0.7, volume = 0.05, type = 'sine') {
+            try {
+                ensureAudioContext();
+                if (!audioCtx) return;
+                const now = audioCtx.currentTime;
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+
+                osc.type = type;
+                osc.frequency.setValueAtTime(freq, now);
+
+                gain.gain.setValueAtTime(0.001, now);
+                gain.gain.linearRampToValueAtTime(volume, now + 0.03);
+                gain.gain.exponentialRampToValueAtTime(0.0008, now + duration);
+
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                osc.start(now);
+                osc.stop(now + duration);
+            } catch (e) {}
+        }
+
+        function playSoftChime() {
+            const chord = [523.25, 659.25, 783.99, 987.77];
+            chord.forEach((f, idx) => {
+                setTimeout(() => playNote(f, 0.85, 0.04, 'triangle'), idx * 110);
+            });
+        }
+
+        function playPageFlipSound() {
+            playNote(392.00, 0.16, 0.03, 'sine');
+            setTimeout(() => playNote(523.25, 0.22, 0.025, 'triangle'), 70);
+        }
+
+        const melodyNotes = [
+            349.23, 440.00, 523.25, 659.25,
+            587.33, 440.00, 523.25, 392.00,
+            349.23, 440.00, 523.25, 698.46,
+            659.25, 523.25, 440.00, 392.00
+        ];
+        let melodyStep = 0;
+
+        function startFallbackSynthLoop() {
+            state.usingFallbackSynth = true;
+            state.musicPlaying = true;
+            updateMusicUI();
+
+            playNote(melodyNotes[0], 1.1, 0.032, 'triangle');
+            melodyStep = 1;
+
+            if (state.musicTimer) clearInterval(state.musicTimer);
+            state.musicTimer = setInterval(() => {
+                if (!state.musicPlaying) return;
+                const freq = melodyNotes[melodyStep % melodyNotes.length];
+                playNote(freq, 1.2, 0.03, 'triangle');
+                melodyStep++;
+            }, 650);
+        }
+
+        function tryPlayLocalAudio(index = 0) {
+            const audioEl = document.getElementById('bg-music');
+            if (!audioEl || index >= state.audioFilesToTry.length) {
+                allMp3Failed = true;
+                startFallbackSynthLoop();
+                return;
+            }
+
+            state.currentAudioFileIndex = index;
+            const fileName = state.audioFilesToTry[index];
+            audioEl.src = fileName;
+            audioEl.volume = 0.08;
+
+            const playPromise = audioEl.play();
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    state.usingFallbackSynth = false;
+                    state.musicPlaying = true;
+                    updateMusicUI(fileName);
+
+                    if (state.fadeInterval) clearInterval(state.fadeInterval);
+                    state.fadeInterval = setInterval(() => {
+                        if (audioEl.volume < 0.85) {
+                            audioEl.volume = Math.min(0.9, audioEl.volume + 0.07);
+                        } else {
+                            clearInterval(state.fadeInterval);
+                        }
+                    }, 150);
+                }).catch(() => {
+                    // Try the next filename (e.g., if musica.mp3 isn't found, try cancion.mp3)
+                    tryPlayLocalAudio(index + 1);
+                });
+            } else {
+                startFallbackSynthLoop();
+            }
+        }
+
+        function startMusicBoxLoop() {
+            if (state.musicPlaying) return;
+            const audioEl = document.getElementById('bg-music');
+
+            // If already loaded and paused, just resume
+            if (audioEl && audioEl.src && !allMp3Failed && audioEl.readyState >= 2) {
+                audioEl.play().then(() => {
+                    state.musicPlaying = true;
+                    updateMusicUI(state.audioFilesToTry[state.currentAudioFileIndex]);
+                }).catch(() => {
+                    tryPlayLocalAudio(0);
+                });
+                return;
+            }
+
+            if (!allMp3Failed) {
+                tryPlayLocalAudio(0);
+            } else {
+                startFallbackSynthLoop();
+            }
+        }
+
+        function stopMusicBoxLoop() {
+            state.musicPlaying = false;
+            const audioEl = document.getElementById('bg-music');
+            if (state.fadeInterval) clearInterval(state.fadeInterval);
+            if (audioEl && !audioEl.paused) {
+                audioEl.pause();
+            }
+            if (state.musicTimer) {
+                clearInterval(state.musicTimer);
+                state.musicTimer = null;
+            }
+            updateMusicUI();
+        }
+
+        function toggleMusicBox() {
+            if (state.musicPlaying) {
+                stopMusicBoxLoop();
+            } else {
+                startMusicBoxLoop();
+            }
+        }
+
+        function updateMusicUI() {
+            const btn = document.getElementById('music-btn');
+            const label = document.getElementById('music-label');
+            const sub = document.getElementById('music-sub');
+            const disc = document.getElementById('vinyl-disc');
+
+            if (state.musicPlaying) {
+                disc.classList.add('vinyl-spinning');
+                label.textContent = 'Sonando ahora';
+                sub.textContent = 'Para Yina 🎶';
+                btn.classList.add('border-[#E6BFB3]');
+            } else {
+                disc.classList.remove('vinyl-spinning');
+                label.textContent = 'Pausado';
+                sub.textContent = 'Tocar música 🎵';
+                btn.classList.remove('border-[#E6BFB3]');
+            }
+        }
+
+        /* --- INITIALIZATION --- */
+        window.onload = function () {
+            syncNamesToDOM();
+            initAmbientCanvas();
+        };
+
+        function syncNamesToDOM() {
+            document.getElementById('cover-her-name').textContent = state.herName;
+            document.getElementById('envelope-her-name').textContent = state.herName;
+            document.getElementById('letter-her-name').textContent = state.herName;
+            document.getElementById('bookmark-her-name').textContent = state.herName + ' ✨';
+            document.getElementById('bookmark-his-name').textContent = state.hisName + ' ❤️';
+            document.getElementById('custom-memory-display').textContent = state.customMemory;
+        }
+
+        /* --- STAGE NAVIGATION --- */
+        function openBookFirstPage() {
+            if (!state.musicPlaying) {
+                startMusicBoxLoop();
+            }
+            goToStage(2);
+        }
+
+        function goToStage(stageNum) {
+            playPageFlipSound();
+
+            const bookContainer = document.getElementById('main-book-container');
+            const headerContainer = document.getElementById('main-header');
+            if (stageNum === 4 || stageNum === 5) {
+                bookContainer.classList.remove('max-w-lg');
+                bookContainer.classList.add('max-w-2xl');
+                headerContainer.classList.remove('max-w-lg');
+                headerContainer.classList.add('max-w-2xl');
+            } else {
+                bookContainer.classList.remove('max-w-2xl');
+                bookContainer.classList.add('max-w-lg');
+                headerContainer.classList.remove('max-w-2xl');
+                headerContainer.classList.add('max-w-lg');
+            }
+
+            document.querySelectorAll('.page-stage').forEach(el => {
+                el.classList.remove('page-active');
+                el.classList.add('page-hidden');
+            });
+
+            const target = document.getElementById(`stage-${stageNum}`);
+            if (target) {
+                target.classList.remove('page-hidden');
+                target.classList.add('page-active');
+            }
+
+            state.currentStage = stageNum;
+            updateChapterHeader(stageNum);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            if (stageNum === 3) {
+                startTypewriterQuote();
+            }
+            if (stageNum === 5) {
+                setTimeout(() => {
+                    initSignatureCanvas();
+                    if (!state.hasSigned) {
+                        stampRomanticHeart();
+                    }
+                    updateBookmarkLive();
+                }, 120);
+            }
+        }
+
+        function updateChapterHeader(stageNum) {
+            const labels = {
+                1: 'Yina & Jhonatan • Portada',
+                2: 'Nivel 1 • Expediente Clínico',
+                3: 'Nivel 2 • Reto de la Psicóloga',
+                4: 'Nivel Final • La Gran Propuesta ✨',
+                5: '¡Oficialmente Enamorados! ♥'
+            };
+            document.getElementById('chapter-indicator').textContent = labels[stageNum] || 'Yina & Jhonatan';
+        }
+
+        /* --- STAGE 2: CLUES & HEART RATE MINI-GAME --- */
+        function revealMarginNote(index) {
+            playNote(587.33 + index * 65, 0.35, 0.045, 'triangle');
+            state.revealedNotes[index] = true;
+
+            const card = document.getElementById(`note-card-${index}`);
+            const body = document.getElementById(`note-body-${index}`);
+            const badge = document.getElementById(`note-badge-${index}`);
+            const icon = document.getElementById(`note-icon-${index}`);
+
+            card.classList.add('revealed');
+            body.classList.remove('hidden');
+            badge.innerHTML = '<i class="fa-solid fa-heart text-terracotta"></i> Desbloqueado';
+            icon.innerHTML = '<i class="fa-solid fa-check text-xs"></i>';
+
+            const count = state.revealedNotes.filter(Boolean).length;
+            document.getElementById('notes-counter').textContent = `${count} / 3 listas`;
+
+            if (count === 3) {
+                document.getElementById('notes-hint').classList.add('hidden');
+            }
+        }
+
+        function boostHeartMeter(e) {
+            playNote(523.25 + state.heartMeter * 3, 0.25, 0.04, 'triangle');
+            spawnFloatingHearts(e);
+
+            state.heartMeter = Math.min(100, state.heartMeter + 25);
+            const bar = document.getElementById('chemistry-bar');
+            const badge = document.getElementById('meter-value-badge');
+            const status = document.getElementById('meter-status-text');
+            const btn = document.getElementById('btn-boost-heart');
+
+            bar.style.width = `${state.heartMeter}%`;
+
+            if (state.heartMeter === 50) {
+                badge.textContent = '50% • Nervioso y Feliz';
+                status.textContent = '¡Mis cálculos de ingeniero ya están empezando a fallar! 💓';
+            } else if (state.heartMeter === 75) {
+                badge.textContent = '75% • Dopamina al Mil';
+                status.textContent = '¡Una sonrisa más de Yina y colapsa el sistema! 😍';
+            } else if (state.heartMeter >= 100) {
+                badge.textContent = '1000% • ¡Enamorado!';
+                status.textContent = 'Diagnóstico oficial de Yina: ¡Jhonatan está loquito por ti! ❤️🎉';
+                btn.innerHTML = '<span>¡Sistema Colapsado de Amor! ❤️</span>';
+                launchPetalShower(35);
+            }
+        }
+
+        function proceedFromStage2() {
+            const count = state.revealedNotes.filter(Boolean).length;
+            if (count < 3) {
+                const hint = document.getElementById('notes-hint');
+                hint.classList.remove('hidden');
+                hint.classList.remove('shake-hint');
+                void hint.offsetWidth;
+                hint.classList.add('shake-hint');
+                playNote(330, 0.25, 0.04, 'sine');
+                return;
+            }
+            goToStage(3);
+        }
+
+        /* --- STAGE 3: TYPEWRITER, PSYCHOLOGIST QUIZ & WISHLIST --- */
+        let typewriterTimer = null;
+
+        function startTypewriterQuote() {
+            const el = document.getElementById('typewriter-text');
+            const quill = document.getElementById('quill-icon');
+            if (!el) return;
+
+            const fullText = `Yina, como ingeniero siempre busqué respuestas lógicas, pero contigo descubrí que la conexión más bonita no se planea. En tan poquito tiempo te volviste mi alegría favorita y hoy quiero empezar nuestra historia de verdad.`;
+
+            if (typewriterTimer) clearInterval(typewriterTimer);
+            el.textContent = '';
+            if (quill) quill.classList.add('feather-writing');
+
+            let idx = 0;
+            typewriterTimer = setInterval(() => {
+                if (idx < fullText.length) {
+                    el.textContent += fullText.charAt(idx);
+                    idx++;
+                } else {
+                    clearInterval(typewriterTimer);
+                    if (quill) quill.classList.remove('feather-writing');
+                }
+            }, 30);
+        }
+
+        function answerPsychQuiz(optionIndex, e) {
+            playSoftChime();
+            spawnFloatingHearts(e);
+            state.quizSolved = true;
+
+            for (let i = 0; i < 3; i++) {
+                const btn = document.getElementById(`quiz-opt-${i}`);
+                btn.classList.add('border-terracotta', 'bg-rosegold-light/40');
+                const icon = btn.querySelector('i');
+                if (icon) icon.className = 'fa-solid fa-circle-check text-terracotta';
+            }
+
+            const feedback = document.getElementById('quiz-feedback');
+            feedback.classList.remove('hidden');
+            document.getElementById('quiz-badge').textContent = '¡10/10 Psicóloga Brillante! 🌟';
+        }
+
+        function toggleWish(index) {
+            playNote(523.25 + index * 50, 0.2, 0.035, 'triangle');
+            const pos = state.selectedWishes.indexOf(index);
+            const item = document.querySelector(`.wish-item[data-wish="${index}"]`);
+            const check = item ? item.querySelector('.wish-check') : null;
+
+            if (pos > -1 && state.selectedWishes.length > 1) {
+                state.selectedWishes.splice(pos, 1);
+                if (item) item.classList.add('opacity-60');
+                if (check) {
+                    check.classList.remove('bg-terracotta', 'text-white');
+                    check.classList.add('bg-paper-warm', 'text-transparent');
+                }
+            } else if (pos === -1) {
+                state.selectedWishes.push(index);
+                if (item) item.classList.remove('opacity-60');
+                if (check) {
+                    check.classList.add('bg-terracotta', 'text-white');
+                    check.classList.remove('bg-paper-warm', 'text-transparent');
+                }
+            }
+        }
+
+        /* --- STAGE 4: WAX SEAL, CLAUSES & ROMANTIC BRIBES --- */
+        let sigCanvas, sigCtx;
+        let isDrawing = false;
+
+        function openWaxSeal() {
+            if (state.sealBroken) return;
+            state.sealBroken = true;
+
+            playSoftChime();
+            launchPetalShower(55);
+
+            const sealedView = document.getElementById('sealed-envelope-view');
+            const unfoldedView = document.getElementById('unfolded-letter-view');
+
+            sealedView.style.transition = 'all 0.45s ease';
+            sealedView.style.opacity = '0';
+            sealedView.style.transform = 'scale(0.95)';
+
+            setTimeout(() => {
+                sealedView.classList.add('hidden');
+                unfoldedView.classList.remove('hidden');
+            }, 420);
+        }
+
+        function toggleClause(index) {
+            playNote(622.25 + index * 45, 0.22, 0.04, 'triangle');
+            const card = document.getElementById(`clause-${index}`);
+            const checkIcon = card.querySelector('.clause-check');
+            const pos = state.activeClauses.indexOf(index);
+
+            if (pos > -1 && state.activeClauses.length > 1) {
+                state.activeClauses.splice(pos, 1);
+                card.classList.remove('active');
+                card.classList.add('opacity-65');
+                checkIcon.innerHTML = '<i class="fa-regular fa-circle text-espresso-muted"></i>';
+            } else if (pos === -1) {
+                state.activeClauses.push(index);
+                card.classList.add('active');
+                card.classList.remove('opacity-65');
+                checkIcon.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
+            }
+
+            document.getElementById('clauses-badge').textContent =
+                `${state.activeClauses.length}/4 beneficios activos 🎁`;
+        }
+
+        function triggerRomanticBribe(e) {
+            playNote(523.25 + (state.bribeCount * 55), 0.3, 0.045, 'triangle');
+            spawnFloatingHearts(e);
+
+            const container = document.getElementById('bribe-bubble-container');
+            const bubble = document.getElementById('bribe-bubble');
+            const textEl = document.getElementById('bribe-text');
+            const btnLabel = document.getElementById('convince-btn-label');
+            const yesBtn = document.getElementById('btn-main-yes');
+            const happyText = document.getElementById('happiness-level-text');
+
+            const item = state.bribesCatalog[state.bribeCount % state.bribesCatalog.length];
+            state.bribeCount++;
+
+            container.classList.remove('hidden');
+            bubble.classList.remove('bribe-pop');
+            void bubble.offsetWidth;
+            bubble.classList.add('bribe-pop');
+
+            textEl.textContent = `«${item.bubble}»`;
+            btnLabel.textContent = item.btnText;
+            happyText.textContent = `${100 + state.bribeCount * 250}% ¡Súper Feliz! 🥰`;
+
+            const scaleVal = Math.min(1.14, 1 + state.bribeCount * 0.03);
+            yesBtn.style.transform = `scale(${scaleVal})`;
+        }
+
+        function spawnFloatingHearts(e) {
+            if (!e || !e.currentTarget) return;
+            const rect = e.currentTarget.getBoundingClientRect();
+            const originX = rect.left + rect.width / 2;
+            const originY = rect.top;
+            const symbols = ['❤️', '💖', '✨', '🧠', '⚙️', '🥰'];
+
+            for (let i = 0; i < 6; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'floating-heart text-lg sm:text-xl';
+                heart.textContent = symbols[i % symbols.length];
+                heart.style.left = `${originX + (Math.random() - 0.5) * 90}px`;
+                heart.style.top = `${originY + (Math.random() - 0.5) * 20}px`;
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 1250);
+            }
+        }
+
+        function acceptProposalPlayful() {
+            playSoftChime();
+            launchPetalShower(115);
+            goToStage(5);
+        }
+
+        /* --- STAGE 5: SIGNATURE PAD & CERTIFICATE FOR YINA & JHONATAN --- */
+        function initSignatureCanvas() {
+            sigCanvas = document.getElementById('signature-canvas');
+            if (!sigCanvas) return;
+
+            const rect = sigCanvas.parentElement.getBoundingClientRect();
+            if (rect.width === 0) return;
+
+            if (sigCanvas.getAttribute('data-ready') === 'true') return;
+
+            const dpr = window.devicePixelRatio || 1;
+            sigCanvas.width = rect.width * dpr;
+            sigCanvas.height = rect.height * dpr;
+
+            sigCtx = sigCanvas.getContext('2d');
+            sigCtx.scale(dpr, dpr);
+            sigCtx.strokeStyle = '#944E3F';
+            sigCtx.lineWidth = 2.6;
+            sigCtx.lineCap = 'round';
+            sigCtx.lineJoin = 'round';
+
+            sigCanvas.setAttribute('data-ready', 'true');
+
+            sigCanvas.onmousedown = startSig;
+            sigCanvas.onmousemove = moveSig;
+            window.addEventListener('mouseup', endSig);
+
+            sigCanvas.ontouchstart = startSig;
+            sigCanvas.ontouchmove = moveSig;
+            window.addEventListener('touchend', endSig);
+        }
+
+        function getSigCoords(e) {
+            const rect = sigCanvas.getBoundingClientRect();
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+            return {
+                x: clientX - rect.left,
+                y: clientY - rect.top
+            };
+        }
+
+        function startSig(e) {
+            if (e.cancelable) e.preventDefault();
+            isDrawing = true;
+            state.hasSigned = true;
+            document.getElementById('sig-placeholder').classList.add('hidden');
+
+            const pos = getSigCoords(e);
+            sigCtx.beginPath();
+            sigCtx.moveTo(pos.x, pos.y);
+        }
+
+        function moveSig(e) {
+            if (!isDrawing) return;
+            if (e.cancelable) e.preventDefault();
+            const pos = getSigCoords(e);
+            sigCtx.lineTo(pos.x, pos.y);
+            sigCtx.stroke();
+        }
+
+        function endSig() {
+            if (!isDrawing) return;
+            isDrawing = false;
+            updateBookmarkLive();
+        }
+
+        function clearSignaturePad() {
+            if (!sigCanvas || !sigCtx) return;
+            const dpr = window.devicePixelRatio || 1;
+            sigCtx.clearRect(0, 0, sigCanvas.width / dpr, sigCanvas.height / dpr);
+            state.hasSigned = false;
+            document.getElementById('sig-placeholder').classList.remove('hidden');
+        }
+
+        function stampRomanticHeart() {
+            initSignatureCanvas();
+            if (!sigCanvas || !sigCtx) return;
+
+            playNote(783.99, 0.3, 0.045, 'triangle');
+            const dpr = window.devicePixelRatio || 1;
+            const w = sigCanvas.width / dpr;
+            const h = sigCanvas.height / dpr;
+
+            sigCtx.clearRect(0, 0, w, h);
+            document.getElementById('sig-placeholder').classList.add('hidden');
+
+            sigCtx.save();
+            sigCtx.font = 'bold 32px "Caveat", cursive';
+            sigCtx.fillStyle = '#B86B5A';
+            sigCtx.textAlign = 'center';
+            sigCtx.textBaseline = 'middle';
+            sigCtx.fillText('Yina ♥ Jhonatan (¡Sí!)', w / 2, h / 2);
+            sigCtx.restore();
+
+            state.hasSigned = true;
+            updateBookmarkLive();
+        }
+
+        function updateBookmarkLive() {
+            const selectedPromiseRadio = document.querySelector('input[name="chapter-promise"]:checked');
+            const promiseText = selectedPromiseRadio
+                ? selectedPromiseRadio.value
+                : 'Con un abrazo larguísimo y una cita especial para celebrar nuestro Sí 🕯️🫂';
+
+            const now = new Date();
+            const dateFormatted = now.toLocaleDateString('es-ES', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
+            });
+            document.getElementById('bookmark-date').textContent = dateFormatted;
+            document.getElementById('bookmark-promise').textContent = promiseText;
+
+            const clausesContainer = document.getElementById('bookmark-clauses-list');
+            clausesContainer.innerHTML = '';
+            state.activeClauses.sort().forEach(idx => {
+                const badge = document.createElement('span');
+                badge.className = 'px-2.5 py-1 rounded-lg bg-[#FFFDF9] border border-rosegold/50 text-[11px] text-espresso font-medium';
+                badge.textContent = state.clausesCatalog[idx];
+                clausesContainer.appendChild(badge);
+            });
+
+            const wishesUl = document.getElementById('bookmark-wishes-list');
+            wishesUl.innerHTML = '';
+            state.selectedWishes.sort().forEach(idx => {
+                const li = document.createElement('li');
+                li.className = 'flex items-center gap-2';
+                li.innerHTML = `<i class="fa-solid fa-heart text-[9px] text-terracotta"></i><span>${state.wishesCatalog[idx]}</span>`;
+                wishesUl.appendChild(li);
+            });
+
+            if (sigCanvas) {
+                document.getElementById('bookmark-sig-img').src = sigCanvas.toDataURL('image/png');
+            }
+        }
+
+        function copyRomanticReply() {
+            const promise = document.getElementById('bookmark-promise').textContent;
+            const msg = `📖✨ ¡Jhonatan! Acabo de completar nuestro diario y mi diagnóstico oficial como psicóloga es que ¡SÍ QUIERO SER TU ENAMORADA! ❤️🧠⚙️\n🌷 Cita elegida: ${promise}`;
+
+            const area = document.createElement('textarea');
+            area.value = msg;
+            area.style.position = 'fixed';
+            area.style.opacity = '0';
+            document.body.appendChild(area);
+            area.select();
+            try {
+                document.execCommand('copy');
+            } catch (e) {}
+            document.body.removeChild(area);
+
+            const lbl = document.getElementById('copy-reply-label');
+            lbl.textContent = '¡Copiado! Pégalo en nuestro chat de WhatsApp 💌';
+            playSoftChime();
+            setTimeout(() => {
+                lbl.textContent = 'Copiar respuesta para Jhonatan 💌';
+            }, 3500);
+        }
+
+        /* --- AMBIENT WARM BOKEH & FLOATING PETALS CANVAS --- */
+        function initAmbientCanvas() {
+            const canvas = document.getElementById('ambient-canvas');
+            const ctx = canvas.getContext('2d');
+            let w = canvas.width = window.innerWidth;
+            let h = canvas.height = window.innerHeight;
+
+            window.addEventListener('resize', () => {
+                w = canvas.width = window.innerWidth;
+                h = canvas.height = window.innerHeight;
+            });
+
+            const motes = Array.from({ length: 26 }, () => ({
+                x: Math.random() * w,
+                y: Math.random() * h,
+                r: Math.random() * 2.6 + 0.8,
+                vx: (Math.random() - 0.5) * 0.22,
+                vy: -Math.random() * 0.3 - 0.08,
+                alpha: Math.random() * 0.45 + 0.12,
+                warm: Math.random() > 0.4
+            }));
+
+            function animateAmbient() {
+                ctx.clearRect(0, 0, w, h);
+                motes.forEach(m => {
+                    m.x += m.vx;
+                    m.y += m.vy;
+                    if (m.y < -10) m.y = h + 10;
+                    if (m.x < -10) m.x = w + 10;
+                    if (m.x > w + 10) m.x = -10;
+
+                    ctx.beginPath();
+                    ctx.arc(m.x, m.y, m.r, 0, Math.PI * 2);
+                    ctx.fillStyle = m.warm
+                        ? `rgba(244, 225, 218, ${m.alpha})`
+                        : `rgba(218, 175, 145, ${m.alpha})`;
+                    ctx.fill();
+                });
+                requestAnimationFrame(animateAmbient);
+            }
+            animateAmbient();
+        }
+
+        /* --- CELEBRATION ROSE PETALS & GOLDEN SPARKLES --- */
+        let petals = [];
+        let petalsRunning = false;
+
+        function launchPetalShower(count = 70) {
+            const canvas = document.getElementById('celebration-canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            const palette = ['#E6BFB3', '#C88A78', '#B86B5A', '#F4E1DA', '#DCE3DA', '#E5C687'];
+
+            for (let i = 0; i < count; i++) {
+                petals.push({
+                    x: canvas.width / 2 + (Math.random() - 0.5) * 260,
+                    y: canvas.height * 0.38,
+                    vx: (Math.random() - 0.5) * 9,
+                    vy: -Math.random() * 11 - 3,
+                    size: Math.random() * 8 + 5,
+                    color: palette[Math.floor(Math.random() * palette.length)],
+                    angle: Math.random() * Math.PI * 2,
+                    va: (Math.random() - 0.5) * 0.12,
+                    gravity: 0.18,
+                    opacity: 1
+                });
+            }
+
+            if (!petalsRunning) {
+                petalsRunning = true;
+                renderPetals(canvas, ctx);
+            }
+        }
+
+        function renderPetals(canvas, ctx) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            petals.forEach(p => {
+                p.x += p.vx + Math.sin(p.angle) * 0.6;
+                p.y += p.vy;
+                p.vy += p.gravity;
+                p.angle += p.va;
+
+                if (p.y > canvas.height - 90) {
+                    p.opacity -= 0.022;
+                }
+
+                ctx.save();
+                ctx.globalAlpha = Math.max(0, p.opacity);
+                ctx.translate(p.x, p.y);
+                ctx.rotate(p.angle);
+
+                ctx.beginPath();
+                ctx.ellipse(0, 0, p.size, p.size * 0.62, 0, 0, Math.PI * 2);
+                ctx.fillStyle = p.color;
+                ctx.fill();
+                ctx.restore();
+            });
+
+            petals = petals.filter(p => p.opacity > 0);
+            if (petals.length > 0) {
+                requestAnimationFrame(() => renderPetals(canvas, ctx));
+            } else {
+                petalsRunning = false;
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            }
+        }
+    </script>
+</body>
+</html>
