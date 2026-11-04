@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Para Yina ✨ | Zona Libre de Vértigo</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Outfit', 'sans-serif'],
+            handwriting: ['Caveat', 'cursive'],
+            serif: ['Playfair Display', 'serif'],
+            pill: ['Quicksand', 'sans-serif']
+          },
+          colors: {
+            sunset: {
+              900: '#1f1624',
+              800: '#2d1e33',
+              700: '#422847',
+              500: '#e06c88',
+              400: '#f48da6',
+              300: '#f9b4c4',
+              200: '#fde0e7',
+              100: '#fff2f5',
+            },
+            gold: {
+              300: '#fde68a',
+              400: '#fbbf24',
+              500: '#f59e0b'
+            }
+          },
+          animation: {
+            'float-slow': 'floatSlow 6s ease-in-out infinite',
+            'pulse-soft': 'pulseSoft 2.5s ease-in-out infinite',
+            'fade-in': 'fadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+          },
+          keyframes: {
+            floatSlow: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-10px)' },
+            },
+            pulseSoft: {
+              '0%, 100%': { transform: 'scale(1)', opacity: '1' },
+              '50%': { transform: 'scale(1.03)', opacity: '0.88' },
+            },
+            fadeIn: {
+              '0%': { opacity: '0', transform: 'translateY(14px) scale(0.98)' },
+              '100%': { opacity: '1', transform: 'translateY(0) scale(1)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      /* Atardecer cálido y nocturno suave */
+      background: radial-gradient(circle at 50% 0%, #4a2a4d 0%, #2a192e 45%, #19111d 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+      color: #fdf2f8;
+    }
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 228, 235, 0.18);
+      box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.45), 0 0 25px 0 rgba(244, 141, 166, 0.12);
+    }
+    .cream-card {
+      background: linear-gradient(165deg, #fffbfb 0%, #fff4f6 55%, #fef0e6 100%);
+      color: #33242b;
+      border: 2px solid rgba(251, 191, 36, 0.45);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 30px rgba(244, 141, 166, 0.25);
+    }
+    .option-card {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1.5px solid rgba(255, 255, 255, 0.14);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .option-card:hover {
+      background: rgba(255, 255, 255, 0.11);
+      border-color: rgba(244, 141, 166, 0.5);
+    }
+    .option-card.selected {
+      background: linear-gradient(135deg, rgba(244, 141, 166, 0.28) 0%, rgba(251, 191, 36, 0.16) 100%);
+      border-color: #f48da6;
+      box-shadow: 0 0 20px rgba(244, 141, 166, 0.28);
+      transform: translateY(-2px);
+    }
+    .pact-pill {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      transition: all 0.2s ease;
+    }
+    .pact-pill.selected {
+      background: #f48da6;
+      color: #1f1624;
+      border-color: #fde0e7;
+      font-weight: 700;
+      box-shadow: 0 4px 14px rgba(244, 141, 166, 0.4);
+    }
+    #particles-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    /* Patrón de boleto / ticket para la captura */
+    .ticket-notch-left, .ticket-notch-right {
+      position: absolute;
+      top: 50%;
+      width: 20px;
+      height: 20px;
+      background-color: #221426;
+      border-radius: 9999px;
+      transform: translateY(-50%);
+    }
+    .ticket-notch-left { left: -12px; }
+    .ticket-notch-right { right: -12px; }
+  </style>
+</head>
+<body class="antialiased selection:bg-rose-400 selection:text-white relative flex flex-col justify-between">
+
+  <!-- Lienzo de partículas flotantes -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- Barra superior con progreso y control de sonido -->
+  <header class="relative z-20 w-full max-w-md mx-auto px-5 pt-5 pb-2 flex items-center justify-between">
+    <div class="flex items-center gap-2">
+      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-rose-200 text-xs font-pill font-semibold">
+        <span class="w-2 h-2 rounded-full bg-amber-300 animate-ping"></span>
+        Para Yina ✨
+      </span>
+    </div>
+
+    <!-- Indicador de pasos -->
+    <div id="step-dots" class="flex items-center gap-1.5">
+      <span class="dot w-6 h-1.5 rounded-full bg-rose-400 transition-all duration-300"></span>
+      <span class="dot w-2 h-1.5 rounded-full bg-white/20 transition-all duration-300"></span>
+      <span class="dot w-2 h-1.5 rounded-full bg-white/20 transition-all duration-300"></span>
+      <span class="dot w-2 h-1.5 rounded-full bg-white/20 transition-all duration-300"></span>
+      <span class="dot w-2 h-1.5 rounded-full bg-white/20 transition-all duration-300"></span>
+    </div>
+  </header>
+
+  <!-- Contenedor Principal de Pasos -->
+  <main class="relative z-10 w-full max-w-md mx-auto px-4 py-4 flex-1 flex flex-col justify-center">
+
+    <!-- ==========================================
+         PASO 0: BIENVENIDA ROMPE-HIELO (ZONA SIN VÉRTIGO)
+         ========================================== -->
+    <section id="step-0" class="step-view animate-fade-in">
+      <div class="glass-panel rounded-3xl p-6 sm:p-7 text-center relative overflow-hidden">
+        <!-- Brillo decorativo -->
+        <div class="absolute -top-16 -right-16 w-36 h-36 bg-rose-400/20 rounded-full blur-2xl pointer-events-none"></div>
+        <div class="absolute -bottom-16 -left-16 w-36 h-36 bg-amber-400/15 rounded-full blur-2xl pointer-events-none"></div>
+
+        <!-- Ilustración SVG de Rueda de la Fortuna en Pausa -->
+        <div class="w-24 h-24 mx-auto mb-4 relative flex items-center justify-center animate-float-slow">
+          <div class="absolute inset-0 rounded-full bg-rose-400/15 blur-md"></div>
+          <svg viewBox="0 0 100 100" class="w-20 h-20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="46" r="30" stroke="#F9B4C4" stroke-width="3" stroke-dasharray="6 4"/>
+            <circle cx="50" cy="46" r="6" fill="#FBBF24"/>
+            <line x1="50" y1="16" x2="50" y2="76" stroke="#F9B4C4" stroke-width="2"/>
+            <line x1="20" y1="46" x2="80" y2="46" stroke="#F9B4C4" stroke-width="2"/>
+            <line x1="29" y1="25" x2="71" y2="67" stroke="#F9B4C4" stroke-width="2"/>
+            <line x1="71" y1="25" x2="29" y2="67" stroke="#F9B4C4" stroke-width="2"/>
+            <!-- Base -->
+            <path d="M34 86L50 48L66 86" stroke="#F48DA6" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="26" y1="86" x2="74" y2="86" stroke="#F48DA6" stroke-width="4" stroke-linecap="round"/>
+            <!-- Cinta de prohibido marearse -->
+            <circle cx="72" cy="26" r="14" fill="#F43F5E" stroke="#1F1624" stroke-width="2.5"/>
+            <path d="M65 26H79" stroke="white" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+        </div>
+
+        <span class="inline-block px-3 py-1 rounded-full bg-amber-400/15 border border-amber-300/30 text-amber-200 text-[11px] font-pill font-bold uppercase tracking-wider mb-3">
+          🎡🚫 Zona 100% Libre de Vértigo
+        </span>
+
+        <h1 class="text-2xl sm:text-3xl font-serif font-bold text-white leading-snug mb-3">
+          Hola, <span class="text-rose-300">Yina</span> linda...
+        </h1>
+
+        <p class="text-rose-100/90 text-sm sm:text-base leading-relaxed mb-5 font-sans">
+          Prometo que entrar a este enlace es totalmente seguro: <strong class="text-white font-semibold">tiene los pies bien puestos en la tierra, no se mueve, no da vueltas y no marea</strong>.
+        </p>
+
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-3.5 mb-6 text-xs sm:text-sm text-rose-200/80 italic">
+          "Hice este pequeño rincón porque a veces es más bonito decir las cosas con calma y desde el corazón."
+        </div>
+
+        <button onclick="goToStep(1)" class="w-full py-3.5 px-6 rounded-2xl bg-gradient-to-r from-rose-400 via-pink-500 to-amber-400 text-slate-950 font-pill font-bold text-base shadow-lg shadow-rose-500/30 hover:opacity-95 active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+          <span>Leer paso a paso</span>
+          <i data-lucide="arrow-right" class="w-5 h-5"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         PASO 1: LO DE AYER (CUIDARTE ERA MI ÚNICA INTENCIÓN)
+         ========================================== -->
+    <section id="step-1" class="step-view hidden animate-fade-in">
+      <div class="glass-panel rounded-3xl p-6 sm:p-7 relative overflow-hidden">
+        <div class="flex items-center justify-between mb-4">
+          <span class="px-3 py-1 rounded-full bg-rose-400/20 text-rose-200 text-xs font-pill font-bold">
+            1 de 3 • Lo de ayer
+          </span>
+          <span class="text-xl">🧸🩹</span>
+        </div>
+
+        <h2 class="text-xl sm:text-2xl font-serif font-bold text-white mb-4 leading-snug">
+          Mi única intención era cuidarte...
+        </h2>
+
+        <div class="space-y-3.5 text-sm sm:text-base text-rose-100/90 leading-relaxed">
+          <p>
+            Ayer salimos con toda la ilusión de divertirnos y pasarla rico, pero subir a ese juego mecánico definitivamente no salió como esperábamos.
+          </p>
+          <p>
+            Quiero que sepas algo con total sinceridad: cuando te llevé a tu cuarto, <strong class="text-white font-semibold">lo único que tenía en la mente y en el corazón era cuidarte</strong>, estar pendiente de ti y asegurarme de que te sintieras mejor.
+          </p>
+          <p class="bg-rose-500/15 border border-rose-300/25 rounded-2xl p-4 text-rose-100">
+            Cuando te fuiste, te confieso que me quedé con una sensación incómoda y un poquito triste... no por enojo, sino porque <strong class="text-amber-200">lo que menos quería en el mundo era dejarte así de mal</strong>. Me importas demasiado como para quedarme tranquilo sabiendo que no te sentías bien.
+          </p>
+        </div>
+
+        <div class="mt-6 flex items-center gap-3">
+          <button onclick="goToStep(0)" class="p-3.5 rounded-2xl bg-white/10 hover:bg-white/15 text-rose-200 transition-all" aria-label="Volver">
+            <i data-lucide="arrow-left" class="w-5 h-5"></i>
+          </button>
+          <button onclick="goToStep(2)" class="flex-1 py-3.5 px-6 rounded-2xl bg-gradient-to-r from-rose-400 to-pink-500 text-slate-950 font-pill font-bold text-sm sm:text-base shadow-lg shadow-rose-500/25 active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+            <span>Seguir leyendo</span>
+            <i data-lucide="heart" class="w-4 h-4 fill-current"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         PASO 2: LO LINDO QUE ESTAMOS PASANDO Y LA QUÍMICA
+         ========================================== -->
+    <section id="step-2" class="step-view hidden animate-fade-in">
+      <div class="glass-panel rounded-3xl p-6 sm:p-7 relative overflow-hidden">
+        <div class="flex items-center justify-between mb-4">
+          <span class="px-3 py-1 rounded-full bg-amber-400/20 text-amber-200 text-xs font-pill font-bold">
+            2 de 3 • Lo que tenemos
+          </span>
+          <span class="text-xl">✨🌙</span>
+        </div>
+
+        <h2 class="text-xl sm:text-2xl font-serif font-bold text-white mb-4 leading-snug">
+          Esa química tan bonita que no se encuentra fácil
+        </h2>
+
+        <div class="space-y-3.5 text-sm sm:text-base text-rose-100/90 leading-relaxed">
+          <p>
+            Más allá de esos minutos de mareo, me puse a pensar en <strong class="text-white">lo lindo que la estamos pasando juntos</strong>.
+          </p>
+          <p>
+            Me encanta la complicidad que se está dando entre nosotros, esa <strong class="text-amber-200">química tan natural y tan bonita</strong> que fluye sin forzar nada, y sobre todo lo feliz y radiante que te ves cuando compartimos tiempo.
+          </p>
+          <div class="p-4 rounded-2xl bg-white/5 border border-white/10 flex items-center gap-3.5">
+            <div class="w-10 h-10 rounded-full bg-amber-400/20 flex items-center justify-center text-amber-300 flex-shrink-0">
+              <i data-lucide="sparkles" class="w-5 h-5"></i>
+            </div>
+            <p class="text-xs sm:text-sm text-rose-100">
+              Verte reír y disfrutar conmigo es de mis cosas favoritas últimamente, y un mal rato en un juego no borra todo lo especial que estamos construyendo.
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-6 flex items-center gap-3">
+          <button onclick="goToStep(1)" class="p-3.5 rounded-2xl bg-white/10 hover:bg-white/15 text-rose-200 transition-all" aria-label="Volver">
+            <i data-lucide="arrow-left" class="w-5 h-5"></i>
+          </button>
+          <button onclick="goToStep(3)" class="flex-1 py-3.5 px-6 rounded-2xl bg-gradient-to-r from-rose-400 to-amber-400 text-slate-950 font-pill font-bold text-sm sm:text-base shadow-lg shadow-rose-500/25 active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+            <span>Un último pensamiento</span>
+            <i data-lucide="arrow-right" class="w-5 h-5"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         PASO 3: EL MENSAJE DE HOY Y NO DEJAR QUE EL ORGULLO GANE
+         ========================================== -->
+    <section id="step-3" class="step-view hidden animate-fade-in">
+      <div class="glass-panel rounded-3xl p-6 sm:p-7 relative overflow-hidden">
+        <div class="flex items-center justify-between mb-4">
+          <span class="px-3 py-1 rounded-full bg-rose-400/20 text-rose-200 text-xs font-pill font-bold">
+            3 de 3 • Sin orgullo
+          </span>
+          <span class="text-xl">🏳️🤍</span>
+        </div>
+
+        <h2 class="text-xl sm:text-2xl font-serif font-bold text-white mb-4 leading-snug">
+          No dejemos que el orgullo enfríe algo tan lindo
+        </h2>
+
+        <div class="space-y-3.5 text-sm sm:text-base text-rose-100/90 leading-relaxed">
+          <p>
+            Hoy por la mañana te escribí de lo más bonito porque amanecí pensando en ti y en cómo estabas, y te sentí un poquito cortante.
+          </p>
+          <p>
+            Y me quedé pensando: con lo bien que estamos, con esa conexión tan linda que tenemos... <strong class="text-white">no puede ser que una cosa tan sencilla nos ponga distantes</strong>.
+          </p>
+          <p class="bg-amber-400/15 border border-amber-300/30 rounded-2xl p-4 text-amber-100 text-xs sm:text-sm leading-relaxed">
+            A veces el orgullo se mete en medio sin que nos demos cuenta, pero yo prefiero bajar la guardia mil veces antes que malograr o enfriar algo tan bonito como lo que nos está pasando.
+          </p>
+        </div>
+
+        <div class="mt-6 flex items-center gap-3">
+          <button onclick="goToStep(2)" class="p-3.5 rounded-2xl bg-white/10 hover:bg-white/15 text-rose-200 transition-all" aria-label="Volver">
+            <i data-lucide="arrow-left" class="w-5 h-5"></i>
+          </button>
+          <button onclick="goToStep(4)" class="flex-1 py-3.5 px-6 rounded-2xl bg-gradient-to-r from-amber-300 via-rose-400 to-pink-500 text-slate-950 font-pill font-bold text-sm sm:text-base shadow-lg shadow-rose-500/30 active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+            <span>Quiero preguntarte algo</span>
+            <i data-lucide="message-circle-heart" class="w-5 h-5"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         PASO 4: LA PREGUNTA SINCERA + INTERACCIÓN DE YINA
+         ========================================== -->
+    <section id="step-4" class="step-view hidden animate-fade-in">
+      <div class="glass-panel rounded-3xl p-5 sm:p-6 relative overflow-hidden">
+        <div class="text-center mb-4">
+          <span class="inline-block px-3 py-1 rounded-full bg-rose-400/20 text-rose-200 text-[11px] font-pill font-bold uppercase tracking-wider mb-2">
+            Con el corazón en la mano 🤍
+          </span>
+          <h2 class="text-lg sm:text-xl font-serif font-bold text-white leading-snug">
+            Además del mal rato del juego de ayer... ¿hubo alguna otra cosa que te incomodara conmigo?
+          </h2>
+          <p class="text-xs text-rose-200/75 mt-1">
+            Elige la opción que mejor diga lo que sientes (y al final le tomas captura):
+          </p>
+        </div>
+
+        <!-- Opciones seleccionables -->
+        <div class="space-y-2.5 mb-4" id="options-container">
+          <button type="button" onclick="selectOption(0)" class="option-card selected w-full p-3.5 rounded-2xl text-left flex items-start gap-3">
+            <span class="text-lg mt-0.5">🤍</span>
+            <span class="text-xs sm:text-sm text-rose-50 font-medium leading-snug">
+              Solo fue el mal rato de ayer y un poquito de orgullo, no pasa nada.
+            </span>
+          </button>
+
+          <button type="button" onclick="selectOption(1)" class="option-card w-full p-3.5 rounded-2xl text-left flex items-start gap-3">
+            <span class="text-lg mt-0.5">💬</span>
+            <span class="text-xs sm:text-sm text-rose-50 font-medium leading-snug">
+              Sí hubo un detallito que me incomodó, pero prefiero que lo hablemos bien.
+            </span>
+          </button>
+
+          <button type="button" onclick="selectOption(2)" class="option-card w-full p-3.5 rounded-2xl text-left flex items-start gap-3">
+            <span class="text-lg mt-0.5">✨</span>
+            <span class="text-xs sm:text-sm text-rose-50 font-medium leading-snug">
+              Estaba un poco cerrada hoy, pero tampoco quiero malograr nuestra química.
+            </span>
+          </button>
+
+          <button type="button" onclick="selectOption(3)" class="option-card w-full p-3.5 rounded-2xl text-left flex items-start gap-3">
+            <span class="text-lg mt-0.5">🍦</span>
+            <span class="text-xs sm:text-sm text-rose-50 font-medium leading-snug">
+              Me debes una salida tranquila para compensar (prohibidos los juegos mecánicos).
+            </span>
+          </button>
+        </div>
+
+        <!-- Campo opcional para que ella escriba -->
+        <div class="mb-4">
+          <label for="yina-note" class="block text-xs font-pill font-semibold text-rose-200 mb-1.5">
+            ¿Quieres decirme algo más o contarme qué te incomodó? (Opcional):
+          </label>
+          <textarea id="yina-note" rows="2" placeholder="Escribe aquí con confianza lo que sientes..." class="w-full rounded-2xl bg-black/25 border border-white/15 focus:border-rose-400 focus:outline-none p-3 text-xs sm:text-sm text-white placeholder-rose-200/40 resize-none"></textarea>
+        </div>
+
+        <!-- Selector rápido: Pacto contra el orgullo -->
+        <div class="mb-5">
+          <span class="block text-xs font-pill font-semibold text-amber-200 mb-2 text-center">
+            ¿Dejamos el orgullo en pausa hoy? 🤝
+          </span>
+          <div class="grid grid-cols-3 gap-2" id="pact-container">
+            <button type="button" onclick="selectPact(0)" class="pact-pill selected py-2 px-2 rounded-xl text-[11px] text-center leading-tight">
+              Sí, bajemos la guardia 🏳️
+            </button>
+            <button type="button" onclick="selectPact(1)" class="pact-pill py-2 px-2 rounded-xl text-[11px] text-center leading-tight">
+              Hablemos un ratito 💬
+            </button>
+            <button type="button" onclick="selectPact(2)" class="pact-pill py-2 px-2 rounded-xl text-[11px] text-center leading-tight">
+              Con un abrazo se pasa 🫂
+            </button>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2.5">
+          <button onclick="goToStep(3)" class="p-3.5 rounded-2xl bg-white/10 hover:bg-white/15 text-rose-200 transition-all" aria-label="Volver">
+            <i data-lucide="arrow-left" class="w-5 h-5"></i>
+          </button>
+          <button onclick="generateCaptureCard()" class="flex-1 py-3.5 px-5 rounded-2xl bg-gradient-to-r from-amber-300 via-rose-400 to-pink-500 text-slate-950 font-pill font-bold text-sm sm:text-base shadow-xl shadow-rose-500/30 active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+            <i data-lucide="camera" class="w-5 h-5"></i>
+            <span>Generar mi respuesta para captura</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         PASO 5: TARJETA FINAL OPTIMIZADA PARA CAPTURA DE PANTALLA
+         ========================================== -->
+    <section id="step-5" class="step-view hidden animate-fade-in">
+      <!-- Aviso superior parpadeante -->
+      <div class="mb-3 px-4 py-2.5 rounded-2xl bg-amber-400/20 border border-amber-300/50 text-amber-100 text-center animate-pulse-soft flex items-center justify-center gap-2 shadow-lg">
+        <i data-lucide="smartphone" class="w-4 h-4 text-amber-300 flex-shrink-0"></i>
+        <span class="text-xs sm:text-sm font-pill font-bold">
+          📸 ¡Tómale captura a esta pantalla y mándamela por chat!
+        </span>
+      </div>
+
+      <!-- TARJETA TICKET DE RESPUESTA OFICIAL -->
+      <div class="cream-card rounded-3xl p-5 sm:p-6 relative overflow-hidden">
+        <!-- Muescas laterales tipo boleto -->
+        <div class="ticket-notch-left"></div>
+        <div class="ticket-notch-right"></div>
+
+        <!-- Cabecera del ticket -->
+        <div class="flex items-center justify-between border-b border-rose-200 pb-3 mb-3.5">
+          <div>
+            <span class="text-[10px] font-pill font-bold uppercase tracking-widest text-rose-500 block">
+              Reporte sincero • Sin orgullo
+            </span>
+            <h3 class="text-xl sm:text-2xl font-serif font-bold text-stone-800">
+              Respuesta de Yina ✨
+            </h3>
+          </div>
+          <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-rose-400 to-amber-400 flex items-center justify-center text-white shadow-md">
+            <span class="text-xl">💌</span>
+          </div>
+        </div>
+
+        <!-- Bloque 1: Respuesta a la pregunta -->
+        <div class="mb-3.5">
+          <p class="text-[11px] font-pill font-bold uppercase tracking-wider text-stone-400 mb-1">
+            ¿Hubo algo más que me incomodó?
+          </p>
+          <div class="p-3.5 rounded-2xl bg-rose-50 border border-rose-200/80 text-stone-800 font-medium text-xs sm:text-sm leading-snug" id="summary-option">
+            🤍 Solo fue el mal rato de ayer y un poquito de orgullo, no pasa nada.
+          </div>
+        </div>
+
+        <!-- Bloque 2: Nota escrita por Yina (se muestra siempre limpia) -->
+        <div id="summary-note-box" class="mb-3.5">
+          <p class="text-[11px] font-pill font-bold uppercase tracking-wider text-stone-400 mb-1">
+            Lo que quiero decirte:
+          </p>
+          <div class="p-3.5 rounded-2xl bg-amber-50/70 border border-amber-200/80 text-stone-700 italic text-xs sm:text-sm leading-snug" id="summary-note">
+            "Sin palabras extra, pero valoro el detalle."
+          </div>
+        </div>
+
+        <!-- Bloque 3: Estado del pacto contra el orgullo -->
+        <div class="mb-4 flex items-center justify-between p-3 rounded-2xl bg-stone-900 text-white">
+          <span class="text-xs text-rose-200 font-pill">¿Pausamos el orgullo hoy?</span>
+          <span id="summary-pact" class="text-xs font-pill font-bold px-3 py-1 rounded-full bg-rose-400 text-stone-950">
+            Sí, bajemos la guardia 🏳️
+          </span>
+        </div>
+
+        <!-- Línea punteada de boleto -->
+        <div class="border-t-2 border-dashed border-rose-200 my-3"></div>
+
+        <!-- Sello de garantía inferior -->
+        <div class="flex items-center justify-between text-[11px] text-stone-500 pt-1">
+          <div class="flex items-center gap-1.5 font-pill font-semibold text-rose-600">
+            <span>🎡🚫 Vale por cuidar nuestra química (0% Juegos Mecánicos)</span>
+          </div>
+          <span id="summary-time" class="font-mono text-[10px] text-stone-400">Hoy</span>
+        </div>
+      </div>
+
+      <!-- Botón secundario por si quiere cambiar su respuesta antes de la captura -->
+      <div class="mt-4 flex items-center justify-between px-2">
+        <button onclick="goToStep(4)" class="text-xs font-pill text-rose-200/80 hover:text-white underline underline-offset-4 flex items-center gap-1">
+          <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
+          Cambiar mi respuesta
+        </button>
+        <button onclick="celebrateHearts()" class="text-xs font-pill bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-full text-amber-200 flex items-center gap-1 transition-all">
+          <span>Lanzar corazoncitos</span>
+          <span>💖</span>
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Pie de página minimalista -->
+  <footer class="relative z-10 text-center py-3 text-[11px] text-rose-200/50 font-pill">
+    Hecho pensando en ti y en lo bonito que tenemos 🤍
+  </footer>
+
+  <!-- LÓGICA INTERACTIVA -->
+  <script>
+    lucide.createIcons();
+
+    /* ========================================================
+       1. SONIDOS SUAVES (WEB AUDIO API)
+       ======================================================== */
+    let audioCtx = null;
+    function playTone(freq = 523.25, duration = 0.9) {
+      try {
+        if (!audioCtx) {
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+
+        gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.12, audioCtx.currentTime + 0.04);
+        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+      } catch (e) {}
+    }
+
+    /* ========================================================
+       2. NAVEGACIÓN ENTRE PASOS
+       ======================================================== */
+    let currentStep = 0;
+    const stepNotes = [523.25, 587.33, 659.25, 783.99, 880.00, 1046.50];
+
+    function goToStep(stepIndex) {
+      playTone(stepNotes[stepIndex % stepNotes.length]);
+
+      document.querySelectorAll('.step-view').forEach((el, idx) => {
+        if (idx === stepIndex) {
+          el.classList.remove('hidden');
+        } else {
+          el.classList.add('hidden');
+        }
+      });
+
+      // Actualizar puntos de progreso (0 a 4)
+      const dots = document.querySelectorAll('#step-dots .dot');
+      dots.forEach((dot, idx) => {
+        if (idx === Math.min(stepIndex, 4)) {
+          dot.className = 'dot w-6 h-1.5 rounded-full bg-rose-400 transition-all duration-300';
+        } else if (idx < stepIndex) {
+          dot.className = 'dot w-2.5 h-1.5 rounded-full bg-rose-300/60 transition-all duration-300';
+        } else {
+          dot.className = 'dot w-2 h-1.5 rounded-full bg-white/20 transition-all duration-300';
+        }
+      });
+
+      currentStep = stepIndex;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /* ========================================================
+       3. SELECCIÓN DE RESPUESTA Y PACTO DE YINA
+       ======================================================== */
+    const optionsList = [
+      "🤍 Solo fue el mal rato de ayer y un poquito de orgullo, no pasa nada.",
+      "💬 Sí hubo un detallito que me incomodó, pero prefiero que lo hablemos bien.",
+      "✨ Estaba un poco cerrada hoy, pero tampoco quiero malograr nuestra química.",
+      "🍦 Me debes una salida tranquila para compensar (prohibidos los juegos mecánicos)."
+    ];
+
+    const pactsList = [
+      "Sí, bajemos la guardia 🏳️",
+      "Hablemos un ratito 💬",
+      "Con un abrazo se pasa 🫂"
+    ];
+
+    let selectedOptionIndex = 0;
+    let selectedPactIndex = 0;
+
+    function selectOption(index) {
+      playTone(659.25, 0.5);
+      selectedOptionIndex = index;
+      const buttons = document.querySelectorAll('#options-container .option-card');
+      buttons.forEach((btn, idx) => {
+        if (idx === index) {
+          btn.classList.add('selected');
+        } else {
+          btn.classList.remove('selected');
+        }
+      });
+    }
+
+    function selectPact(index) {
+      playTone(783.99, 0.5);
+      selectedPactIndex = index;
+      const pills = document.querySelectorAll('#pact-container .pact-pill');
+      pills.forEach((pill, idx) => {
+        if (idx === index) {
+          pill.classList.add('selected');
+        } else {
+          pill.classList.remove('selected');
+        }
+      });
+    }
+
+    function generateCaptureCard() {
+      // Melodía de confirmación
+      playTone(523.25, 0.4);
+      setTimeout(() => playTone(659.25, 0.4), 120);
+      setTimeout(() => playTone(783.99, 0.8), 240);
+
+      // Rellenar datos en la tarjeta de captura
+      document.getElementById('summary-option').textContent = optionsList[selectedOptionIndex];
+      document.getElementById('summary-pact').textContent = pactsList[selectedPactIndex];
+
+      const noteInput = document.getElementById('yina-note').value.trim();
+      const summaryNoteBox = document.getElementById('summary-note-box');
+      const summaryNote = document.getElementById('summary-note');
+
+      if (noteInput.length > 0) {
+        summaryNoteBox.classList.remove('hidden');
+        summaryNote.textContent = `"${noteInput}"`;
+      } else {
+        summaryNoteBox.classList.remove('hidden');
+        summaryNote.textContent = `"Prefiero contártelo o que nos veamos con más calma 🤍"`;
+      }
+
+      // Hora actual formateada
+      const now = new Date();
+      const hours = now.getHours().toString().padStart(2, '0');
+      const mins = now.getMinutes().toString().padStart(2, '0');
+      document.getElementById('summary-time').textContent = `${hours}:${mins}`;
+
+      goToStep(5);
+      celebrateHearts();
+    }
+
+    /* ========================================================
+       4. LLUVIA DE CORAZONES Y PARTÍCULAS DE FONDO
+       ======================================================== */
+    function celebrateHearts() {
+      const emojis = ['💖', '✨', '🤍', '🌸', '🎡🚫', '🫂'];
+      for (let i = 0; i < 22; i++) {
+        setTimeout(() => {
+          const el = document.createElement('div');
+          el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+          el.style.position = 'fixed';
+          el.style.left = (Math.random() * 88 + 6) + 'vw';
+          el.style.bottom = '-25px';
+          el.style.fontSize = (Math.random() * 14 + 18) + 'px';
+          el.style.zIndex = '50';
+          el.style.pointerEvents = 'none';
+          el.style.transition = `all ${Math.random() * 1.8 + 2.2}s cubic-bezier(0.22, 1, 0.36, 1)`;
+          document.body.appendChild(el);
+
+          requestAnimationFrame(() => {
+            el.style.transform = `translate(${(Math.random() - 0.5) * 90}px, -${window.innerHeight + 60}px) rotate(${(Math.random() - 0.5) * 45}deg)`;
+            el.style.opacity = '0';
+          });
+
+          setTimeout(() => el.remove(), 4200);
+        }, i * 45);
+      }
+    }
+
+    // Lienzo de destellos nocturnos suaves
+    const canvas = document.getElementById('particles-canvas');
+    const ctx = canvas.getContext('2d');
+    let stars = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    for (let i = 0; i < 32; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 2 + 0.8,
+        speedY: Math.random() * 0.35 + 0.1,
+        alpha: Math.random() * 0.5 + 0.2
+      });
+    }
+
+    function drawStars() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      stars.forEach(s => {
+        s.y -= s.speedY;
+        if (s.y < -10) {
+          s.y = canvas.height + 10;
+          s.x = Math.random() * canvas.width;
+        }
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(253, 224, 231, ${s.alpha})`;
+        ctx.fill();
+      });
+      requestAnimationFrame(drawStars);
+    }
+    drawStars();
+  </script>
+</body>
+</html>
